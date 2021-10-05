@@ -1,0 +1,42 @@
+name: Deploy Art Gallery Game
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**/README.md'
+
+jobs:
+  Test_And_Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install dependencies
+        run: npm install    
+      - name: Test
+        run: npm test
+        env:
+          CI: true
+      - name: Generate build
+        run: npm run build
+      - name: List output files
+        run: find build/ -print
+      - name: git update changes
+        run: |
+          git status -uno --porcelain
+          git config --global user.name "Mitchell Needham"
+          git config --global user.email "mneedham@student.unimelb.edu.au"
+          git add .
+          git commit -m "committing app build" || echo "No changes to commit"
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        with:
+          local-dir: build/
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
