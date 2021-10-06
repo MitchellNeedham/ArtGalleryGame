@@ -1,0 +1,44 @@
+{
+  "id": "jasjdbwjnskfjhauh",
+  "name": "test_character",
+  "dimensions": {
+    "height": 1,
+    "width": 0.5
+  },
+  "actions": {
+    "walk": {
+      "fps": 10,
+      "sound": "path/to/sound.wav",
+      "imageSequence": [
+        "path/to/image1.png",
+        "path/to/image2.png",
+        "path/to/image3.png"
+      ]
+    },
+    "idle": {
+      "fps": 3,
+      "sound": "path/to/sound.wav",
+      "imageSequence": [
+        "path/to/image1.png",
+        "path/to/image2.png",
+        "path/to/image3.png"
+      ]
+    }
+  },
+  "transitions": {
+    "walkToIdle": {
+      "imageSequence": [
+        "path/to/image1.png",
+        "path/to/image2.png",
+        "path/to/image3.png"
+      ]
+    },
+    "idleToWalk": {
+      "imageSequence": [
+        "path/to/image1.png",
+        "path/to/image2.png",
+        "path/to/image3.png"
+      ]
+    }
+  }
+}
