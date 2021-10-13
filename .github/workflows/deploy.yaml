@@ -17,11 +17,7 @@ jobs:
         with:
           node-version: 12.x
       - name: Install dependencies
-        run: npm install    
-      - name: Test
-        run: npm test
-        env:
-          CI: true
+        run: npm install
       - name: Generate build
         run: npm run build
       - name: List output files
