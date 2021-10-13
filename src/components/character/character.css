@@ -1,0 +1,6 @@
+.character {
+  position: absolute;
+  height: 20vh;
+  width: 10vh;
+  background-color: blueviolet;
+}

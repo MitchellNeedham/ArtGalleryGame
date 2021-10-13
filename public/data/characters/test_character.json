@@ -5,6 +5,7 @@
     "height": 1,
     "width": 0.5
   },
+  "speed": 1,
   "actions": {
     "walk": {
       "fps": 10,
