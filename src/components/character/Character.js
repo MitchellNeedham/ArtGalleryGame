@@ -1,15 +1,17 @@
 import { useState, useRef, useEffect } from 'react';
 import './character.css';
 
-const CharMoveSpeed = 5;
+const CharMoveSpeed = 0.8;
 
-export default function Character({ character }) {
+export default function Character({ character, pos }) {
   const characterRef = useRef(null);
   const [refresh, setRefresh] = useState(0);
-  const [posX, setPosX] = useState(0);
-  const [posY, setPosY] = useState(0);
+  const [posX, setPosX] = useState(pos[0] * 100);
+  const [posY, setPosY] = useState(pos[1] * 100);
   const [moveUp, setMoveUp] = useState(0);
   const [moveRight, setMoveRight] = useState(0);
+  const [height] = useState(character.dimensions.height);
+  const [width] = useState(character.dimensions.width);
 
   useEffect(() => {
     window.addEventListener('keydown', (e) => {
@@ -28,9 +30,9 @@ export default function Character({ character }) {
   }, []);
 
   useEffect(()=>{
-    setPosX(posX + moveRight * CharMoveSpeed);
-    setPosY(posY + moveUp * CharMoveSpeed);
-  },[refresh]);
+    setPosX(posX => posX + moveRight * CharMoveSpeed);
+    setPosY(posY => posY + moveUp * CharMoveSpeed);
+  }, [refresh, moveRight, moveUp]);
 
   useEffect(() => {
     setInterval(() => {
@@ -46,8 +48,10 @@ export default function Character({ character }) {
       ref={characterRef}
       style={
         {
-          top: posY + 'px',
-          left: posX + 'px',
+          height: height + 'vh',
+          width: width + 'vh',
+          top: posY + 'vh',
+          left: posX + 'vh',
         }
       }
     >

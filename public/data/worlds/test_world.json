@@ -8,24 +8,25 @@
       "scale": 1.2
     },
     "room": {
+      "spawn": [0.9, 0.7],
       "unitSize": {
         "min": 0.7,
         "max": 1
       },
       "polygon": [
-        [0.2, 0.2],
-        [0.8, 0.4],
-        [0.8, 0.8],
+        [0.6, 0.4],
+        [1.8, 0.4],
+        [2.2, 0.8],
         [0.2, 0.8]
       ],
       "doors": [
         {
           "id": "ajsdu3njfkaqsfneuj3",
-          "pos": [0.2, 0.6]
+          "pos": [0.3, 0.6]
         },
         {
           "id": "awdsdfgwaijfksnfjwu",
-          "pos": [0.8, 0.6]
+          "pos": [2, 0.6]
         }
       ]
     }

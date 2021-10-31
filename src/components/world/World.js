@@ -6,21 +6,21 @@ import { Scene } from '../scenes';
 export default function World() {
   const [worldData, setWorldData] = useState([]);
   const [characterData, setCharacterData] = useState({});
-  const [scene, setScene] = useState(0);
+  const [scene] = useState(0);
 
   useEffect(() => {
     axios
-    .get('/data/worlds/test_world.json')
-    .then((res) => {
-      setWorldData(res.data);
-    });
-
-    axios
-    .get('/data/characters/test_character.json')
-    .then((res) => {
-      setCharacterData(res.data);
-    });
+    .all([
+      axios.get('/data/worlds/test_world.json'),
+      axios.get('/data/characters/test_character.json')
+    ])
+    .then(axios.spread((res1, res2) => {
+      setCharacterData(res2.data);
+      setWorldData(res1.data);
+    }));
   }, []);
+
+  console.log(characterData);
 
   return (
     <div>

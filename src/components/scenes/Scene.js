@@ -1,11 +1,14 @@
 import { Character } from '../character';
 import './scene.css';
 
-export default function Scene({ scene, characterData }) {
+export default function Scene({ scene, character }) {
   if (!scene) return <></>;
   
-  const roomPolygon = scene.room.polygon.map(([val1, val2]) => val1*100+'% ' +val2*100+'%').join(', ');
-  console.log(roomPolygon);
+  const roomPolygon = scene.room.polygon.map(([val1, val2]) => val1*100+'vh ' +val2*100+'vh').join(', ');
+  const [head, ...tail] = scene.room.polygon.sort((p1, p2) => p2[1] - p1[1]);
+
+  console.log(head, tail);
+
   return (
     <>
       <div
@@ -27,8 +30,8 @@ export default function Scene({ scene, characterData }) {
           style={
             {
               position: 'absolute',
-              top: door.pos[1] * 100 + '%',
-              left: door.pos[0] * 100 + '%',
+              top: door.pos[1] * 100 + 'vh',
+              left: door.pos[0] * 100 + 'vh',
             }
           }
         >
@@ -36,7 +39,7 @@ export default function Scene({ scene, characterData }) {
 
         </div>
       ))}
-      <Character character={characterData} />
+      <Character character={character} pos={scene.room.spawn} />
     </>
   )
 }
