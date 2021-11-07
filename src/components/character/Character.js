@@ -3,7 +3,7 @@ import './character.css';
 
 const CharMoveSpeed = 0.8;
 
-export default function Character({ character, pos }) {
+export default function Character({ character, pos, unitSize }) {
   const characterRef = useRef(null);
   const [refresh, setRefresh] = useState(0);
   const [posX, setPosX] = useState(pos[0] * 100);
@@ -29,6 +29,11 @@ export default function Character({ character, pos }) {
     });
   }, []);
 
+  useEffect(() => {
+    setPosX(pos[0] * 100);
+    setPosY(pos[1] * 100);
+  }, [pos]);
+
   useEffect(()=>{
     setPosX(posX => posX + moveRight * CharMoveSpeed);
     setPosY(posY => posY + moveUp * CharMoveSpeed);
@@ -37,8 +42,13 @@ export default function Character({ character, pos }) {
   useEffect(() => {
     setInterval(() => {
       setRefresh(new Date());
-    }, 20);
+    }, 25);
   }, []);
+
+  const normalY = posY/100;
+  const m = (unitSize.max-unitSize.min)/(unitSize.floorMax-unitSize.floorMin);
+  const c = unitSize.min - m * unitSize.floorMin;
+  const ratio = normalY*m+c;
 
   
 
@@ -48,8 +58,8 @@ export default function Character({ character, pos }) {
       ref={characterRef}
       style={
         {
-          height: height + 'vh',
-          width: width + 'vh',
+          height: ratio * height + 'vh',
+          width: ratio * width + 'vh',
           top: posY + 'vh',
           left: posX + 'vh',
         }
