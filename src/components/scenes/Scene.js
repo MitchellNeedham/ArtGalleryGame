@@ -120,17 +120,11 @@ export default function Scene(
           height: '100vh',
           width: `min(100vw, ${scene.background.dimensions[0]/scene.background.dimensions[1]*100}vh`,
           margin: '0 auto 0',
-          overflowY: 'none',
         }
       }
     >
       <Scrollbars
         ref={scrollbarRef}
-        style={
-          {
-            overflowY: 'none'
-          }
-        }
       >
         <div
           className="scene-container"
@@ -139,6 +133,7 @@ export default function Scene(
               backgroundImage: `url(${scene.background.image})`,
               width: `${scene.background.dimensions[0]/scene.background.dimensions[1]*100}vh`,
               height: '100vh',
+              overflow: 'hiddenw'
             }
           }
         >
