@@ -1,63 +1,196 @@
 [
   {
-    "id": "jansjbnrh3nsjkanlksd",
+    "id": "bedroom",
     "sceneName": "bedroom",
     "background": {
-      "image": "path/to/image.jpg", 
-      "position": [0, 0],
-      "scale": 1.2
+      "image": "/data/worlds/images/bedroom.jpg",
+      "dimensions": [4744, 3540]
     },
     "room": {
       "spawn": [0.9, 0.7],
       "unitSize": {
-        "min": 0.7,
-        "max": 1
+        "min": 1.4,
+        "max": 1.8
       },
       "polygon": [
-        [0.6, 0.4],
-        [1.8, 0.4],
-        [2.2, 0.8],
-        [0.2, 0.8]
+        [0.7, 0.7],
+        [0.2, 0.7],
+        [0, 1],
+        [1.33, 1],
+        [1.2, 0.9],
+        [0.8, 0.9]
       ],
       "doors": [
         {
-          "id": "ajsdu3njfkaqsfneuj3",
-          "pos": [0.3, 0.6]
-        },
+          "id": "bedroom-street",
+          "pos": [1.2, 0.6],
+          "dimensions": [0.1, 0.1]
+        }
+      ],
+      "interactives": [
         {
-          "id": "awdsdfgwaijfksnfjwu",
-          "pos": [2, 0.6]
+          "type": "image",
+          "pos": [0.6, 0.1],
+          "height": 0.2,
+          "path": "/data/worlds/test_world/bedroom/art.jpg",
+          "title": "Test Artwork",
+          "artist": "Test Artist",
+          "desc": "Example description that has text that people read"
         }
       ]
     }
   },
   {
-    "id": "asodjkwjlfjdijfikrm",
+    "id": "street",
     "sceneName": "street",
     "background": {
-      "image": "path/to/image.jpg", 
-      "position": [0, 0],
-      "scale": 1.5
+      "image": "/data/worlds/images/Doors-min.jpg",
+      "dimensions": [4723, 3507]
     },
+    "music": "/data/music/town.mp3",
     "room": {
       "unitSize": {
-        "min": 0.4,
-        "max": 1
+        "min": 0.8,
+        "max": 1.2
       },
       "polygon": [
-        [0.4, 0.4],
-        [0.6, 0.4],
-        [0.6, 0.6],
-        [0.4, 0.6]
+        [0.2, 0.6],
+        [1.15, 0.6],
+        [1.25, 1],
+        [0.1, 1]
       ],
       "doors": [
         {
-          "id": "ajsdu3njfkaqsfneuj3",
-          "pos": [0, 0.5]
+          "id": "bedroom-street",
+          "pos": [0.1, 0.9],
+          "dimensions": [0.1, 0.1]
         },
         {
-          "id": "awdsdfgwaijfksnfjwu",
-          "pos": [1, 0.5]
+          "id": "street-gallery",
+          "pos": [0.2, 0.5],
+          "dimensions": [0.1, 0.1]
+        },
+        {
+          "id": "street-studio",
+          "pos": [0.65, 0.5],
+          "dimensions": [0.1, 0.1]
+        },
+        {
+          "id": "street-cinema",
+          "pos": [1, 0.5],
+          "dimensions": [0.1, 0.1]
+        }
+      ]
+    }
+  },
+  {
+    "id": "gallery",
+    "sceneName": "gallery",
+    "background": {
+      "image": "/data/worlds/images/GALLERY-min.jpg",
+      "dimensions": [9320, 3589]
+    },
+    "room": {
+      "unitSize": {
+        "min": 2,
+        "max": 2.5
+      },
+      "polygon": [
+        [2.5, 0.75],
+        [0.05, 0.75],
+        [0.05, 0.95],
+        [2.5, 0.95]
+      ],
+      "doors": [
+        {
+          "id": "street-gallery",
+          "pos": [0.1, 0.85],
+          "dimensions": [0.1, 0.1]
+        }
+      ],
+      "interactives": [
+        {
+          "type": "image",
+          "pos": [0.85, 0.25],
+          "height": 0.3,
+          "path": "/data/worlds/test_world/bedroom/art.jpg",
+          "title": "Test Artwork",
+          "artist": "Test Artist",
+          "desc": "Example description that has text that people read"
+        },
+        {
+          "type": "image",
+          "pos": [1.6, 0.25],
+          "height": 0.3,
+          "path": "/data/worlds/test_world/bedroom/art.jpg",
+          "title": "Test Artwork",
+          "artist": "Test Artist",
+          "desc": "Example description that has text that people read"
+        }
+      ]
+    }
+  },
+  {
+    "id": "studio",
+    "sceneName": "studio",
+    "background": {
+      "image": "/data/worlds/images/MusicShop-min.jpg",
+      "dimensions": [4751, 3538]
+    },
+    "room": {
+      "unitSize": {
+        "min": 2,
+        "max": 3
+      },
+      "polygon": [
+        [0.2, 0.79],
+        [1.15, 0.79],
+        [1.25, 1],
+        [0.1, 1]
+      ],
+      "doors": [
+        {
+          "id": "street-studio",
+          "pos": [0.1, 0.85],
+          "dimensions": [0.1, 0.1]
+        }
+      ]
+    }
+  },
+  {
+    "id": "cinema",
+    "sceneName": "cinema",
+    "background": {
+      "image": "/data/worlds/images/Theatre-min.jpg",
+      "dimensions": [4723, 3507]
+    },
+    "room": {
+      "unitSize": {
+        "min": 1.3,
+        "max": 1.8
+      },
+      "polygon": [
+        [0.2, 0.75],
+        [1.15, 0.75],
+        [1.33, 0.98],
+        [0.05, 0.98]
+      ],
+      "doors": [
+        {
+          "id": "street-cinema",
+          "pos": [0.2, 0.85],
+          "dimensions": [0.1, 0.1]
+        }
+      ],
+      "interactives": [
+        {
+          "type": "video",
+          "pos": [0.21, 0.173],
+          "dimensions": [0.92, 0.54],
+          "path": "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1",
+          "title": "Test Artwork",
+          "artist": "Test Artist",
+          "desc": "Example description that has text that people read"
         }
       ]
     }

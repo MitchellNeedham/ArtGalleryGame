@@ -1,0 +1,5 @@
+import './art.scss';
+
+export { default as ArtImage } from './ArtImage';
+export { default as ArtVideo } from './ArtVideo';
+export { default as ArtMusic } from './ArtMusic';

@@ -33,14 +33,12 @@ export default function World() {
             return (
               {
                 currentRoom: {
-                  id: door.id,
                   scene,
-                  pos: door.pos,
+                  ...door
                 },
                 nextRoom: {
-                  id: matchingDoor.id,
                   scene: i,
-                  pos: matchingDoor.pos,
+                  ...matchingDoor
                 }
               }
             );
@@ -52,7 +50,7 @@ export default function World() {
   }, [scene, worldData]);
 
   const changeScene = (entryDoor) => {
-    setSpawnPos(entryDoor.pos);
+    setSpawnPos([entryDoor.pos[0] + entryDoor.dimensions[0]/2, entryDoor.pos[1] + entryDoor.dimensions[1]]);
     setScene(entryDoor.scene);
   };
 
@@ -67,7 +65,7 @@ export default function World() {
         character={characterData}
         doors={doors}
         changeScene={(door) => changeScene(door)}
-        spawnPos={spawnPos ?? worldData[scene].room.spawn}
+        spawnPos={spawnPos ?? worldData[scene].room.spawn ?? [0.5, 1]}
       />
     </div>
   );

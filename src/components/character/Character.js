@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import './character.css';
+import './character.scss';
 
-const charMoveSpeed = 1.5;
+const charMoveSpeed = (size) => 1/(size/3 + 1);
 
 export default function Character({ character, pos, unitSize, newPos, changeScene }) {
   const characterRef = useRef(null);
@@ -17,20 +17,6 @@ export default function Character({ character, pos, unitSize, newPos, changeScen
     setPosY(pos[1] * 100);
   }, [pos]);
 
-  useEffect(()=>{
-    if (targetPos) {
-      const orthoDist = Math.abs(posY-targetPos[1]) + Math.abs(posX-targetPos[0]);
-      const speedX = Math.abs(posX-targetPos[0])/orthoDist * Math.sign(targetPos[0]-posX);
-      const speedY = Math.abs(posY-targetPos[1])/orthoDist * Math.sign(targetPos[1]-posY);
-      setPosX(posX => posX + speedX * charMoveSpeed);
-      setPosY(posY => posY + speedY * charMoveSpeed);
-
-      if (orthoDist < 3) {
-        setTargetPos(null);
-        if (changeScene) changeScene();
-      }
-    }
-  }, [refresh]);
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -48,6 +34,25 @@ export default function Character({ character, pos, unitSize, newPos, changeScen
   const c = unitSize.min - m * unitSize.floorMin;
   const ratio = normalY*m+c;
 
+  const handleMove = () => {
+   if (targetPos) {
+      const orthoDist = Math.abs(posY-targetPos[1]) + Math.abs(posX-targetPos[0]);
+      const speedX = Math.abs(posX-targetPos[0])/orthoDist * Math.sign(targetPos[0]-posX);
+      const speedY = Math.abs(posY-targetPos[1])/orthoDist * Math.sign(targetPos[1]-posY);
+      setPosX(posX => posX + speedX * charMoveSpeed(ratio) * ratio);
+      setPosY(posY => posY + speedY * charMoveSpeed(ratio) * ratio * 0.75);
+
+      if (orthoDist < 3) {
+        setTargetPos(null);
+        if (changeScene) changeScene();
+      }
+    }
+  }
+
+  useEffect(()=>{
+    handleMove();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refresh]);
 
   return (
     <div
@@ -59,10 +64,9 @@ export default function Character({ character, pos, unitSize, newPos, changeScen
           width: ratio * width + 'vh',
           top: posY - ratio * height * 0.8 + 'vh',
           left: posX - ratio * width / 2 + 'vh',
+          backgroundImage: `url(${character.actions.idle.imageSequence[0]})`
         }
       }
-    >
-      Character
-    </div>
+    />
   )
 }
