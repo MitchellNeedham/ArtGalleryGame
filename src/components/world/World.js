@@ -52,7 +52,6 @@ export default function World() {
   }, [scene, worldData]);
 
   const changeScene = (entryDoor) => {
-    console.log(entryDoor);
     setSpawnPos(entryDoor.pos);
     setScene(entryDoor.scene);
   };

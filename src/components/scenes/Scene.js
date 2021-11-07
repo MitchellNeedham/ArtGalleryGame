@@ -12,6 +12,7 @@ export default function Scene(
   }) {
   // HOOKS //
   const [newPos, setNewPos] = useState(null);
+  const [targetDoor, setTargetDoor] = useState(false);
 
   useEffect(() => {
     window.addEventListener('click', (e) => moveToPos(e));
@@ -19,8 +20,8 @@ export default function Scene(
   }, []);
 
   const moveToPos = (e) => {
-    console.log(e);
-    console.log(window.innerHeight);
+    setTargetDoor((td) => e.target.classList.contains('scene-door') ? td : false);
+    setNewPos([e.x, e.y]);
   }
 
   // RETURN IF NO SCENE DATA
@@ -32,7 +33,6 @@ export default function Scene(
 
   const floorMin = scene.room.polygon.reduce((acc, val) => acc < val[1] ? acc : val[1]);
   const floorMax = scene.room.polygon.reduce((acc, val) => acc > val[1] ? acc : val[1]);
-  console.log(scene.room.unitSize);
 
   return (
     <>
@@ -56,8 +56,8 @@ export default function Scene(
           title={pair.currentRoom.id}
           role="button"
           tabIndex="0"
-          onClick={() => changeScene(pair.nextRoom)}
-          onKeyDown={(e) => e.key === 'Enter' && changeScene(pair.nextRoom)}
+          onClick={() => setTargetDoor(() => () => changeScene(pair.nextRoom))}
+          onKeyDown={(e) => e.key === 'Enter' && setTargetDoor(() => () => changeScene(pair.nextRoom))}
           style={
             {
               position: 'absolute',
@@ -73,6 +73,7 @@ export default function Scene(
         pos={spawnPos}
         newPos={newPos}
         unitSize={{...scene.room.unitSize, floorMin, floorMax }}
+        changeScene={targetDoor}
       />
     </>
   )
