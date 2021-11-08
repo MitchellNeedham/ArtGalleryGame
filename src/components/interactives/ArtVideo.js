@@ -17,6 +17,10 @@ export default function ArtVideo(props) {
     setDarkRoom(false);
   }
 
+  const onPlayerReady = (event) => {
+    event.target.playVideo();
+  }
+
   useEffect(() => {
     window.YT.ready(() => {
       new window.YT.Player('player', {
@@ -27,7 +31,8 @@ export default function ArtVideo(props) {
           rel: 0
         },
         events: {
-          onStateChange: onPlayerStateChange
+          onStateChange: onPlayerStateChange,
+          onReady: onPlayerReady
         }
       });
     });    
