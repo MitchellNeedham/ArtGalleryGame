@@ -28,7 +28,9 @@ export default function ArtVideo(props) {
         height: window.innerHeight * dimensions[1],
         videoId: path,
         playerVars: {
-          rel: 0
+          rel: 0,
+          start: 1,
+          color: 'white',
         },
         events: {
           onStateChange: onPlayerStateChange,
@@ -55,6 +57,7 @@ export default function ArtVideo(props) {
       }
     >
       <div
+        className="video-container"
         style={
           {
             position: 'absolute',
@@ -62,7 +65,9 @@ export default function ArtVideo(props) {
             top: pos[1] * 100 + 'vh',
             width: window.innerHeight * dimensions[0] + 'px',
             height: window.innerHeight * dimensions[1] + 'px',
-            boxShadow: `0 100px 200px 100px ${darkRoom ? '#fff3' : '#0000'}`,
+            WebkitAnimation: darkRoom ? 'fadelight 3s ease-in-out alternate infinite' : 'none',
+            animation: darkRoom ? 'fadelight 3s ease-in-out alternate infinite' : 'none',
+            //boxShadow: `0 100px 200px 100px ${darkRoom ? '#fff3' : '#0000'}`,
           }
         }
       >

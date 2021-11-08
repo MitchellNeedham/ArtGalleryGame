@@ -26,11 +26,26 @@
 }
 
 .lights-out {
-  background-color: #000a;
+  background-color: #000d;
   transition: background-color 1s linear;
 }
 
 .lights-on {
   background-color: #0000;
   transition: background-color 1s linear;
+}
+
+@keyframes fadelight {
+  0% {
+    box-shadow: 0 100px 200px 100px rgba(255, 255, 255, 0.151);
+  };
+  50% {
+    box-shadow: 0 100px 200px 100px rgba(255, 255, 255, 0.24);
+  };
+  70% {
+    box-shadow: 0 100px 200px 100px rgba(255, 255, 255, 0.19);
+  };
+  100% {
+    box-shadow: 0 100px 200px 100px rgba(255, 255, 255, 0.315);
+  }
 }
