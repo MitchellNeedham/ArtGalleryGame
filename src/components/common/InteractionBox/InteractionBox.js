@@ -34,10 +34,10 @@ export default function InteractionBox({
         onKeyUp={() => {}}
         style={
           {
-            width: `min(90vw, ${width})`,
-            height: `min(90vh, ${dynamicHeight || height})`,
-            left: `calc(50% - min(90vw, ${width}) / 2)`,
-            top: `calc(50% - min(90vh, ${dynamicHeight || height}) / 2)`,
+            width: `min(95vw, ${width})`,
+            height: `min(95vh, ${dynamicHeight || height})`,
+            left: `calc(50% - min(95vw, ${width}) / 2)`,
+            top: `calc(50% - min(95vh, ${dynamicHeight || height}) / 2)`,
           }
         }
       >

@@ -2,8 +2,10 @@ import { useState, useRef, useEffect } from 'react';
 import './character.scss';
 
 const charMoveSpeed = (size) => 1/(size/3 + 1);
+const SCREEN_EDGE_OFFSET = 200;
+const SCROLL_SPEED = 20;
 
-export default function Character({ character, pos, unitSize, newPos, changeScene }) {
+export default function Character({ character, pos, unitSize, newPos, changeScene, scrollbarRef }) {
   const characterRef = useRef(null);
   const [refresh, setRefresh] = useState(0);
   const [posX, setPosX] = useState(pos[0] * 100);
@@ -11,6 +13,7 @@ export default function Character({ character, pos, unitSize, newPos, changeScen
   const [height] = useState(character.dimensions.height);
   const [width] = useState(character.dimensions.width);
   const [targetPos, setTargetPos] = useState(newPos);
+  const [scrollDir, setScrollDir] = useState(0);
 
   useEffect(() => {
     setPosX(pos[0] * 100);
@@ -23,7 +26,31 @@ export default function Character({ character, pos, unitSize, newPos, changeScen
       setRefresh(new Date());
     }, 25);
     return () => clearInterval(t);
-  }, []); 
+  }, []);
+
+  useEffect(() => {
+    const sb = scrollbarRef.current;
+    sb?.scrollLeft(sb?.getScrollLeft() + scrollDir);
+  }, [refresh, scrollDir]);
+
+  useEffect(() => {
+    if(window.matchMedia("(any-hover: none)").matches) return;
+    window.addEventListener('mousemove', (e) => detectMouseOnEdge(e));
+    return window.removeEventListener('mousemove', (e) => detectMouseOnEdge(e));
+  }, []);
+
+  const detectMouseOnEdge = (e) => {    
+    if (e.clientX - window.innerWidth > -SCREEN_EDGE_OFFSET) {
+      setScrollDir(SCROLL_SPEED);
+      return;
+    }
+    if (e.clientX < SCREEN_EDGE_OFFSET) {
+      setScrollDir(-SCROLL_SPEED);
+      return;
+    }
+    setScrollDir(0);
+    return;
+  }
 
   useEffect(() => {
     setTargetPos(newPos === null ? null : [newPos[0]/window.innerHeight*100, newPos[1]/window.innerHeight*100]);

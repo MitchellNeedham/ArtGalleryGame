@@ -5,9 +5,6 @@ import { ArtImage, ArtMusic, ArtVideo } from '../interactives';
 import { Character } from '../character';
 import './scene.css';
 
-const SCREEN_EDGE_OFFSET = 200;
-const SCROLL_SPEED = 20;
-
 const INTERACTIVES = {
   image: (props) => (<ArtImage {...props} />),
   video: (props) => (<ArtVideo {...props} />),
@@ -27,9 +24,6 @@ export default function Scene(
   const sceneRef = useRef(null);
   const [newPos, setNewPos] = useState(null);
   const [targetDoor, setTargetDoor] = useState(false);
-  const [refresh, setRefresh] = useState(0);
-  const [scrollDir, setScrollDir] = useState(0);
-
   const [audio, setAudio] = useState(null);
 
   useEffect(() => {
@@ -58,36 +52,9 @@ export default function Scene(
     return window.removeEventListener('click', (e) => moveToPos(e));
   }, []);
 
-  useEffect(() => {
-    window.addEventListener('mousemove', (e) => detectMouseOnEdge(e));
-    return window.removeEventListener('mousemove', (e) => detectMouseOnEdge(e));
-  }, []);
 
-  useEffect(() => {
-    if (!scrollDir) return;
-    const t = setInterval(() => {
-      setRefresh(new Date());
-    }, 25);
-    return () => clearInterval(t);
-  }, [scrollDir]);
 
-  useEffect(() => {
-    const sb = scrollbarRef.current;
-    sb?.scrollLeft(sb?.getScrollLeft() + scrollDir);
-  }, [refresh, scrollDir]);
 
-  const detectMouseOnEdge = (e) => {    
-    if (e.clientX - window.innerWidth > -SCREEN_EDGE_OFFSET) {
-      setScrollDir(SCROLL_SPEED);
-      return;
-    }
-    if (e.clientX < SCREEN_EDGE_OFFSET) {
-      setScrollDir(-SCROLL_SPEED);
-      return;
-    }
-    setScrollDir(0);
-    return;
-  }
 
   const moveToPos = (e) => {
     if (e.target.classList.contains('art') || !sceneRef.current.contains(e.target)) return;
@@ -133,7 +100,7 @@ export default function Scene(
               backgroundImage: `url(${scene.background.image})`,
               width: `${scene.background.dimensions[0]/scene.background.dimensions[1]*100}vh`,
               height: '100vh',
-              overflow: 'hiddenw'
+              overflow: 'hidden'
             }
           }
         >
@@ -177,6 +144,7 @@ export default function Scene(
             newPos={newPos}
             unitSize={{...scene.room.unitSize, floorMin, floorMax }}
             changeScene={targetDoor}
+            scrollbarRef={scrollbarRef}
           />
         </div>
       </Scrollbars>
