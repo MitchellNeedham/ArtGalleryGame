@@ -23,7 +23,7 @@ export default function ArtImage(props) {
         }
       }
       onClick={
-        () => addInteractionBox(() => <ArtImageView {...props} />, '70vw')
+        () => addInteractionBox(() => <ArtImageView {...props} />, '700px')
       }
     />
   )
