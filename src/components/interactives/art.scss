@@ -37,7 +37,7 @@
 
 @keyframes fadelight {
   0% {
-    box-shadow: 0 100px 200px 100px rgba(255, 255, 255, 0.151);
+    box-shadow: 0 100px 200px 100px rgba(255, 255, 255, 0.17);
   };
   50% {
     box-shadow: 0 100px 200px 100px rgba(255, 255, 255, 0.24);
@@ -46,6 +46,6 @@
     box-shadow: 0 100px 200px 100px rgba(255, 255, 255, 0.19);
   };
   100% {
-    box-shadow: 0 100px 200px 100px rgba(255, 255, 255, 0.315);
+    box-shadow: 0 100px 200px 100px rgba(255, 255, 255, 0.26);
   }
 }
