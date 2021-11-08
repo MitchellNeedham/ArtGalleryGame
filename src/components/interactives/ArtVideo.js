@@ -31,7 +31,7 @@ export default function ArtVideo(props) {
         }
       });
     });    
-  }, []);
+  }, [path, dimensions]);
 
   
 

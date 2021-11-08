@@ -31,7 +31,7 @@ export default function Character({ character, pos, unitSize, newPos, changeScen
   useEffect(() => {
     const sb = scrollbarRef.current;
     sb?.scrollLeft(sb?.getScrollLeft() + scrollDir);
-  }, [refresh, scrollDir]);
+  }, [refresh, scrollDir, scrollbarRef]);
 
   useEffect(() => {
     if(window.matchMedia("(any-hover: none)").matches) return;
