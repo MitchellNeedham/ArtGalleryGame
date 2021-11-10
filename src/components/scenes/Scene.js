@@ -52,10 +52,6 @@ export default function Scene(
     return window.removeEventListener('click', (e) => moveToPos(e));
   }, []);
 
-
-
-
-
   const moveToPos = (e) => {
     if (e.target.classList.contains('art') || !sceneRef.current.contains(e.target)) return;
     const boundingBox = sceneRef.current.getBoundingClientRect();
@@ -78,7 +74,6 @@ export default function Scene(
 
   const floorMin = scene.room.polygon.reduce((acc, val) => acc < val[1] ? acc : val[1]);
   const floorMax = scene.room.polygon.reduce((acc, val) => acc > val[1] ? acc : val[1]);
-  
   return (
     <div
       ref={sceneRef}
@@ -109,13 +104,25 @@ export default function Scene(
             className="scene-floor"
             style={
               {
+                //backgroundColor: '#cccc',
                 width: `${floorWidth*100}vh`,
                 height: '100vh',
                 clipPath: 'polygon(' + roomPolygon + ')',
               }
             }
           >
-            Scene
+            {scene.room.innerPolygons?.map((polygon) => (
+              <div
+                style={
+                  {
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: 'blue',
+                    clipPath: `polygon(${polygon.map(([val1, val2]) => val1*100+'vh ' +val2*100+'vh').join(', ')})`
+                  }
+                }
+              />
+            ))}
           </div>
           {doors.map((pair) => (
             <div
@@ -142,6 +149,7 @@ export default function Scene(
             character={character}
             pos={spawnPos}
             newPos={newPos}
+            polygons={{outer: scene.room.polygon, inner: scene.room.innerPolygons ?? []}}
             unitSize={{...scene.room.unitSize, floorMin, floorMax }}
             changeScene={targetDoor}
             scrollbarRef={scrollbarRef}

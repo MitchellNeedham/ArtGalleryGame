@@ -30,7 +30,7 @@ export default function ArtVideo(props) {
         playerVars: {
           rel: 0,
           start: 1,
-          color: 'white',
+          modestbranding: 1,
         },
         events: {
           onStateChange: onPlayerStateChange,

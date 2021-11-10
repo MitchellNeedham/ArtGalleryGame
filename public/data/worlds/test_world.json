@@ -55,9 +55,19 @@
       },
       "polygon": [
         [0.2, 0.6],
-        [1.15, 0.6],
-        [1.25, 1],
-        [0.1, 1]
+        [0.4, 0.6],
+        [0.45, 0.75],
+        [0.6, 0.75],
+        [0.63, 0.6],
+        [0.76, 0.6],
+        [0.76, 0.75],
+        [0.9, 0.78],
+        [0.97, 0.62],
+        [1.13, 0.65],
+        [1.03, 0.85],
+        [1.25, 0.98],
+        [0.1, 0.98],
+        [0.33, 0.83]
       ],
       "doors": [
         {
@@ -187,7 +197,7 @@
           "type": "video",
           "pos": [0.21, 0.173],
           "dimensions": [0.92, 0.54],
-          "path": "uD4izuDMUQA",
+          "path": "h6fcK_fRYaI",
           "title": "Test Artwork",
           "artist": "Test Artist",
           "desc": "Example description that has text that people read"

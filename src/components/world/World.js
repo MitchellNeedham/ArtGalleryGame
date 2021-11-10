@@ -6,7 +6,7 @@ import { Scene } from '../scenes';
 export default function World() {
   const [worldData, setWorldData] = useState([]);
   const [characterData, setCharacterData] = useState({});
-  const [scene, setScene] = useState(0);
+  const [scene, setScene] = useState(1);
   const [doors, setDoors] = useState([]);
   const [spawnPos, setSpawnPos] = useState(null);
 
@@ -65,7 +65,7 @@ export default function World() {
         character={characterData}
         doors={doors}
         changeScene={(door) => changeScene(door)}
-        spawnPos={spawnPos ?? worldData[scene].room.spawn ?? [0.5, 1]}
+        spawnPos={spawnPos ?? worldData[scene].room.spawn ?? [0.5, 0.95]}
       />
     </div>
   );
