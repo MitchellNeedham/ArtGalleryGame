@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import pathfinding from '../../scripts/pathfinding';
 import './character.scss';
 
-const charMoveSpeed = (size) => 1/(size/3 + 1);
+const charMoveSpeed = (size) => 5/(size/3 + 1)/6;
 const SCREEN_EDGE_OFFSET = 200;
 const SCROLL_SPEED = 20;
 
@@ -69,8 +69,8 @@ export default function Character({ character, pos, unitSize, newPos, polygons, 
       const orthoDist = Math.abs(currPos[1]-targetPos[0][1]) + Math.abs(currPos[0]-targetPos[0][0]);
       setSpeed(([prevSpeedX, prevSpeedY]) => (
         [
-          (prevSpeedX * 3 + Math.abs(currPos[0]-targetPos[0][0])/orthoDist * Math.sign(targetPos[0][0]-currPos[0]))/4,
-          (prevSpeedY * 3 + Math.abs(currPos[1]-targetPos[0][1])/orthoDist * Math.sign(targetPos[0][1]-currPos[1]))/4
+          (prevSpeedX * 4 + Math.abs(currPos[0]-targetPos[0][0])/orthoDist * Math.sign(targetPos[0][0]-currPos[0]))/5,
+          (prevSpeedY * 4 + Math.abs(currPos[1]-targetPos[0][1])/orthoDist * Math.sign(targetPos[0][1]-currPos[1]))/5
         ]
       ));
 

@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 
+import { useSceneLoaded } from "../../api/LoadedContext";
+
 export default function ArtVideo(props) {
   const {
     pos,
@@ -8,22 +10,44 @@ export default function ArtVideo(props) {
   } = props;
   const [darkRoom, setDarkRoom] = useState(false);
   const darkenRef = useRef(null);
+  const [player, setPlayer] = useState(null);
+  const [ready, setReady] = useState(false);
+
+  const { isLoaded } = useSceneLoaded();
+
+  useEffect(() => {
+    if (isLoaded && ready) {
+      console.log(window.YT);
+
+      setTimeout(() => {
+        setDarkRoom(true);
+      }, 750);
+
+      setTimeout(() => {
+        player.playVideo();
+      }, 1000);
+    }
+  }, [isLoaded, ready, player]);
 
   const onPlayerStateChange = (event) => {
     if (event.data === window.YT.PlayerState.PLAYING) {
       setDarkRoom(true);
+      //setPaused(false);
       return;
-    };
-    setDarkRoom(false);
+    }
+    if (event.data === window.YT.PlayerState.PAUSED || event.data === window.YT.PlayerState.ENDED) {
+      //setPaused(true);
+      setDarkRoom(false);
+    }
   }
 
-  const onPlayerReady = (event) => {
-    event.target.playVideo();
+  const onPlayerReady = () => {
+    setReady(true);
   }
 
   useEffect(() => {
     window.YT.ready(() => {
-      new window.YT.Player('player', {
+      setPlayer(new window.YT.Player('player', {
         width: window.innerHeight * dimensions[0],
         height: window.innerHeight * dimensions[1],
         videoId: path,
@@ -36,11 +60,10 @@ export default function ArtVideo(props) {
           onStateChange: onPlayerStateChange,
           onReady: onPlayerReady
         }
-      });
-    });    
+      }));
+    });
   }, [path, dimensions]);
 
-  
 
   return (
     <>
@@ -55,7 +78,6 @@ export default function ArtVideo(props) {
             width: '100%',
             height: '100%',
             mixBlendMode: 'multiply',
-            zIndex: 200
           }
         }
       >
@@ -74,9 +96,9 @@ export default function ArtVideo(props) {
             }
           }
         >
-         <div
-          id="player"
-         ></div>
+          <div
+            id="player"
+          ></div>
         </div>
       </div>
     </>

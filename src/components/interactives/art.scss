@@ -4,6 +4,11 @@
   cursor: pointer;
 }
 
+.play-button:hover {
+  filter: saturate(50%);
+  cursor: pointer;
+}
+
 .viewer {
   display: flex;
   flex-direction: column;
@@ -25,12 +30,14 @@
 
 .lights-out {
   background-color: #000d;
-  transition: background-color 1s linear;
+  z-index: 200;
+  transition: background-color 2s linear;
 }
 
 .lights-on {
   background-color: #0000;
-  transition: background-color 1s linear;
+  z-index: 200;
+  transition: background-color 2s linear;
 }
 
 @keyframes fadelight {
