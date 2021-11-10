@@ -48,7 +48,9 @@ export default function ArtVideo(props) {
       className={'theatre-overlay' + (darkRoom ? ' lights-out' : ' lights-on')}
       style={
         {
-          position:'relative',
+          position:'absolute',
+          top: '0',
+          left: '0',
           width: '100%',
           height: '100%',
           //backgroundColor: darkRoom ? '#000a' : '#0000',

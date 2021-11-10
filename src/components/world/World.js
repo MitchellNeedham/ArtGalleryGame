@@ -6,7 +6,7 @@ import { Scene } from '../scenes';
 export default function World() {
   const [worldData, setWorldData] = useState([]);
   const [characterData, setCharacterData] = useState({});
-  const [scene, setScene] = useState(1);
+  const [scene, setScene] = useState(0);
   const [doors, setDoors] = useState([]);
   const [spawnPos, setSpawnPos] = useState(null);
 

@@ -111,13 +111,17 @@ export default function Scene(
               }
             }
           >
-            {scene.room.innerPolygons?.map((polygon) => (
+            {scene.room.innerPolygons?.map((polygon, i) => (
               <div
+                key={i}
                 style={
                   {
+                    position: 'absolute',
+                    top: '0',
+                    left: '0',
                     width: '100%',
                     height: '100%',
-                    backgroundColor: 'blue',
+                    //backgroundColor: 'blue',
                     clipPath: `polygon(${polygon.map(([val1, val2]) => val1*100+'vh ' +val2*100+'vh').join(', ')})`
                   }
                 }
