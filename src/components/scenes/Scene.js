@@ -32,16 +32,38 @@ export default function Scene(
     return () => {
       setAudio((oldAudio) => {
         if (oldAudio !== null) {
+          const fadeAudio = setInterval(function () {
+            if (oldAudio.volume > 0.0) {
+              oldAudio.volume -= 0.1;
+            }
+            if (oldAudio.volume === 0.0) {
+              clearInterval(fadeAudio);
+              
+            }
+          }, 200);
           oldAudio.pause();
         }
+        
         return null;
       });
     }
   }, [scene]);
 
   useEffect(() => {
-    audio?.play().catch((err) => console.log(err));
-    audio?.addEventListener('ended', () => {
+    if (!audio) return;
+    audio.play().catch((err) => console.log(err));
+    audio.volume = 0;
+
+    const fadeAudio = setInterval(function () {
+      if (audio.volume < 0.9) {
+        audio.volume += 0.1;
+      }
+      if (audio.volume === 1.0) {
+        clearInterval(fadeAudio);
+      }
+    }, 200);
+
+    audio.addEventListener('ended', () => {
       audio.currentTime = 0;
       audio.play();
     });

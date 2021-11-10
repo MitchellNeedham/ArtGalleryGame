@@ -17,8 +17,6 @@ export default function ArtVideo(props) {
 
   useEffect(() => {
     if (isLoaded && ready) {
-      console.log(window.YT);
-
       setTimeout(() => {
         setDarkRoom(true);
       }, 750);
