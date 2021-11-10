@@ -22,12 +22,11 @@ export default function Character({ character, pos, unitSize, newPos, polygons, 
 
 
   useEffect(() => {
-    if (!targetPos) return;
     const t = setInterval(() => {
       setRefresh(new Date());
     }, 25);
     return () => clearInterval(t);
-  }, [targetPos]);
+  }, []);
 
   useEffect(() => {
     const sb = scrollbarRef.current;
@@ -70,8 +69,8 @@ export default function Character({ character, pos, unitSize, newPos, polygons, 
       const orthoDist = Math.abs(currPos[1]-targetPos[0][1]) + Math.abs(currPos[0]-targetPos[0][0]);
       setSpeed(([prevSpeedX, prevSpeedY]) => (
         [
-          (prevSpeedX * 10 + Math.abs(currPos[0]-targetPos[0][0])/orthoDist * Math.sign(targetPos[0][0]-currPos[0]))/11,
-          (prevSpeedY * 10 + Math.abs(currPos[1]-targetPos[0][1])/orthoDist * Math.sign(targetPos[0][1]-currPos[1]))/11
+          (prevSpeedX * 3 + Math.abs(currPos[0]-targetPos[0][0])/orthoDist * Math.sign(targetPos[0][0]-currPos[0]))/4,
+          (prevSpeedY * 3 + Math.abs(currPos[1]-targetPos[0][1])/orthoDist * Math.sign(targetPos[0][1]-currPos[1]))/4
         ]
       ));
 
@@ -112,6 +111,7 @@ export default function Character({ character, pos, unitSize, newPos, polygons, 
           backgroundImage: `url(${character.actions.idle.imageSequence[0]})`,
           WebkitTransform: `scaleX(${-Math.sign(speed[0]) || 1})`,
           transform: `scaleX(${-Math.sign(speed[0]) || 1})`,
+          zIndex: 100 + parseInt(currPos[1], 10)
         }
       }
     />

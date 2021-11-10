@@ -4,7 +4,13 @@
     "sceneName": "bedroom",
     "background": {
       "image": "/data/worlds/images/bedroom.jpg",
-      "dimensions": [4744, 3540]
+      "dimensions": [4744, 3540],
+      "overlays": [
+        {
+          "zindex": 75,
+          "image": "/data/worlds/images/bedroom-overlay.png"
+        }
+      ]
     },
     "room": {
       "spawn": [0.9, 0.7],
@@ -27,7 +33,8 @@
         {
           "id": "bedroom-street",
           "pos": [1.1, 0.91],
-          "dimensions": [0.06, 0.06]
+          "dimensions": [0.06, 0.06],
+          "zindex": 201
         }
       ],
       "interactives": [
@@ -76,7 +83,8 @@
         {
           "id": "bedroom-street",
           "pos": [0.2, 0.9],
-          "dimensions": [0.05, 0.05]
+          "dimensions": [0.05, 0.05],
+          "zindex": 201
         },
         {
           "id": "street-cinema",
@@ -118,7 +126,8 @@
         {
           "id": "street-gallery",
           "pos": [0.1, 0.85],
-          "dimensions": [0.1, 0.1]
+          "dimensions": [0.1, 0.1],
+          "zindex": 201
         }
       ],
       "interactives": [
@@ -165,7 +174,8 @@
         {
           "id": "street-studio",
           "pos": [0.1, 0.85],
-          "dimensions": [0.1, 0.1]
+          "dimensions": [0.1, 0.1],
+          "zindex": 201
         }
       ]
     }
@@ -175,7 +185,25 @@
     "sceneName": "cinema",
     "background": {
       "image": "/data/worlds/images/Theatre-min.jpg",
-      "dimensions": [4723, 3507]
+      "dimensions": [4723, 3507],
+      "overlays": [
+        {
+          "zindex": 100,
+          "image": "/data/worlds/images/theatre-row-1.png"
+        },
+        {
+          "zindex": 95,
+          "image": "/data/worlds/images/theatre-row-2.png"
+        },
+        {
+          "zindex": 90,
+          "image": "/data/worlds/images/theatre-row-3.png"
+        },
+        {
+          "zindex": 85,
+          "image": "/data/worlds/images/theatre-row-4.png"
+        }
+      ]
     },
     "room": {
       "unitSize": {
@@ -184,43 +212,79 @@
       },
       "polygon": [
         [0.2, 0.75],
+        [0.4, 0.75],
+        [0.8, 0.75],
         [1.15, 0.75],
+
+        [1.2, 0.84],
+        [1.05, 0.84],
+        [1.05, 0.85],
+        [1.2, 0.85],
+
+        [1.25, 0.89],
+        [1.1, 0.89],
+        [1.1, 0.9],
+        [1.25, 0.9],
+
+        [1.3, 0.94],
+        [1.1, 0.94],
+        [1.1, 0.95],
+        [1.3, 0.95],
+
         [1.33, 0.98],
-        [0.05, 0.98]
+        [1, 0.98],
+        [0.5, 0.98],
+        [0.05, 0.98],
+
+        [0.07, 0.95],
+        [0.2, 0.95],
+        [0.2, 0.94],
+        [0.07, 0.94],
+
+        [0.1, 0.9],
+        [0.25, 0.9],
+        [0.25, 0.89],
+        [0.1, 0.89],
+        
+        [0.13, 0.85],
+        [0.27, 0.85],
+        [0.27 , 0.84],
+        [0.13, 0.84]
       ],
       "innerPolygons": [
         [
+          [0.3, 0.94],
+          [0.3, 0.95],
+          [1.05, 0.95],
+          [1.05, 0.94]
+        ],
+        [
+          [0.35, 0.89],
           [0.35, 0.9],
-          [0.35, 0.95],
-          [1, 0.95],
-          [1, 0.9]
+          [1, 0.9],
+          [1, 0.89]
         ],
         [
+          [0.4, 0.84],
           [0.4, 0.85],
-          [0.4, 0.86],
-          [0.95, 0.86],
-          [0.95, 0.85]
-        ],
-        [
-          [0.4, 0.8],
-          [0.4, 0.81],
-          [0.95, 0.81],
-          [0.95, 0.8]
+          [0.95, 0.85],
+          [0.95, 0.84]
         ]
       ],
       "doors": [
         {
           "id": "street-cinema",
           "pos": [0.2, 0.85],
-          "dimensions": [0.1, 0.1]
+          "dimensions": [0.1, 0.1],
+          "zindex": 201
         }
       ],
       "interactives": [
         {
           "type": "video",
-          "pos": [0.21, 0.173],
-          "dimensions": [0.92, 0.54],
-          "path": "uD4izuDMUQA",
+          "pos": [0.215, 0.184],
+          "dimensions": [0.91, 0.512],
+          "path": "2yFCyPX3kT0",
           "title": "Test Artwork",
           "artist": "Test Artist",
           "desc": "Example description that has text that people read"

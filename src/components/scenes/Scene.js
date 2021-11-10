@@ -99,15 +99,36 @@ export default function Scene(
             }
           }
         >
+          {scene.background.overlays?.map((overlay, i) => (
+            <img
+              className="scene-overlay"
+              key={i}
+              src={overlay.image}
+              alt=""
+              style={
+                {
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  zIndex: parseInt(overlay.zindex, 10) + 100,
+                  pointerEvents: 'none',
+                }
+              }
+            />
+          ))}
           {scene.room.interactives?.map((obj, key) => (INTERACTIVES[obj.type]({...obj, key})))}
           <div
             className="scene-floor"
             style={
               {
+                position: 'absolute',
                 //backgroundColor: '#cccc',
                 width: `${floorWidth*100}vh`,
                 height: '100vh',
                 clipPath: 'polygon(' + roomPolygon + ')',
+                pointerEvents: 'none'
               }
             }
           >
@@ -144,6 +165,7 @@ export default function Scene(
                   left: pair.currentRoom.pos[0] * 100 + 'vh',
                   height: pair.currentRoom.dimensions[0] * 100 + 'vh',
                   width: pair.currentRoom.dimensions[1] * 100 + 'vh',
+                  zIndex: pair.currentRoom.zindex || 100,
                 }
               }
             >

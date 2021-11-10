@@ -43,40 +43,42 @@ export default function ArtVideo(props) {
   
 
   return (
-    <div
-      ref={darkenRef}
-      className={'theatre-overlay' + (darkRoom ? ' lights-out' : ' lights-on')}
-      style={
-        {
-          position:'absolute',
-          top: '0',
-          left: '0',
-          width: '100%',
-          height: '100%',
-          //backgroundColor: darkRoom ? '#000a' : '#0000',
-          mixBlendMode: 'multiply',
-        }
-      }
-    >
+    <>
       <div
-        className="video-container"
+        ref={darkenRef}
+        className={'theatre-overlay' + (darkRoom ? ' lights-out' : ' lights-on')}
         style={
           {
-            position: 'absolute',
-            left: pos[0] * 100 + 'vh',
-            top: pos[1] * 100 + 'vh',
-            width: window.innerHeight * dimensions[0] + 'px',
-            height: window.innerHeight * dimensions[1] + 'px',
-            WebkitAnimation: darkRoom ? 'fadelight 3s ease-in-out alternate infinite' : 'none',
-            animation: darkRoom ? 'fadelight 3s ease-in-out alternate infinite' : 'none',
-            //boxShadow: `0 100px 200px 100px ${darkRoom ? '#fff3' : '#0000'}`,
+            position:'absolute',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            mixBlendMode: 'multiply',
+            zIndex: 200
           }
         }
       >
         <div
+          className="video-container"
+          style={
+            {
+              position: 'absolute',
+              left: pos[0] * 100 + 'vh',
+              top: pos[1] * 100 + 'vh',
+              width: window.innerHeight * dimensions[0] + 'px',
+              height: window.innerHeight * dimensions[1] + 'px',
+              WebkitAnimation: darkRoom ? 'fadelight 3s ease-in-out alternate infinite' : 'none',
+              animation: darkRoom ? 'fadelight 3s ease-in-out alternate infinite' : 'none',
+              //boxShadow: `0 100px 200px 100px ${darkRoom ? '#fff3' : '#0000'}`,
+            }
+          }
+        >
+         <div
           id="player"
-        ></div>
+         ></div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
