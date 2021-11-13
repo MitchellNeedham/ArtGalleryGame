@@ -6,7 +6,7 @@
 .scene-door {
   height: 10vh;
   width: 10vh;
-  background-color: burlywood;
+  background-color: rgb(135, 222, 139);
 }
 
 .scene-door:hover {

@@ -29,6 +29,10 @@ class Point {
     return Math.sqrt(Math.pow(other.x - this.x, 2) + Math.pow(other.y - this.y, 2));
   }
 
+  distanceTo3D(other) {
+    return Math.sqrt(Math.pow(other.x - this.x, 2) + Math.pow((other.y - this.y)*2, 2));
+  }
+
   equals(other) {
     return this.x === other.x && this.y === other.y;
   }
@@ -37,8 +41,8 @@ class Point {
     const diffX = other.x - this.x;
     const diffY = other.y - this.y;
     return new Point(
-      this.x + diffX/200000,
-      this.y + diffY/200000,
+      this.x + diffX/200,
+      this.y + diffY/200,
     )
   }
 }
@@ -100,6 +104,8 @@ class Line {
 
   closestPointOnLine(point) {
     let intersectionPoint = null;
+    let shiftedPoint = null;
+
     if (this.eq[0] === 0) {
       intersectionPoint = new Point(
         point.x,
@@ -124,7 +130,17 @@ class Line {
     }
     const onLine = inBounds(intersectionPoint.x, [this.p1.x, this.p2.x]) && inBounds(intersectionPoint.y, [this.p1.y, this.p2.y]);
 
-    return onLine ? intersectionPoint : null; 
+    if (!onLine) return null;
+
+    const diffX = point.x - intersectionPoint.x;
+    const diffY = point.y - intersectionPoint.y;
+
+    shiftedPoint = new Point(
+      intersectionPoint.x - diffX/200,
+      intersectionPoint.y - diffY/200,
+    )
+
+    return onLine ? shiftedPoint : null; 
   }
 
   equals(other) {
@@ -206,7 +222,7 @@ class VisibilityGraph {
     let bestPath = [];
     let i = 0;
 
-    while (i < 100) {
+    while (i < 10000) {
       
       incompletePaths = incompletePaths
         .filter((path) => {
@@ -222,7 +238,7 @@ class VisibilityGraph {
 
       if (completePaths.length > 0) {
         bestPath = completePaths.sort((path1, path2) => path1[1] - path2[1])[0];
-        if (bestPath[1] <= incompletePaths[0][1]) {
+        if (bestPath[1] <= incompletePaths.sort((path1, path2) => path1[1] - path2[1])[0][1]) {
           break;
         }
       }
@@ -236,6 +252,8 @@ class VisibilityGraph {
         newPath[2].push(destination);
         newPath[0] = 0;
         completePaths.push(newPath);
+        if (newPath.length === 2) { console.log('solution!') }
+
         if (incompletePaths.length > 1) {
           incompletePaths = incompletePaths.slice(1);
         } else {
@@ -325,7 +343,7 @@ function clampToPolygon(clickPos, outerPolygon, innerPolygons) {
     cp,
     point
   ) => (
-    point.distanceTo(clickPos) < cp.distanceTo(clickPos) ? point : cp
+    point.distanceTo3D(clickPos) < cp.distanceTo3D(clickPos) ? point : cp
   ));
 
   const closestPoint = [
