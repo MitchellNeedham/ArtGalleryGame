@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { useSceneLoadedUpdate } from '../../api/LoadedContext';
 import { Scene } from '../scenes';
+import { useSceneGraphUpdate } from '../../api/GraphContext';
 
 export default function World() {
   const [worldData, setWorldData] = useState([]);
@@ -13,10 +14,10 @@ export default function World() {
   const [loadingScreen, setLoadingScreen] = useState(null);
 
   const { setLoaded } = useSceneLoadedUpdate();
+  const { updateGraphs } = useSceneGraphUpdate();
 
   useEffect(() => {
     setLoadingScreen(document.getElementById('loading-screen'));
-
     axios
     .all([
       axios.get('/data/worlds/test_world.json'),
@@ -62,6 +63,12 @@ export default function World() {
       return connectingDoor;
     }));
   }, [scene, worldData]);
+
+  useEffect(() => {
+    worldData.forEach((scene) => {
+      updateGraphs(scene.id, scene.room.polygon, scene.room.innerPolygons);
+    });
+  }, [worldData, updateGraphs]);
 
   const changeScene = (entryDoor) => {
     loadingScreen.className = "visible-ls";

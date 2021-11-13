@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import pathfinding from '../../scripts/pathfinding';
 import './character.scss';
+import { useSceneGraph } from '../../api/GraphContext';
 
 const charMoveSpeed = (size) => 5/(size/3 + 1)/6;
 const SCREEN_EDGE_OFFSET = 200;
 const SCROLL_SPEED = 20;
 
-export default function Character({ character, pos, unitSize, newPos, polygons, changeScene, scrollbarRef }) {
+export default function Character({ character, pos, unitSize, newPos, polygons, changeScene, scrollbarRef, sceneID }) {
   const characterRef = useRef(null);
   const [refresh, setRefresh] = useState(0);
   const [currPos, setCurrPos] = useState([pos[0] * 100, pos[1] * 100]);
@@ -15,6 +16,9 @@ export default function Character({ character, pos, unitSize, newPos, polygons, 
   const [width] = useState(character.dimensions.width);
   const [targetPos, setTargetPos] = useState(newPos);
   const [scrollDir, setScrollDir] = useState(0);
+
+  const { graphs } = useSceneGraph();
+
 
   useEffect(() => {
     setCurrPos([pos[0] * 100, pos[1] * 100]);
@@ -54,8 +58,15 @@ export default function Character({ character, pos, unitSize, newPos, polygons, 
 
   useEffect(() => {
     let path = newPos;
-    if (newPos) { path = pathfinding(polygons.outer, polygons.inner, currPos.map((c) => c / 100), newPos.map((c) => c / window.innerHeight)); }
-    setTargetPos(newPos === null ? null : path.map((p) => p.map((coord) => coord * 100)));
+    if (newPos) {
+      graphs.get(sceneID).then((g) => {
+        console.log(g);
+        path = pathfinding(polygons.outer, polygons.inner, currPos.map((c) => c / 100), newPos.map((c) => c / window.innerHeight), g);
+        setTargetPos(path.map((p) => p.map((coord) => coord * 100)));
+      });
+      return;
+    }
+    setTargetPos(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newPos]);
 

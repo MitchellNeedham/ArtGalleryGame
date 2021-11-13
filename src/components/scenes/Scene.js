@@ -201,6 +201,7 @@ export default function Scene(
             unitSize={{...scene.room.unitSize, floorMin, floorMax }}
             changeScene={targetDoor}
             scrollbarRef={scrollbarRef}
+            sceneID={scene.id}
           />
         </div>
       </Scrollbars>
