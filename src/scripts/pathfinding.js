@@ -342,10 +342,12 @@ export default function pathfinding(
 function clampToPolygon(clickPos, outerPolygon, innerPolygons) {
   const lineCounts = isInPolygon(clickPos, [outerPolygon, ...innerPolygons]);
   if (lineCounts % 2 === 1) return clickPos;
+  const borders = [outerPolygon, ...innerPolygons].map((polygon) => polygon.sides).reduce((prev, curr) => prev.concat(curr));
 
   const closestVertex = (lineCounts === 0 ? [outerPolygon] : [outerPolygon, ...innerPolygons])
   .map((p) => p.points)
   .reduce((prev, curr) => prev.concat(curr))
+  .filter((point) => isVisible(clickPos, point, borders, [outerPolygon, ...innerPolygons], true))
   .reduce((
     cp,
     point
@@ -395,7 +397,7 @@ function mod(n, m) {
   return ((n % m) + m) % m;
 }
 
-function isVisible(point1, point2, borders, polygons) {
+function isVisible(point1, point2, borders, polygons, outside = false) {
   if (point1.equals(point2)) return false;
   if (point1.prev?.equals(point2) || point1.next?.equals(point2)) return true;
 
@@ -404,7 +406,7 @@ function isVisible(point1, point2, borders, polygons) {
 
   const desiredPath = new Line(point1, point2);
 
-  if (isInPolygon(closePoint1, polygons) % 2 === 0 || isInPolygon(closePoint2, polygons) % 2 === 0) {
+  if (!outside && (isInPolygon(closePoint1, polygons) % 2 === 0 || isInPolygon(closePoint2, polygons) % 2 === 0)) {
     return false;
   }
 
