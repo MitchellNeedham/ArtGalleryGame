@@ -319,17 +319,24 @@ export default function pathfinding(
   const targetPos = clampToPolygon(clickPoint, outerPolygon, innerPolygons);
 
   currentPoint = clampToPolygon(currentPoint, outerPolygon, innerPolygons);
+  console.log(clickPoint, clickPos);
+
+  if (currentPos[0] !== currentPoint.x || currentPos[1] !== currentPoint.y) {
+    console.log(true);
+    path = [[currentPoint.x, currentPoint.y]];
+  }
 
   const pathDetected = isVisible(targetPos, currentPoint, [outerPolygon, ...innerPolygons].map((p) => p.sides).reduce((prev, curr) => prev.concat(curr)), [outerPolygon, ...innerPolygons]);
 
   console.log(graph._sides);
-  if (pathDetected) return [[targetPos.x, targetPos.y]];
+  console.log(path);
+  if (pathDetected) return [...path, [targetPos.x, targetPos.y]];
   
 
-  path = graph.getBestPath(currentPoint, targetPos);
+  path = [...path, ...graph.getBestPath(currentPoint, targetPos).map((point) => [point.x, point.y])];
   
-
-  return path.map((point) => [point.x, point.y]);
+  console.log(path);
+  return path;
 }
 
 function clampToPolygon(clickPos, outerPolygon, innerPolygons) {

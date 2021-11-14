@@ -146,11 +146,12 @@ export default function Scene(
             style={
               {
                 position: 'absolute',
-                //backgroundColor: '#cccc',
+                backgroundColor: '#cccc',
                 width: `${floorWidth*100}vh`,
                 height: '100vh',
                 clipPath: 'polygon(' + roomPolygon + ')',
-                pointerEvents: 'none'
+                pointerEvents: 'none',
+                zIndex: 200,
               }
             }
           >
@@ -164,7 +165,7 @@ export default function Scene(
                     left: '0',
                     width: '100%',
                     height: '100%',
-                    //backgroundColor: 'blue',
+                    backgroundColor: 'blue',
                     clipPath: `polygon(${polygon.map(([val1, val2]) => val1*100+'vh ' +val2*100+'vh').join(', ')})`
                   }
                 }
