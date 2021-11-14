@@ -81,8 +81,8 @@ export default function Character({ character, pos, unitSize, newPos, polygons, 
       const orthoDist = Math.abs(currPos[1]-targetPos[0][1]) + Math.abs(currPos[0]-targetPos[0][0]);
       setSpeed(([prevSpeedX, prevSpeedY]) => (
         [
-          (prevSpeedX * 4 + Math.abs(currPos[0]-targetPos[0][0])/orthoDist * Math.sign(targetPos[0][0]-currPos[0]))/5,
-          (prevSpeedY * 4 + Math.abs(currPos[1]-targetPos[0][1])/orthoDist * Math.sign(targetPos[0][1]-currPos[1]))/5
+          (prevSpeedX * 10 + Math.abs(currPos[0]-targetPos[0][0])/orthoDist * Math.sign(targetPos[0][0]-currPos[0]))/11,
+          (prevSpeedY * 10 + Math.abs(currPos[1]-targetPos[0][1])/orthoDist * Math.sign(targetPos[0][1]-currPos[1]))/11
         ]
       ));
 

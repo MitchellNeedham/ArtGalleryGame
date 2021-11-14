@@ -269,7 +269,7 @@
       "doors": [
         {
           "id": "street-cinema",
-          "pos": [0.25, 0.85],
+          "pos": [0.25, 0.92],
           "dimensions": [0.05, 0.05],
           "zindex": 201
         }
