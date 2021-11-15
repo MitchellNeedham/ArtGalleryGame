@@ -3,8 +3,8 @@ import React, {
   createContext,
   useContext,
   useState,
+  useEffect
 } from 'react';
-import { useEffect } from 'react/cjs/react.development';
 
 const videosContext = createContext([]);
 const videosUpdateContext = createContext([]);
