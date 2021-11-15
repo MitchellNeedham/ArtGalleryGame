@@ -136,8 +136,9 @@ export default function Scene(
                   left: 0,
                   width: '100%',
                   height: '100%',
-                  zIndex: parseInt(overlay.zindex, 10) + 100,
+                  zIndex: parseInt(overlay.zindex ?? 0, 10) + 100,
                   pointerEvents: 'none',
+                  userSelect: 'none'
                 }
               }
             />

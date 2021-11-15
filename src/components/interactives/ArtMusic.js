@@ -8,13 +8,16 @@ import MusicSelection from "./MusicSelection";
 import AudioPlayer from "react-h5-audio-player";
 import 'react-h5-audio-player/src/styles.scss';
 
+import playlistButton from '../../images/icon-playlist.png';
+
 function mod(n, m) {
   return ((n % m) + m) % m;
 }
 
 export default function ArtMusic(props) {
   const {
-    selectpos
+    playerpos,
+    playerdim,
   } = props;
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
@@ -53,26 +56,28 @@ export default function ArtMusic(props) {
 
   return (
     <>
-      <div
-        className="song-selection art"
-        style={
-          {
-            position: 'absolute',
-            top: selectpos[1] * 100 + 'vh',
-            left: selectpos[0] * 100 + 'vh',
-          }
-        }
-        onClick={() => openSongs()}
-        onKeyUp={(e) => e.key === 'Enter' && openSongs(!playing)}
-      >
-        Songs
-      </div>
       {isLoaded &&
       (
-        <div className="music-player" >
+        <div
+          className="music-player"
+          onClick={(e) => e.stopPropagation()}
+          style={
+          {
+            position: 'absolute',
+            top: playerpos[1] * 100 + 'vh',
+            left: playerpos[0] * 100 + 'vh',
+            width: playerdim[0] * 100 + 'vh',
+            height: playerdim[1] * 100 + 'vh',
+          }
+        }
+        >
           <p>
-            {`${music[activeMusic]?.title} - ${music[activeMusic]?.artist}`}
+            <b>{music[activeMusic]?.title}</b>
           </p>
+          <p>
+            <em>{music[activeMusic]?.artist}</em>
+          </p>
+          <span style={{ display: 'none' }}>Please respect the artist by not misusing this artwork</span>
           <AudioPlayer
             src={music[activeMusic]?.path}
             ref={audioRef}
@@ -82,8 +87,19 @@ export default function ArtMusic(props) {
             onClickPrevious={() => handleChangeSong(-1)}
             onCanPlayThrough={() => audioRef.current?.audio.current.play()}
             onEnded={() => handleChangeSong(1)}
-            customAdditionalControls={[]}
-            customVolumeControls={[]}
+            customAdditionalControls={
+              [
+                (
+                  <img
+                    className="playlist-button"
+                    alt=""
+                    src={playlistButton}
+                    onClick={() => openSongs()}
+                    onKeyUp={(e) => e.key === 'Enter' && openSongs(!playing)}
+                  />
+                )
+              ]
+            }
           />
         </div>
       )}

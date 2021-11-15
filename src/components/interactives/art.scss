@@ -55,22 +55,63 @@
 }
 
 .music-player {
-  width: 220px;
   //background-color: #fffa;
   border-radius: 10px;
-  padding: 5px;
+  padding: 0.6vh;
   position: absolute;
-  top: 32vh;
-  left: 41.5%;
+  text-align: center;
 
   > p {
-    margin: 0 0 10px 5px;
-    font-size: 18px;
+    margin: 0;
+    font-size: 1.8vh;
   }
 
   > div {
     background: transparent;
     box-shadow: none;
+  }
+
+  .playlist-button {
+    //position: absolute;
+    height: 4.5vh;
+    cursor: pointer;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+  }
+}
+.rhap_container {
+  .rhap_time {
+    font-size: 1.8vh !important;
+  }
+  .rhap_controls-section {
+    margin-top: 1vh !important;
+    justify-content: center;
+    gap: 1vh;
+  }
+  .rhap_main-controls-button {
+    width: 4vh;
+    height: 4vh;
+    display: grid;
+    place-items: center;
+    margin: 0;
+
+    > svg {
+      width: 4vh;
+      height: 4vh;
+    }
+  }
+
+  .rhap_volume-bar-area {
+    display: none;
+  }
+
+  .rhap_progress-indicator {
+    width: 1.8vh;
+    height: 1.8vh;
+    top: -0.6vh;
   }
 }
 

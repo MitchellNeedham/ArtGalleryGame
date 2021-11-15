@@ -9,22 +9,30 @@ export default function ArtImage(props) {
   } = props;
   const { addInteractionBox } = useInteractionBoxUpdate();
   return (
-    <img
+    <div
       className="art art-image"
-      src={path}
-      alt=""
       style={
         {
           position: 'absolute',
           left: `${pos[0] * 100}vh`,
           top: `${pos[1] * 100}vh`,
           height: `${height * 100}vh`,
-          zIndex: 10,
         }
       }
       onClick={
         () => addInteractionBox(() => <ArtImageView {...props} />, '1400px')
       }
-    />
+    >
+      <img
+        src={path}
+        alt="Please respect the artist by not misusing this artwork"
+        style={
+          {
+            height: `${height * 100}vh`,
+            pointerEvents: 'none'
+          }
+        }
+      />
+    </div>
   )
 }

@@ -8,7 +8,7 @@
       "overlays": [
         {
           "zindex": 70,
-          "image": "/data/worlds/images/Bedroom-LaptopHover.png"
+          "image": "/data/worlds/images/Bedroom_LaptopHover.png"
         }
       ]
     },
@@ -224,7 +224,8 @@
         {
           "type": "music",
           "selectpos": [0.635, 0.5],
-          "playpos": [0.635, 0.3]
+          "playerpos": [0.552, 0.315],
+          "playerdim": [0.24, 0.14]
         }
       ]
     }
