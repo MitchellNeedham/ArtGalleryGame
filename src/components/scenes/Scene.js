@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 
-import { ArtImage, ArtMusic, ArtVideo } from '../interactives';
+import { ArtImage, ArtMusic, ArtVideo, VideoSelection } from '../interactives';
 import { Character } from '../character';
 import './scene.css';
 
@@ -9,6 +9,7 @@ const INTERACTIVES = {
   image: (props) => (<ArtImage {...props} />),
   video: (props) => (<ArtVideo {...props} />),
   music: (props) => (<ArtMusic {...props} />),
+  videoselection: (props) => (<VideoSelection {...props} />),
 }
 
 export default function Scene(
@@ -32,15 +33,6 @@ export default function Scene(
     return () => {
       setAudio((oldAudio) => {
         if (oldAudio !== null) {
-          const fadeAudio = setInterval(function () {
-            if (oldAudio.volume > 0.0) {
-              oldAudio.volume -= 0.1;
-            }
-            if (oldAudio.volume === 0.0) {
-              clearInterval(fadeAudio);
-              
-            }
-          }, 200);
           oldAudio.pause();
         }
         
@@ -52,16 +44,6 @@ export default function Scene(
   useEffect(() => {
     if (!audio) return;
     audio.play().catch((err) => console.log(err));
-    audio.volume = 0;
-
-    const fadeAudio = setInterval(function () {
-      if (audio.volume < 0.9) {
-        audio.volume += 0.1;
-      }
-      if (audio.volume === 1.0) {
-        clearInterval(fadeAudio);
-      }
-    }, 200);
 
     audio.addEventListener('ended', () => {
       audio.currentTime = 0;
@@ -76,6 +58,7 @@ export default function Scene(
 
   const moveToPos = (e) => {
     if (e.target.classList.contains('art') || !sceneRef.current.contains(e.target)) return;
+    if (!e.clientX || !e.clientY) return;
     const boundingBox = sceneRef.current.getBoundingClientRect();
     setTargetDoor((td) => e.target.classList.contains('scene-door') ? td : false);
 
@@ -96,6 +79,19 @@ export default function Scene(
 
   const floorMin = scene.room.polygon.reduce((acc, val) => acc < val[1] ? acc : val[1]);
   const floorMax = scene.room.polygon.reduce((acc, val) => acc > val[1] ? acc : val[1]);
+
+  const handleDoorClick = (event, pair) => {
+    setTargetDoor(() => () => changeScene(pair.nextRoom));
+    if (!!pair.currentRoom.fixed) {
+      changeScene(pair.nextRoom);
+    }
+
+    if (!!pair.currentRoom.invisible || event.type === 'keydown') {
+      setNewPos(pair.currentRoom.pos.map((c) => c * window.innerHeight));
+    }
+    
+  }
+
   return (
     <div
       ref={sceneRef}
@@ -146,7 +142,7 @@ export default function Scene(
             style={
               {
                 position: 'absolute',
-                backgroundColor: '#cccc',
+                //backgroundColor: '#cccc',
                 width: `${floorWidth*100}vh`,
                 height: '100vh',
                 clipPath: 'polygon(' + roomPolygon + ')',
@@ -165,7 +161,7 @@ export default function Scene(
                     left: '0',
                     width: '100%',
                     height: '100%',
-                    backgroundColor: 'blue',
+                    //backgroundColor: 'blue',
                     clipPath: `polygon(${polygon.map(([val1, val2]) => val1*100+'vh ' +val2*100+'vh').join(', ')})`
                   }
                 }
@@ -176,11 +172,12 @@ export default function Scene(
             <div
               key={pair.currentRoom.id}
               className="scene-door"
+              id={pair.currentRoom.id}
               title={pair.currentRoom.id}
               role="button"
               tabIndex="0"
-              onClick={() => setTargetDoor(() => () => changeScene(pair.nextRoom))}
-              onKeyDown={(e) => e.key === 'Enter' && setTargetDoor(() => () => changeScene(pair.nextRoom))}
+              onClick={(e) => handleDoorClick(e, pair)}
+              onKeyDown={(e) => e.key === 'Enter' && handleDoorClick(e, pair)}
               style={
                 {
                   position: 'absolute',
@@ -189,6 +186,7 @@ export default function Scene(
                   height: pair.currentRoom.dimensions[0] * 100 + 'vh',
                   width: pair.currentRoom.dimensions[1] * 100 + 'vh',
                   zIndex: pair.currentRoom.zindex || 100,
+                  visibility: !!pair.currentRoom.invisible ? 'hidden' : 'visible'
                 }
               }
             >

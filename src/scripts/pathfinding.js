@@ -197,7 +197,6 @@ class VisibilityGraph {
     await this._points.forEach((point) => {
       point.connections = this._points.filter((p) => isVisible(p, point, this._sides, this._polygons))
     });
-    console.log(this._points);
     return this;
   }
 
@@ -213,11 +212,7 @@ class VisibilityGraph {
       .filter((polygonPoint) => isVisible(origin, polygonPoint, this._sides, this._polygons))
       .map((p) => [p.distanceTo(destination), origin.distanceTo(p), [new Point(p.x, p.y, p)]]);
 
-    console.log(newPoints
-      .filter((polygonPoint) => isVisible(destination, polygonPoint, this._sides, this._polygons))
-      .map((p) => [p.distanceTo(destination), origin.distanceTo(p), [new Point(p.x, p.y, p)]]));
     let incompletePaths = [...paths];
-    console.log(paths);
     let completePaths = [];
     let bestPath = [];
     let i = 0;
@@ -252,7 +247,6 @@ class VisibilityGraph {
         newPath[2].push(destination);
         newPath[0] = 0;
         completePaths.push(newPath);
-        if (newPath.length === 2) { console.log('solution!') }
 
         if (incompletePaths.length > 1) {
           incompletePaths = incompletePaths.slice(1);
@@ -267,7 +261,6 @@ class VisibilityGraph {
 
 
       const nextPoint = newPath[2][pathLength - 1].connections.sort((p1, p2) => p1.distanceTo(destination) - p2.distanceTo(destination))[0]
-      //console.log(newPath[2][pathLength - 1].connections);
       newPath[2].push(nextPoint);
       newPath[1] = newPath[1] + newPath[2][pathLength].distanceTo(newPath[2][pathLength - 1]);
       newPath[0] = newPath[2][pathLength].distanceTo(destination);
@@ -287,9 +280,6 @@ class VisibilityGraph {
       }
     }
 
-    console.log( completePaths.sort((path1, path2) => path1[1] - path2[1]));
-    console.log(incompletePaths);
-
     return bestPath[2] ?? [destination];
   }
 }
@@ -308,7 +298,6 @@ export default function pathfinding(
     clickPos,
     graph,
   ) {
-  console.log(graph);
   const outerPolygon = new Polygon(outerPolygonPoints);
   const innerPolygons = innerPolygonsPoints.map(points => new Polygon(points));
 
@@ -319,41 +308,43 @@ export default function pathfinding(
   const targetPos = clampToPolygon(clickPoint, outerPolygon, innerPolygons);
 
   currentPoint = clampToPolygon(currentPoint, outerPolygon, innerPolygons);
-  console.log(clickPoint, clickPos);
 
   if (currentPos[0] !== currentPoint.x || currentPos[1] !== currentPoint.y) {
-    console.log(true);
     path = [[currentPoint.x, currentPoint.y]];
   }
 
   const pathDetected = isVisible(targetPos, currentPoint, [outerPolygon, ...innerPolygons].map((p) => p.sides).reduce((prev, curr) => prev.concat(curr)), [outerPolygon, ...innerPolygons]);
 
-  console.log(graph._sides);
-  console.log(path);
   if (pathDetected) return [...path, [targetPos.x, targetPos.y]];
   
 
   path = [...path, ...graph.getBestPath(currentPoint, targetPos).map((point) => [point.x, point.y])];
   
-  console.log(path);
   return path;
 }
 
 function clampToPolygon(clickPos, outerPolygon, innerPolygons) {
   const lineCounts = isInPolygon(clickPos, [outerPolygon, ...innerPolygons]);
   if (lineCounts % 2 === 1) return clickPos;
+
+  const fallbackPoint = new Point(1000, 1000);
+
   const borders = [outerPolygon, ...innerPolygons].map((polygon) => polygon.sides).reduce((prev, curr) => prev.concat(curr));
 
   const closestVertex = (lineCounts === 0 ? [outerPolygon] : [outerPolygon, ...innerPolygons])
   .map((p) => p.points)
-  .reduce((prev, curr) => prev.concat(curr))
+  ?.reduce((prev, curr) => prev.concat(curr), [])
   .filter((point) => isVisible(clickPos, point, borders, [outerPolygon, ...innerPolygons], true))
-  .reduce((
+  ?.reduce((
     cp,
     point
   ) => (
-    point.distanceTo3D(clickPos) < cp.distanceTo3D(clickPos) ? point : cp
-  ));
+    point?.distanceTo3D(clickPos) < cp?.distanceTo3D(clickPos) ? point : cp
+  ), fallbackPoint);
+  
+  if (closestVertex === fallbackPoint) {
+    return clickPos;
+  }
 
   const closestPoint = [
     new Line(closestVertex, closestVertex.next),

@@ -8,7 +8,7 @@ const loadedContext = createContext([]);
 const loadedUpdateContext = createContext([]);
 
 export default function LoadedProvider({ children }) {
-  const [isLoaded, setIsLoaded] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   function setLoaded(state) {
     setIsLoaded(state);

@@ -24,9 +24,56 @@
     color: #333;
     font-weight: 300;
   }
-
-
 }
+
+// MUSIC SHOP
+
+.song-selection {
+  background-color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+  z-index: 300;
+
+  > h2 {
+    margin: 0;
+    font-weight: 200;
+    pointer-events: none;
+  }
+}
+
+.music-selection-ui {
+  > div:hover {
+    cursor: pointer;
+    color: #ccc;
+  }
+}
+
+// FOYER
+
+.video-selection {
+  background-color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+  z-index: 300;
+
+  > h2 {
+    margin: 0;
+    font-weight: 200;
+    pointer-events: none;
+  }
+}
+
+.video-selection-ui {
+  > div:hover {
+    cursor: pointer;
+    color: #ccc;
+  }
+}
+
+
+// THEATRE
 
 .lights-out {
   background-color: #000d;

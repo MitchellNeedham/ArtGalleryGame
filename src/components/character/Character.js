@@ -60,9 +60,7 @@ export default function Character({ character, pos, unitSize, newPos, polygons, 
     let path = newPos;
     if (newPos) {
       graphs.get(sceneID).then((g) => {
-        console.log(g);
         path = pathfinding(polygons.outer, polygons.inner, currPos.map((c) => c / 100), newPos.map((c) => c / window.innerHeight), g);
-        console.log(path);
         setTargetPos(path.map((p) => p.map((coord) => coord * 100)));
       });
       return;

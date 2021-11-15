@@ -1,6 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 
+import { useVideos } from "../../api/VideosContext";
 import { useSceneLoaded } from "../../api/LoadedContext";
+
+import VideoSelection from "./VideoSelection";
 
 export default function ArtVideo(props) {
   const {
@@ -13,10 +16,11 @@ export default function ArtVideo(props) {
   const [player, setPlayer] = useState(null);
   const [ready, setReady] = useState(false);
 
+  const { videos, activeVideo } = useVideos();
   const { isLoaded } = useSceneLoaded();
 
   useEffect(() => {
-    if (isLoaded && ready) {
+    if (isLoaded && ready && player) {
       setTimeout(() => {
         setDarkRoom(true);
       }, 750);
@@ -48,7 +52,7 @@ export default function ArtVideo(props) {
       setPlayer(new window.YT.Player('player', {
         width: window.innerHeight * dimensions[0],
         height: window.innerHeight * dimensions[1],
-        videoId: path,
+        videoId: videos[activeVideo].id,
         playerVars: {
           rel: 0,
           start: 1,
@@ -60,7 +64,13 @@ export default function ArtVideo(props) {
         }
       }));
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path, dimensions]);
+
+  useEffect(() => {
+    player?.loadVideoById(videos[activeVideo].id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeVideo, videos]);
 
 
   return (
@@ -99,6 +109,7 @@ export default function ArtVideo(props) {
           ></div>
         </div>
       </div>
+      <VideoSelection pos={[1.1, 0.9]} />
     </>
   )
 }

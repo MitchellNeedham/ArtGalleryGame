@@ -84,9 +84,15 @@
           "zindex": 201
         },
         {
-          "id": "street-cinema",
+          "id": "street-foyer",
           "pos": [0.2, 0.5],
           "dimensions": [0.1, 0.1]
+        },
+        {
+          "id": "street-theatre",
+          "pos": [0.2, 0.5],
+          "dimensions": [0.1, 0.1],
+          "invisible": "true"
         },
         {
           "id": "street-studio",
@@ -176,12 +182,67 @@
           "dimensions": [0.1, 0.1],
           "zindex": 201
         }
+      ],
+      "interactives": [
+        {
+          "type": "music",
+          "selectpos": [0.635, 0.4],
+          "playpos": [0.635, 0.3]
+        }
       ]
     }
   },
   {
-    "id": "cinema",
-    "sceneName": "cinema",
+    "id": "foyer",
+    "sceneName": "foyer",
+    "background": {
+      "image": "/data/worlds/images/Entry-min.jpg",
+      "dimensions": [4744, 3540]
+    },
+    "room": {
+      "unitSize": {
+        "min": 2,
+        "max": 3
+      },
+      "polygon": [
+        [0.15, 0.7],
+        [0.75, 0.7],
+        [0.75, 0.75],
+        [1.2, 0.75],
+        [1.2, 0.98],
+        [0.15, 0.98],
+        [0.15, 0.9],
+        [0.75, 0.9],
+        [0.74, 0.75],
+        [0.15, 0.75]
+      ],
+      "doors": [
+        {
+          "id": "street-foyer",
+          "pos": [0.1, 0.85],
+          "dimensions": [0.1, 0.1],
+          "zindex": 201
+        },
+        {
+          "id": "foyer-theatre",
+          "pos": [1.1, 0.85],
+          "dimensions": [0.1, 0.1],
+          "zindex": 201,
+          "invisible": "true"
+        }
+      ],
+      "interactives": [
+        {
+          "type": "videoselection",
+          "pos": [1, 0.07],
+          "door": "foyer-theatre"
+        }
+      ]
+    }
+  },
+  {
+    "id": "theatre",
+    "sceneName": "theatre",
     "background": {
       "image": "/data/worlds/images/Theatre-min.jpg",
       "dimensions": [4723, 3507],
@@ -268,7 +329,13 @@
       ],
       "doors": [
         {
-          "id": "street-cinema",
+          "id": "foyer-theatre",
+          "pos": [0.25, 0.92],
+          "dimensions": [0.05, 0.05],
+          "invisble": "true"
+        },
+        {
+          "id": "street-theatre",
           "pos": [0.25, 0.92],
           "dimensions": [0.05, 0.05],
           "zindex": 201

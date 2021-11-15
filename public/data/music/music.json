@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "path": "/data/music/1.wav",
+    "title": "All Things Come In Time",
+    "artist": "My Giddy Aunt",
+    "year": "2021",
+    "category": "Indie Rock"
+  },
+  {
+    "id": "2",
+    "path": "/data/music/2.mp3",
+    "title": "From Mount Tabai",
+    "artist": "Ian Coyukiat",
+    "year": "2020",
+    "category": "Orchestral"
+  },
+  {
+    "id": "3",
+    "path": "/data/music/3.mp3",
+    "title": "Rebeginning",
+    "artist": "Mayumi Mullins",
+    "year": "2017",
+    "category": "Folk Pop"
+  },
+  {
+    "id": "4",
+    "path": "/data/music/4.mp3",
+    "title": "Brown Hair Blue Eyes",
+    "artist": "Tasty Lyks",
+    "year": "2021",
+    "category": "Indie Blues"
+  },
+  {
+    "id": "5",
+    "path": "/data/music/5.mp3",
+    "title": "Stop the Blues",
+    "artist": "Alisha .K",
+    "year": "2020",
+    "category": "Inide Pop"
+  },
+  {
+    "id": "6",
+    "path": "/data/music/6.wav",
+    "title": "How Long Though?",
+    "artist": "Yelderbert",
+    "year": "2020",
+    "category": "Alternative"
+  }
+]
