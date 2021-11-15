@@ -50,25 +50,25 @@
         "max": 1.2
       },
       "polygon": [
-        [0.25, 0.65],
-        [0.38, 0.6],
+        [0.25, 0.63],
+        [0.35, 0.61],
         [0.45, 0.78],
         [0.64, 0.77],
-        [0.65, 0.67],
-        [0.74, 0.67],
+        [0.65, 0.66],
+        [0.74, 0.66],
         [0.75, 0.78],
         [0.9, 0.79],
         [0.99, 0.63],
         [1.13, 0.64],
         [1.03, 0.85],
-        [1.25, 0.98],
-        [0.12, 0.98],
+        [1.25, 1],
+        [0.06, 1],
         [0.33, 0.83]
       ],
       "doors": [
         {
           "id": "bedroom-street",
-          "pos": [0.25, 0.9],
+          "pos": [0.2, 0.94],
           "dimensions": [0.05, 0.05],
           "zindex": 201
         },
@@ -80,7 +80,7 @@
         },
         {
           "id": "street-theatre",
-          "pos": [0.25, 0.6],
+          "pos": [0.25, 0.57],
           "dimensions": [0.1, 0.1],
           "invisible": "true"
         },
@@ -104,7 +104,7 @@
     "sceneName": "gallery",
     "background": {
       "image": "/data/worlds/images/GALLERY-min.jpg",
-      "dimensions": [9320, 3589]
+      "dimensions": [18640, 3589]
     },
     "room": {
       "unitSize": {
@@ -128,21 +128,66 @@
       "interactives": [
         {
           "type": "image",
-          "pos": [0.85, 0.25],
+          "pos": [0.7, 0.25],
           "height": 0.3,
-          "path": "/data/worlds/test_world/bedroom/art.jpg",
-          "title": "Test Artwork",
-          "artist": "Test Artist",
-          "desc": "Example description that has text that people read"
+          "path": "/data/images/AlmostBlue.jpg",
+          "title": "Almost Blue",
+          "artist": "Ivan Jeldres",
+          "desc": "Gouache - 2021"
         },
         {
           "type": "image",
-          "pos": [1.6, 0.25],
+          "pos": [1.067, 0.25],
           "height": 0.3,
-          "path": "/data/worlds/test_world/bedroom/art.jpg",
-          "title": "Test Artwork",
-          "artist": "Test Artist",
-          "desc": "Example description that has text that people read"
+          "path": "/data/images/opheliaedit1.jpg",
+          "title": "Ophelia",
+          "artist": "Keely Varmalis",
+          "desc": "Installation - 2021"
+        },
+        {
+          "type": "image",
+          "pos": [1.633, 0.25],
+          "height": 0.3,
+          "path": "/data/images/poison.jpg",
+          "title": "Poison",
+          "artist": "Sam Morris",
+          "desc": "Digital - 2021"
+        },
+        {
+          "type": "image",
+          "pos": [2, 0.25],
+          "height": 0.3,
+          "path": "/data/images/weistera.jpg",
+          "title": "Shh... Listen",
+          "artist": "Samantha Tran",
+          "desc": "Digital - 2021"
+        },
+        {
+          "type": "image",
+          "pos": [3.4, 0.25],
+          "height": 0.3,
+          "path": "/data/images/xdreamcity.png",
+          "title": "Realm of Nokia",
+          "artist": "Luke Rotella",
+          "desc": "Digital - 2021"
+        },
+        {
+          "type": "image",
+          "pos": [4.2, 0.25],
+          "height": 0.3,
+          "path": "/data/images/unnamed.png",
+          "title": "This Too",
+          "artist": "Jasmine Slater",
+          "desc": "Digital - 2021"
+        },
+        {
+          "type": "image",
+          "pos": [4.7, 0.25],
+          "height": 0.3,
+          "path": "/data/images/heartmuscle.jpg",
+          "title": "The Heart is a Muscle",
+          "artist": "Dion Fibishenko",
+          "desc": "Oil - 2020"
         }
       ]
     }
