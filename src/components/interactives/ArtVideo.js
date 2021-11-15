@@ -52,7 +52,7 @@ export default function ArtVideo(props) {
       setPlayer(new window.YT.Player('player', {
         width: window.innerHeight * dimensions[0],
         height: window.innerHeight * dimensions[1],
-        videoId: videos[activeVideo].id,
+        videoId: videos[activeVideo]?.id,
         playerVars: {
           rel: 0,
           start: 1,

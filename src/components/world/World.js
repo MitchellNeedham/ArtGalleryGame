@@ -8,7 +8,7 @@ import { useSceneGraphUpdate } from '../../api/GraphContext';
 export default function World() {
   const [worldData, setWorldData] = useState([]);
   const [characterData, setCharacterData] = useState({});
-  const [scene, setScene] = useState(0);
+  const [scene, setScene] = useState(1);
   const [doors, setDoors] = useState([]);
   const [spawnPos, setSpawnPos] = useState(null);
   const [loadingScreen, setLoadingScreen] = useState(null);

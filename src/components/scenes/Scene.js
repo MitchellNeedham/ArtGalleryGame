@@ -26,16 +26,19 @@ export default function Scene(
   const [newPos, setNewPos] = useState(null);
   const [targetDoor, setTargetDoor] = useState(false);
   const [audio, setAudio] = useState(null);
+  const [doorHovers, setDoorHovers] = useState(Array(doors.length).fill(false));
+
+  useEffect(() => {
+    setDoorHovers(Array(doors.length).fill(false));
+  }, [doors]);
 
   useEffect(() => {
     setAudio(scene.music !== null ? new Audio(scene.music) : null);
-
     return () => {
       setAudio((oldAudio) => {
         if (oldAudio !== null) {
           oldAudio.pause();
         }
-        
         return null;
       });
     }
@@ -168,7 +171,7 @@ export default function Scene(
               />
             ))}
           </div>
-          {doors.map((pair) => (
+          {doors.map((pair, i) => (
             <div
               key={pair.currentRoom.id}
               className="scene-door"
@@ -178,15 +181,19 @@ export default function Scene(
               tabIndex="0"
               onClick={(e) => handleDoorClick(e, pair)}
               onKeyDown={(e) => e.key === 'Enter' && handleDoorClick(e, pair)}
+              onMouseEnter={() => setDoorHovers((dh) => dh.map((d, ind) => ind === i ? true : d))}
+              onMouseLeave={() => setDoorHovers((dh) => dh.map((d, ind) => ind === i ? false : d))}
               style={
                 {
                   position: 'absolute',
                   top: pair.currentRoom.pos[1] * 100 + 'vh',
                   left: pair.currentRoom.pos[0] * 100 + 'vh',
-                  height: pair.currentRoom.dimensions[0] * 100 + 'vh',
-                  width: pair.currentRoom.dimensions[1] * 100 + 'vh',
+                  height: pair.currentRoom.dimensions[1] * 100 + 'vh',
+                  width: pair.currentRoom.dimensions[0] * 100 + 'vh',
                   zIndex: pair.currentRoom.zindex || 100,
-                  visibility: !!pair.currentRoom.invisible ? 'hidden' : 'visible'
+                  visibility: !!pair.currentRoom.invisible ? 'hidden' : 'visible',
+                  outline: !!pair.currentRoom.hover ? 'none' : '2px solid rgb(135, 222, 139)',
+                  backgroundImage: doorHovers[i] ? `url(${pair.currentRoom.hover})` : `none`
                 }
               }
             >

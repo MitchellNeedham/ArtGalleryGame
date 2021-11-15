@@ -6,10 +6,12 @@
 .scene-door {
   height: 10vh;
   width: 10vh;
-  background-color: rgb(135, 222, 139);
+  outline: 2px solid rgb(135, 222, 139);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .scene-door:hover {
   cursor: pointer;
-  box-shadow: 0 0 10px rgb(255, 255, 0);
 }

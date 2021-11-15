@@ -3,12 +3,12 @@
     "id": "bedroom",
     "sceneName": "bedroom",
     "background": {
-      "image": "/data/worlds/images/bedroom.jpg",
+      "image": "/data/worlds/images/Bedroom_BG.jpg",
       "dimensions": [4744, 3540],
       "overlays": [
         {
           "zindex": 70,
-          "image": "/data/worlds/images/bedroom-overlay.png"
+          "image": "/data/worlds/images/Bedroom-LaptopHover.png"
         }
       ]
     },
@@ -33,17 +33,6 @@
           "dimensions": [0.06, 0.06],
           "zindex": 201
         }
-      ],
-      "interactives": [
-        {
-          "type": "image",
-          "pos": [0.6, 0.1],
-          "height": 0.2,
-          "path": "/data/worlds/test_world/bedroom/art.jpg",
-          "title": "Test Artwork",
-          "artist": "Test Artist",
-          "desc": "Example description that has text that people read"
-        }
       ]
     }
   },
@@ -51,7 +40,7 @@
     "id": "street",
     "sceneName": "street",
     "background": {
-      "image": "/data/worlds/images/Doors-min.jpg",
+      "image": "/data/worlds/images/Town_BG.jpg",
       "dimensions": [4723, 3507]
     },
     "music": "/data/music/town.mp3",
@@ -85,8 +74,9 @@
         },
         {
           "id": "street-foyer",
-          "pos": [0.2, 0.5],
-          "dimensions": [0.1, 0.1]
+          "pos": [0.253, 0.495],
+          "dimensions": [0.08, 0.13],
+          "hover": "/data/worlds/images/Town_CinemaDoor.png"
         },
         {
           "id": "street-theatre",
@@ -96,13 +86,15 @@
         },
         {
           "id": "street-studio",
-          "pos": [0.65, 0.5],
-          "dimensions": [0.1, 0.1]
+          "pos": [0.635, 0.464],
+          "dimensions": [0.125, 0.205],
+          "hover": "/data/worlds/images/Town_MusicDoor.png"
         },
         {
           "id": "street-gallery",
-          "pos": [1, 0.5],
-          "dimensions": [0.1, 0.1]
+          "pos": [1.014, 0.508],
+          "dimensions": [0.105, 0.14],
+          "hover": "/data/worlds/images/Town_GalleryDoor.png"
         }
       ]
     }
@@ -244,7 +236,7 @@
     "id": "theatre",
     "sceneName": "theatre",
     "background": {
-      "image": "/data/worlds/images/Theatre-min.jpg",
+      "image": "/data/worlds/images/Cinema_BG.jpg",
       "dimensions": [4723, 3507],
       "overlays": [
         {
@@ -344,8 +336,8 @@
       "interactives": [
         {
           "type": "video",
-          "pos": [0.215, 0.184],
-          "dimensions": [0.91, 0.512],
+          "pos": [0.202, 0.179],
+          "dimensions": [0.933, 0.525],
           "path": "4O79UgURmw4",
           "title": "Test Artwork",
           "artist": "Test Artist",
