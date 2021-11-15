@@ -83,6 +83,7 @@ export default function ArtMusic(props) {
             onCanPlayThrough={() => audioRef.current?.audio.current.play()}
             onEnded={() => handleChangeSong(1)}
             customAdditionalControls={[]}
+            customVolumeControls={[]}
           />
         </div>
       )}

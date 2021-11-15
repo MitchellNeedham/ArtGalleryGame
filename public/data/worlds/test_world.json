@@ -223,7 +223,7 @@
       "interactives": [
         {
           "type": "music",
-          "selectpos": [0.635, 0.4],
+          "selectpos": [0.635, 0.5],
           "playpos": [0.635, 0.3]
         }
       ]
