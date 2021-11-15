@@ -83,8 +83,11 @@ export default function Scene(
   const floorMin = scene.room.polygon.reduce((acc, val) => acc < val[1] ? acc : val[1]);
   const floorMax = scene.room.polygon.reduce((acc, val) => acc > val[1] ? acc : val[1]);
 
-  const handleDoorClick = (event, pair) => {
-    setTargetDoor(() => () => changeScene(pair.nextRoom));
+  const handleDoorClick = (event, pair, i) => {
+    setTargetDoor(() => () => {
+      setDoorHovers((dh) => dh.map((d, ind) => ind === i ? true : d));
+      setTimeout(() => changeScene(pair.nextRoom), 200);
+    });
     if (!!pair.currentRoom.fixed) {
       changeScene(pair.nextRoom);
     }
@@ -179,8 +182,8 @@ export default function Scene(
               title={pair.currentRoom.id}
               role="button"
               tabIndex="0"
-              onClick={(e) => handleDoorClick(e, pair)}
-              onKeyDown={(e) => e.key === 'Enter' && handleDoorClick(e, pair)}
+              onClick={(e) => handleDoorClick(e, pair, i)}
+              onKeyDown={(e) => e.key === 'Enter' && handleDoorClick(e, pair, i)}
               onMouseEnter={() => setDoorHovers((dh) => dh.map((d, ind) => ind === i ? true : d))}
               onMouseLeave={() => setDoorHovers((dh) => dh.map((d, ind) => ind === i ? false : d))}
               style={
