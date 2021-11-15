@@ -49,6 +49,26 @@
   }
 }
 
+.music-player {
+  width: min(100vw, 40%);
+  background-color: #fffa;
+  border-radius: 10px;
+  padding: 5px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+
+  > p {
+    margin: 0 0 10px 5px;
+    font-size: 18px;
+  }
+
+  > div {
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
 // FOYER
 
 .video-selection {
