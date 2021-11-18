@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import { useInteractionBoxUpdate } from "../../api/InteractionBoxContext";
 import ArtImageView from "./ArtImageView";
 
@@ -9,6 +11,16 @@ export default function ArtImage(props) {
     frame
   } = props;
   const { addInteractionBox } = useInteractionBoxUpdate();
+  const [imageWidth, setImageWidth] = useState();
+
+  useEffect(() => {
+    const image = new Image();
+    image.onload = () => {
+      setImageWidth( `calc(${(image.width / image.naturalHeight) * 70}vh + 60px)`);
+    }
+    image.src = path;
+  }, [path]);
+
   return (
     <div
       className="art art-image"
@@ -21,7 +33,7 @@ export default function ArtImage(props) {
         }
       }
       onClick={
-        () => addInteractionBox(() => <ArtImageView {...props} />, '1400px')
+        () => addInteractionBox(() => <ArtImageView {...props} />, imageWidth)
       }
     >
       <img 

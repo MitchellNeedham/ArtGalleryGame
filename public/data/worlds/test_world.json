@@ -7,8 +7,12 @@
       "dimensions": [2900, 2160],
       "overlays": [
         {
-          "zindex": 70,
+          "zindex": 71,
           "image": "/data/worlds/images/Bedroom_LaptopHover.png"
+        },
+        {
+          "zindex": 70,
+          "image": "/data/worlds/images/bedroom-overlay.png"
         }
       ]
     },
@@ -34,17 +38,22 @@
           "dimensions": [0.1, 0.635],
           "zindex": 100,
           "hover": "/data/worlds/images/Bedroom_DoorOpen.png",
-          "spawnPos": [1.25, 0.97]
+          "spawnPos": [1.25, 0.97],
+          "exitPos": [1.25, 0.97]
         }
       ],
       "interactives": [
         {
           "type": "charactercustomisation",
           "images": [
-            "/data/worlds/images/Drawer/Drawer 00012.png"
+            "/data/worlds/images/Drawer/Drawer_00012.png"
           ],
           "pos": [0.28, 0.55],
-          "dim": [0.12, 0.1]
+          "dim": [0.115, 0.14]
+        },
+        {
+          "type": "tooltip",
+          "image": "/data/worlds/images/Bedroom_ToolTip.png"
         }
       ]
     }
@@ -208,7 +217,7 @@
           "dimensions": [0.148, 0.1],
           "zindex": 201,
           "exitPos": [0.11, 0.61],
-          "spawnPos": [0.1, 0.85],
+          "spawnPos": [0.3, 0.85],
           "image": "/data/worlds/images/ExitSign_Gallery.png"
         }
       ],
@@ -317,6 +326,12 @@
             "offsetX": -0.095,
             "offsetY": -0.08
           }
+        },
+        {
+          "type": "speechbubble",
+          "image": "/data/worlds/images/Gallery_SpeechBubble.png",
+          "posX": 0.95,
+          "range": 0.25
         }
       ]
     }
@@ -358,6 +373,12 @@
           "playerpos": [0.552, 0.315],
           "playerdim": [0.24, 0.14],
           "customIB": "data/worlds/images/Music_Jukebox.png"
+        },
+        {
+          "type": "speechbubble",
+          "image": "/data/worlds/images/Music_SpeechBubble.png",
+          "posX": 1,
+          "range": 0.25
         }
       ]
     }
@@ -372,6 +393,10 @@
         {
           "zindex": 80,
           "image": "/data/worlds/images/Lobby_VelvetRopes.png"
+        },
+        {
+          "zindex": 90,
+          "image": "/data/worlds/images/Lobby_NPC.png"
         }
       ]
     },
@@ -392,6 +417,14 @@
         [0.75, 0.9],
         [0.74, 0.75],
         [0.15, 0.75]
+      ],
+      "innerPolygons": [
+        [
+          [0.94, 0.9],
+          [1.25, 0.9],
+          [1.25, 0.95],
+          [0.94, 0.95]
+        ]
       ],
       "doors": [
         {
@@ -423,6 +456,12 @@
             "pos": [0.911, 0.0338],
             "dim": [0.346, 0.09]
           }
+        },
+        {
+          "type": "speechbubble",
+          "image": "/data/worlds/images/Lobby_SpeechBubble.png",
+          "posX": 1.1,
+          "range": 0.25
         }
       ]
     }
@@ -527,7 +566,7 @@
           "dimensions": [0.1, 0.1],
           "zindex": 200,
           "image": "/data/worlds/images/ExitSign_Cinema.png",
-          "exitPos": [0.25, 1],
+          "exitPos": [0.25, 0.96],
           "spawnPos": [0.25, 0.92]
         }
       ],

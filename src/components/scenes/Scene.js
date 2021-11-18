@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 
 import { useSceneLoaded, useSceneLoadedUpdate } from '../../api/LoadedContext';
-import { ArtImage, ArtMusic, ArtVideo, CharacterCustomisationDrawer, VideoSelection } from '../interactives';
+import { ArtImage, ArtMusic, ArtVideo, CharacterCustomisationDrawer, VideoSelection, ToolTip, SpeechBubble } from '../interactives';
 import { Character } from '../character';
 import './scene.css';
 
@@ -11,7 +11,9 @@ const INTERACTIVES = {
   video: (props) => (<ArtVideo {...props} />),
   music: (props) => (<ArtMusic {...props} />),
   videoselection: (props) => (<VideoSelection {...props} />),
-  charactercustomisation: (props) => (<CharacterCustomisationDrawer {...props} />)
+  charactercustomisation: (props) => (<CharacterCustomisationDrawer {...props} />),
+  tooltip: (props) => (<ToolTip {...props} />),
+  speechbubble: (props) => (<SpeechBubble {...props} />)
 }
 
 function load(src) {
@@ -50,23 +52,32 @@ export default function Scene(
     Object.entries(obj).forEach(([key, val]) => {
       if (Array.isArray(val)) { val.forEach((o) => recursiveLoadImages(o))}
       if (val === Object(val)) { recursiveLoadImages(val) }
-      if (["image", "hover", "path"].includes(key)) {
+      if (["image", "hover", "path", "bigticket", "customIB"].includes(key)) {
         setImageCount(count => count + 1);
         load(val).then(() => setImageCount(count => count - 1));
+      }
+      if (key === "images" && Array.isArray(val)) {
+        val.forEach((img) => {
+          if (img) {
+            setImageCount(count => count + 1);
+            load(img).then(() => setImageCount(count => count - 1)).catch(err => console.log(err));
+          }
+        })
       }
     });
     setCanLoad(true);
   };
 
   useEffect(() => {
+    console.log(imageCount);
     if (canLoad && imageCount === 0) { setLoaded(true) }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canLoad, imageCount]);
-  useEffect(() => console.log(imageCount), [imageCount]);
 
   useEffect(() => {
     if (!backgroundRef || isLoaded || !scene) return;
     recursiveLoadImages(scene);
+    if (scene.sceneName === 'bedroom') recursiveLoadImages(character);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene]);
 
@@ -157,7 +168,7 @@ export default function Scene(
       style={
         {
           height: '100vh',
-          width: `min(100vw, ${scene.background.dimensions[0]/scene.background.dimensions[1]*100}vh`,
+          width: `min(100vw, min(${2900/2160 * 100}vh, ${scene.background.dimensions[0]/scene.background.dimensions[1]*100}vh)`,
           margin: '0 auto 0',
         }
       }

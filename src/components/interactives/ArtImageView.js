@@ -5,9 +5,11 @@ export default function ArtImageView(props) {
     artist,
     desc
   } = props;
+
   return (
-    <div className="viewer">
-      <img src={path} alt="Please respect the artist by not misusing this artwork" />
+    <div className="viewer" >
+
+      <img src={path} alt="" style={{ height: '70vh', marginTop: '30px' }} />
       <h1>{title}</h1>
       <h2 className="artist-text">
         <em>{artist}</em>

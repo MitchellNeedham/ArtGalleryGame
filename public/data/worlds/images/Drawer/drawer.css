@@ -1,0 +1,59 @@
+.drawer {
+  background-image: url(/data/worlds/images/Drawer/Drawer_00004.png),
+                    url(/data/worlds/images/Drawer/Drawer_00005.png),
+                    url(/data/worlds/images/Drawer/Drawer_00006.png),
+                    url(/data/worlds/images/Drawer/Drawer_00007.png),
+                    url(/data/worlds/images/Drawer/Drawer_00008.png),
+                    url(/data/worlds/images/Drawer/Drawer_00009.png),
+                    url(/data/worlds/images/Drawer/Drawer_00010.png),
+                    url(/data/worlds/images/Drawer/Drawer_00011.png),
+                    url(/data/worlds/images/Drawer/Drawer_00012.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center, 1000px, 1000px, 1000px, 1000px, 1000px, 1000px, 1000px, 1000px;
+}
+
+.drawer-ajar {
+  background-position: 1000px, 1000px, 1000px, center, 1000px, 1000px, 1000px, 1000px, 1000px !important;
+}
+
+/*.drawer:not(:hover) {
+  animation: drawer 0.5s step-end reverse;
+  background-image: url(/data/worlds/images/Drawer/Drawer_0004.png);
+}*/
+
+.drawer:hover {
+  background-position: 1000px, 1000px, 1000px, 1000px, 1000px, 1000px, 1000px, 1000px, center;
+  animation: drawer 0.5s step-end;
+  cursor: pointer;
+}
+
+@keyframes drawer {
+  0% {
+    background-position: center, 1000px, 1000px, 1000px, 1000px, 1000px, 1000px, 1000px, 1000px;
+  }
+  10% {
+    background-position: 1000px, center, 1000px, 1000px, 1000px, 1000px, 1000px, 1000px, 1000px;
+  }
+  20% {
+    background-position: 1000px, 1000px, center, 1000px, 1000px, 1000px, 1000px, 1000px, 1000px;
+  }
+  30% {
+    background-position: 1000px, 1000px, 1000px, center, 1000px, 1000px, 1000px, 1000px, 1000px;
+  }
+  40% {
+    background-position: 1000px, 1000px, 1000px, 1000px, center, 1000px, 1000px, 1000px, 1000px;
+  }
+  50% {
+    background-position: 1000px, 1000px, 1000px, 1000px, 1000px, center, 1000px, 1000px, 1000px;
+  }
+  60% {
+    background-position: 1000px, 1000px, 1000px, 1000px, 1000px, 1000px, center, 1000px, 1000px;
+  }
+  70% {
+    background-position: 1000px, 1000px, 1000px, 1000px, 1000px, 1000px, 1000px, center, 1000px;
+  }
+  80% {
+    background-position: 1000px, 1000px, 1000px, 1000px, 1000px, 1000px, 1000px, 1000px, center;
+  }
+}

@@ -6,7 +6,7 @@ import { useSceneLoaded } from '../../api/LoadedContext';
 import { useCharacter, useCharacterUpdate } from '../../api/CharacterContext';
 
 const charMoveSpeed = (size) => 5/(size/3 + 1)/6;
-const SCREEN_EDGE_OFFSET = 200;
+const SCREEN_EDGE_OFFSET = 100;
 const SCROLL_SPEED = 20;
 
 const ANIM_FRAME_LENGTH = 2;

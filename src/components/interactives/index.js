@@ -7,3 +7,6 @@ export { default as ArtMusic } from './ArtMusic';
 export { default as VideoSelection } from './VideoSelection';
 
 export { default as CharacterCustomisationDrawer } from './CharacterCustomisationDrawer';
+
+export { default as ToolTip } from './ToolTip';
+export { default as SpeechBubble } from './SpeechBubble';
