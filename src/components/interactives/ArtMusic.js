@@ -18,6 +18,7 @@ export default function ArtMusic(props) {
   const {
     playerpos,
     playerdim,
+    customIB
   } = props;
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
@@ -46,7 +47,7 @@ export default function ArtMusic(props) {
   const openSongs = () => {
     addInteractionBox(
       (closeUI) => (<MusicSelection closeUI={closeUI} />)
-    , '1000px');
+    , '1000px', '745px', customIB);
   }
 
   const handleChangeSong = (change) => {

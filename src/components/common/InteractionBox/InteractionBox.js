@@ -6,15 +6,15 @@ import './InteractionBox.scss';
 import iconClose from '../../../images/icon-close.png';
 
 export default function InteractionBox({
-  children, closeUI, width = '600px', height,
+  children, closeUI, width = '600px', height, background = null,
 }) {
   const [closed, setClosed] = useState(false);
   const [dynamicHeight, setDynamicHeight] = useState(height);
   const { height: newHeight, ref } = useResizeDetector();
 
   useEffect(() => {
-    setDynamicHeight(ref.current.getBoundingClientRect().height + 'px');
-  }, [ref, newHeight]);
+    setDynamicHeight(height ?? ref.current.getBoundingClientRect().height + 'px');
+  }, [ref, newHeight, height]);
 
   if (closed) {
     return (<></>);
@@ -34,6 +34,10 @@ export default function InteractionBox({
         onKeyUp={() => {}}
         style={
           {
+            backgroundImage: background ? `url(${background})` : 'none',
+            backgroundColor: background ? 'fff0' : '#fff',
+            boxShadow: background ? 'none' : '0 10px 5px rgba(0,0,0,0.1)',
+            border: background ? 'none' : '2px solid #ccc',
             width: `min(95vw, ${width})`,
             height: `min(95vh, ${dynamicHeight || height})`,
             left: `calc(50% - min(95vw, ${width}) / 2)`,

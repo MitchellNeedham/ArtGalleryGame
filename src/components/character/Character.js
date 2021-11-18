@@ -51,6 +51,7 @@ export default function Character({ pos, unitSize, newPos, polygons, changeScene
       setCounter(0);
       setAnimFrame(0);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh, targetPos]);
 
   useEffect(() => {
@@ -135,6 +136,7 @@ export default function Character({ pos, unitSize, newPos, polygons, changeScene
 
   useEffect(() => {
     updateCharPos(currPos);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currPos]);
 
   useEffect(()=>{

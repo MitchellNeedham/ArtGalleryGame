@@ -20,7 +20,7 @@ export default function MusicSelection({ closeUI }) {
           alignItems: 'center',
           flexWrap: 'wrap',
           padding: '30px 0',
-          gap: '20px 50px'
+          gap: '50px 70px'
         }
       }
     >
@@ -36,7 +36,12 @@ export default function MusicSelection({ closeUI }) {
           }
           onClick={() => handleChangeMusic(i)}
         >
-          {[song.title, song.artist].filter(Boolean).join(' - ')}
+          <p>
+            {song.title}
+          </p>
+          <p>
+            <em>{song.artist}</em>
+          </p>
         </div>
       ))}
     </div>

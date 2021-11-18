@@ -269,7 +269,8 @@
           "type": "music",
           "selectpos": [0.635, 0.5],
           "playerpos": [0.552, 0.315],
-          "playerdim": [0.24, 0.14]
+          "playerdim": [0.24, 0.14],
+          "customIB": "data/worlds/images/Music_Jukebox.png"
         }
       ]
     }
@@ -326,7 +327,9 @@
         {
           "type": "videoselection",
           "pos": [1, 0.07],
-          "door": "foyer-theatre"
+          "door": "foyer-theatre",
+          "smallticket": "/data/worlds/images/Lobby_Ticket_Small.png",
+          "bigticket": "/data/worlds/images/Lobby_Ticket_Big.png"
         }
       ]
     }

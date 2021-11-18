@@ -11,7 +11,7 @@ const interactionBoxUpdateContext = createContext([]);
 export default function InteractionBoxProvider({ children }) {
   const [IBContent, setIBContent] = useState([]);
 
-  function addInteractionBox(content, width, height) {
+  function addInteractionBox(content, width, height, background) {
     const id = uuidv4();
     const newIB = {
       id,
@@ -19,6 +19,7 @@ export default function InteractionBoxProvider({ children }) {
       content: content(() => close(id)),
       width,
       height,
+      background,
     };
     setIBContent([...IBContent, newIB]);
   }

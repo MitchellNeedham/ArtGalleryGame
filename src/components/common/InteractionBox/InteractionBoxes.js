@@ -11,6 +11,7 @@ export default function InteractionBoxes() {
           closeUI={() => box.closeUI()}
           width={box.width}
           height={box.height}
+          background={box.background}
         >
           {box.content}
         </InteractionBox>

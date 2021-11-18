@@ -37,8 +37,8 @@ export default function CharacterProvider({ children }) {
     setBodyAcc(acc)
   }
 
-  function updateCharPos(pos) {
-    setCharPos(pos);
+  function updateCharPos(currPos) {
+    setCharPos(currPos);
   }
 
   return (

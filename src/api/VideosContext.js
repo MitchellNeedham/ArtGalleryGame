@@ -12,6 +12,7 @@ const videosUpdateContext = createContext([]);
 export default function VideosProvider({ children }) {
   const [videos, setVideos] = useState([]);
   const [activeVideo, setActiveVideo] = useState(0);
+  const [lastChanged, setLastChanged] = useState(null);
 
   useEffect(() => {
     axios.get('/data/video/videos.json')
@@ -22,11 +23,12 @@ export default function VideosProvider({ children }) {
 
   function changeVideo(index) {
     setActiveVideo(index);
+    setLastChanged(new Date());
   }
 
   return (
     <videosUpdateContext.Provider value={{ changeVideo }}>
-      <videosContext.Provider value={{ activeVideo, videos }}>
+      <videosContext.Provider value={{ activeVideo, videos, lastChanged }}>
         {children}
       </videosContext.Provider>
     </videosUpdateContext.Provider>
@@ -34,8 +36,8 @@ export default function VideosProvider({ children }) {
 }
 
 export function useVideos() {
-  const { activeVideo, videos } = useContext(videosContext);
-  return { activeVideo, videos };
+  const { activeVideo, videos, lastChanged } = useContext(videosContext);
+  return { activeVideo, videos, lastChanged };
 }
 
 export function useVideosUpdate() {

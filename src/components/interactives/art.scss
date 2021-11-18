@@ -48,9 +48,19 @@
 }
 
 .music-selection-ui {
+  margin-top: 150px;
+
+  > div {
+
+    > p {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
+
   > div:hover {
     cursor: pointer;
-    color: #ccc;
+    color: rgb(138, 112, 42);
   }
 }
 

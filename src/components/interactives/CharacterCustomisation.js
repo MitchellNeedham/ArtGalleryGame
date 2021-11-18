@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Scrollbars from "react-custom-scrollbars-2";
 import { useCharacter, useCharacterUpdate } from "../../api/CharacterContext"
 
 import "./CharacterCustomisation.scss";
@@ -68,41 +69,48 @@ export default function Charactercustomisation(props) {
           </div>
         </div>
         <div className="right">
-          <h3>Accessories</h3>
-          <h4>Head</h4>
-          <div className="acc-selection">
-          {
-            characterData.accessories.head.map((acc) => (
-              <div
-                key={acc.name}
-                className="acc-item"
-                style={
-                  {
-                    backgroundImage: `url(${acc.images[0]})`,
-                  }
-                }
-                onClick={() => setHeadAcc(acc.name === 'none' ? '' : acc.images)}
-              />
-            ))
-          }
-          </div>
-          <h4>Body</h4>
-          <div className="acc-selection">
+          <Scrollbars>
+            <h3>Accessories</h3>
+            <h4>Head</h4>
+            <div className="acc-selection">
             {
-              characterData.accessories.body.map((acc) => (
+              characterData.accessories.head.map((acc) => (
                 <div
                   key={acc.name}
                   className="acc-item"
+                  title={acc.name}
                   style={
                     {
                       backgroundImage: `url(${acc.images[0]})`,
+                      backgroundPositionY: '35%',
                     }
                   }
-                  onClick={() => setBodyAcc(acc.name === 'none' ? '' : acc.images)}
+                  onClick={() => setHeadAcc(acc.name === 'none' ? '' : acc.images)}
                 />
               ))
             }
-          </div>
+            </div>
+            <h4>Body</h4>
+            <div className="acc-selection">
+              {
+                characterData.accessories.body.map((acc) => (
+                  <div
+                    key={acc.name}
+                    className="acc-item"
+                    title={acc.name}
+                    style={
+                      {
+                        backgroundImage: `url(${acc.images[0]})`,
+                        backgroundPositionY: '65%',
+                        backgroundSize: '250% auto',
+                      }
+                    }
+                    onClick={() => setBodyAcc(acc.name === 'none' ? '' : acc.images)}
+                  />
+                ))
+              }
+            </div>
+          </Scrollbars>
         </div>
       </div>
       <div

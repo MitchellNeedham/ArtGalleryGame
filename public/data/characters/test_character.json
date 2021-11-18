@@ -24,7 +24,7 @@
         "images": [""]
       },
       {
-        "name": "beanie",
+        "name": "Beanie",
         "images": [
           "/data/characters/images/Accessories/Head/Beanie/Beanie_00000.png",
           "/data/characters/images/Accessories/Head/Beanie/Beanie_00001.png",
@@ -32,6 +32,105 @@
           "/data/characters/images/Accessories/Head/Beanie/Beanie_00003.png",
           "/data/characters/images/Accessories/Head/Beanie/Beanie_00004.png",
           "/data/characters/images/Accessories/Head/Beanie/Beanie_00005.png"
+        ]
+      },
+	    {
+        "name": "Bow",
+        "images": [
+          "/data/characters/images/Accessories/Head/Bow/Bow_00000.png",
+          "/data/characters/images/Accessories/Head/Bow/Bow_00001.png",
+          "/data/characters/images/Accessories/Head/Bow/Bow_00002.png",
+          "/data/characters/images/Accessories/Head/Bow/Bow_00003.png",
+          "/data/characters/images/Accessories/Head/Bow/Bow_00004.png",
+          "/data/characters/images/Accessories/Head/Bow/Bow_00005.png"
+        ]
+      },
+	    {
+        "name": "Crown",
+        "images": [
+          "/data/characters/images/Accessories/Head/Crown/Crown_00000.png",
+          "/data/characters/images/Accessories/Head/Crown/Crown_00001.png",
+          "/data/characters/images/Accessories/Head/Crown/Crown_00002.png",
+          "/data/characters/images/Accessories/Head/Crown/Crown_00003.png",
+          "/data/characters/images/Accessories/Head/Crown/Crown_00004.png",
+          "/data/characters/images/Accessories/Head/Crown/Crown_00005.png"
+        ]
+      },
+	    {
+        "name": "FlowerCrown",
+        "images": [
+          "/data/characters/images/Accessories/Head/FlowerCrown/FlowerCrown_00000.png",
+          "/data/characters/images/Accessories/Head/FlowerCrown/FlowerCrown_00001.png",
+          "/data/characters/images/Accessories/Head/FlowerCrown/FlowerCrown_00002.png",
+          "/data/characters/images/Accessories/Head/FlowerCrown/FlowerCrown_00003.png",
+          "/data/characters/images/Accessories/Head/FlowerCrown/FlowerCrown_00004.png",
+          "/data/characters/images/Accessories/Head/FlowerCrown/FlowerCrown_00005.png"
+        ]
+      },
+	    {
+        "name": "Goggles",
+        "images": [
+          "/data/characters/images/Accessories/Head/Goggles/Goggles_00000.png",
+          "/data/characters/images/Accessories/Head/Goggles/Goggles_00001.png",
+          "/data/characters/images/Accessories/Head/Goggles/Goggles_00002.png",
+          "/data/characters/images/Accessories/Head/Goggles/Goggles_00003.png",
+          "/data/characters/images/Accessories/Head/Goggles/Goggles_00004.png",
+          "/data/characters/images/Accessories/Head/Goggles/Goggles_00005.png"
+        ]
+      },
+	    {
+        "name": "Headband",
+        "images": [
+          "/data/characters/images/Accessories/Head/Headband/Headband_00000.png",
+          "/data/characters/images/Accessories/Head/Headband/Headband_00001.png",
+          "/data/characters/images/Accessories/Head/Headband/Headband_00002.png",
+          "/data/characters/images/Accessories/Head/Headband/Headband_00003.png",
+          "/data/characters/images/Accessories/Head/Headband/Headband_00004.png",
+          "/data/characters/images/Accessories/Head/Headband/Headband_00005.png"
+        ]
+      },
+	    {
+        "name": "Headphones",
+        "images": [
+          "/data/characters/images/Accessories/Head/Headphones/Headphones_00000.png",
+          "/data/characters/images/Accessories/Head/Headphones/Headphones_00001.png",
+          "/data/characters/images/Accessories/Head/Headphones/Headphones_00002.png",
+          "/data/characters/images/Accessories/Head/Headphones/Headphones_00003.png",
+          "/data/characters/images/Accessories/Head/Headphones/Headphones_00004.png",
+          "/data/characters/images/Accessories/Head/Headphones/Headphones_00005.png"
+        ]
+      },
+	    {
+        "name": "Hijab",
+        "images": [
+          "/data/characters/images/Accessories/Head/Hijab/Hijab_00000.png",
+          "/data/characters/images/Accessories/Head/Hijab/Hijab_00001.png",
+          "/data/characters/images/Accessories/Head/Hijab/Hijab_00002.png",
+          "/data/characters/images/Accessories/Head/Hijab/Hijab_00003.png",
+          "/data/characters/images/Accessories/Head/Hijab/Hijab_00004.png",
+          "/data/characters/images/Accessories/Head/Hijab/Hijab_00005.png"
+        ]
+      },
+	    {
+        "name": "StarClip",
+        "images": [
+          "/data/characters/images/Accessories/Head/StarClip/StarClip_00000.png",
+          "/data/characters/images/Accessories/Head/StarClip/StarClip_00001.png",
+          "/data/characters/images/Accessories/Head/StarClip/StarClip_00002.png",
+          "/data/characters/images/Accessories/Head/StarClip/StarClip_00003.png",
+          "/data/characters/images/Accessories/Head/StarClip/StarClip_00004.png",
+          "/data/characters/images/Accessories/Head/StarClip/StarClip_00005.png"
+        ]
+      },
+	    {
+        "name": "Tophat",
+        "images": [
+          "/data/characters/images/Accessories/Head/Tophat/Tophat_00000.png",
+          "/data/characters/images/Accessories/Head/Tophat/Tophat_00001.png",
+          "/data/characters/images/Accessories/Head/Tophat/Tophat_00002.png",
+          "/data/characters/images/Accessories/Head/Tophat/Tophat_00003.png",
+          "/data/characters/images/Accessories/Head/Tophat/Tophat_00004.png",
+          "/data/characters/images/Accessories/Head/Tophat/Tophat_00005.png"
         ]
       }
     ],
@@ -41,7 +140,18 @@
         "images": [""]
       },
       {
-        "name": "hoodie",
+        "name": "Blue Zipup",
+        "images": [
+          "/data/characters/images/Accessories/Body/BlueZipup/BlueZipup_00000.png",
+          "/data/characters/images/Accessories/Body/BlueZipup/BlueZipup_00001.png",
+          "/data/characters/images/Accessories/Body/BlueZipup/BlueZipup_00002.png",
+          "/data/characters/images/Accessories/Body/BlueZipup/BlueZipup_00003.png",
+          "/data/characters/images/Accessories/Body/BlueZipup/BlueZipup_00004.png",
+          "/data/characters/images/Accessories/Body/BlueZipup/BlueZipup_00005.png"
+        ]
+      },
+	    {
+        "name": "Hoodie",
         "images": [
           "/data/characters/images/Accessories/Body/Hoodie/Hoodie_00000.png",
           "/data/characters/images/Accessories/Body/Hoodie/Hoodie_00001.png",
@@ -49,6 +159,94 @@
           "/data/characters/images/Accessories/Body/Hoodie/Hoodie_00003.png",
           "/data/characters/images/Accessories/Body/Hoodie/Hoodie_00004.png",
           "/data/characters/images/Accessories/Body/Hoodie/Hoodie_00005.png"
+        ]
+      },
+	    {
+        "name": "PinkVest",
+        "images": [
+          "/data/characters/images/Accessories/Body/PinkVest/PinkVest_00000.png",
+          "/data/characters/images/Accessories/Body/PinkVest/PinkVest_00001.png",
+          "/data/characters/images/Accessories/Body/PinkVest/PinkVest_00002.png",
+          "/data/characters/images/Accessories/Body/PinkVest/PinkVest_00003.png",
+          "/data/characters/images/Accessories/Body/PinkVest/PinkVest_00004.png",
+          "/data/characters/images/Accessories/Body/PinkVest/PinkVest_00005.png"
+        ]
+      },
+	    {
+        "name": "PufferVest",
+        "images": [
+          "/data/characters/images/Accessories/Body/PufferVest/PufferVest_00000.png",
+          "/data/characters/images/Accessories/Body/PufferVest/PufferVest_00001.png",
+          "/data/characters/images/Accessories/Body/PufferVest/PufferVest_00002.png",
+          "/data/characters/images/Accessories/Body/PufferVest/PufferVest_00003.png",
+          "/data/characters/images/Accessories/Body/PufferVest/PufferVest_00004.png",
+          "/data/characters/images/Accessories/Body/PufferVest/PufferVest_00005.png"
+        ]
+      },
+	    {
+        "name": "RedCrop",
+        "images": [
+          "/data/characters/images/Accessories/Body/RedCrop/RedCrop_00000.png",
+          "/data/characters/images/Accessories/Body/RedCrop/RedCrop_00001.png",
+          "/data/characters/images/Accessories/Body/RedCrop/RedCrop_00002.png",
+          "/data/characters/images/Accessories/Body/RedCrop/RedCrop_00003.png",
+          "/data/characters/images/Accessories/Body/RedCrop/RedCrop_00004.png",
+          "/data/characters/images/Accessories/Body/RedCrop/RedCrop_00005.png"
+        ]
+      },
+	    {
+        "name": "RedDress",
+        "images": [
+          "/data/characters/images/Accessories/Body/RedDress/RedDress_00000.png",
+          "/data/characters/images/Accessories/Body/RedDress/RedDress_00001.png",
+          "/data/characters/images/Accessories/Body/RedDress/RedDress_00002.png",
+          "/data/characters/images/Accessories/Body/RedDress/RedDress_00003.png",
+          "/data/characters/images/Accessories/Body/RedDress/RedDress_00004.png",
+          "/data/characters/images/Accessories/Body/RedDress/RedDress_00005.png"
+        ]
+      },
+	    {
+        "name": "Skirt",
+        "images": [
+          "/data/characters/images/Accessories/Body/Skirt/Skirt_00000.png",
+          "/data/characters/images/Accessories/Body/Skirt/Skirt_00001.png",
+          "/data/characters/images/Accessories/Body/Skirt/Skirt_00002.png",
+          "/data/characters/images/Accessories/Body/Skirt/Skirt_00003.png",
+          "/data/characters/images/Accessories/Body/Skirt/Skirt_00004.png",
+          "/data/characters/images/Accessories/Body/Skirt/Skirt_00005.png"
+        ]
+      },
+	    {
+        "name": "StarTShirt",
+        "images": [
+          "/data/characters/images/Accessories/Body/StarTShirt/StarTShirt_00000.png",
+          "/data/characters/images/Accessories/Body/StarTShirt/StarTShirt_00001.png",
+          "/data/characters/images/Accessories/Body/StarTShirt/StarTShirt_00002.png",
+          "/data/characters/images/Accessories/Body/StarTShirt/StarTShirt_00003.png",
+          "/data/characters/images/Accessories/Body/StarTShirt/StarTShirt_00004.png",
+          "/data/characters/images/Accessories/Body/StarTShirt/StarTShirt_00005.png"
+        ]
+      },
+	    {
+        "name": "WaistCoat",
+        "images": [
+          "/data/characters/images/Accessories/Body/WaistCoat/WaistCoat_00000.png",
+          "/data/characters/images/Accessories/Body/WaistCoat/WaistCoat_00001.png",
+          "/data/characters/images/Accessories/Body/WaistCoat/WaistCoat_00002.png",
+          "/data/characters/images/Accessories/Body/WaistCoat/WaistCoat_00003.png",
+          "/data/characters/images/Accessories/Body/WaistCoat/WaistCoat_00004.png",
+          "/data/characters/images/Accessories/Body/WaistCoat/WaistCoat_00005.png"
+        ]
+      },
+	    {
+        "name": "YellowTop",
+        "images": [
+          "/data/characters/images/Accessories/Body/YellowTop/YellowTop_00000.png",
+          "/data/characters/images/Accessories/Body/YellowTop/YellowTop_00001.png",
+          "/data/characters/images/Accessories/Body/YellowTop/YellowTop_00002.png",
+          "/data/characters/images/Accessories/Body/YellowTop/YellowTop_00003.png",
+          "/data/characters/images/Accessories/Body/YellowTop/YellowTop_00004.png",
+          "/data/characters/images/Accessories/Body/YellowTop/YellowTop_00005.png"
         ]
       }
     ]

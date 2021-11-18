@@ -25,7 +25,8 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 20px;
-      width: 100%;
+      width: 60%;
+      margin: 0 auto 0;
 
       .colour-choice {
         width: 30px;
@@ -55,7 +56,7 @@
         width: 10vh;
         height: 10vh;
         background-position: center;
-        background-size: contain;
+        background-size: 180% auto;
         background-repeat: no-repeat;
 
         &:hover {
