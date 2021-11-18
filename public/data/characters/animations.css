@@ -1,0 +1,39 @@
+.action-walk {
+  animation: anim-walk 0.8s step-end infinite;
+  -webkit-animation: anim-walk 0.8s step-end infinite;
+}
+
+.action-idle {
+  animation: anim-idle 5s step-end infinite;
+  -webkit-animation: anim-idle 5s step-end infinite;
+}
+
+@keyframes anim-walk {
+  0% {
+    background-image: url('/data/characters/images/Walkcycle/Walkcycle_00000.png');
+  }
+  17% {
+    background-image: url('/data/characters/images/Walkcycle/Walkcycle_00001.png');
+  }
+  33% {
+    background-image: url('/data/characters/images/Walkcycle/Walkcycle_00002.png');
+  }
+  50% {
+    background-image: url('/data/characters/images/Walkcycle/Walkcycle_00003.png');
+  }
+  67% {
+    background-image: url('/data/characters/images/Walkcycle/Walkcycle_00004.png');
+  }
+  83% {
+    background-image: url('/data/characters/images/Walkcycle/Walkcycle_00005.png');
+  }
+}
+
+@keyframes anim-idle {
+  0% {
+    background-image: url('/data/characters/images/Idle.png');
+  }
+  95% {
+    background-image: url('/data/characters/images/Idle_Blink.png');
+  }
+}

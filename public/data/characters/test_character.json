@@ -5,21 +5,95 @@
     "height": 20,
     "width": 15
   },
-  "speed": 1,
+  "frames": 6,
   "actions": {
-    "walk": {
-      "fps": 10,
-      "sound": "path/to/sound.wav",
-      "imageSequence": [
-        "data/characters.images/yellow.png"
-      ]
+    "walk": [
+      "/data/characters/images/Walkcycle/Walkcycle_00000.png",
+      "/data/characters/images/Walkcycle/Walkcycle_00001.png",
+      "/data/characters/images/Walkcycle/Walkcycle_00002.png",
+      "/data/characters/images/Walkcycle/Walkcycle_00003.png",
+      "/data/characters/images/Walkcycle/Walkcycle_00004.png",
+      "/data/characters/images/Walkcycle/Walkcycle_00005.png"
+    ],
+    "idle": "/data/characters/images/Blinking.gif"
+  },
+  "accessories": {
+    "head": [
+      {
+        "name": "none",
+        "images": [""]
+      },
+      {
+        "name": "beanie",
+        "images": [
+          "/data/characters/images/Accessories/Head/Beanie/Beanie_00000.png",
+          "/data/characters/images/Accessories/Head/Beanie/Beanie_00001.png",
+          "/data/characters/images/Accessories/Head/Beanie/Beanie_00002.png",
+          "/data/characters/images/Accessories/Head/Beanie/Beanie_00003.png",
+          "/data/characters/images/Accessories/Head/Beanie/Beanie_00004.png",
+          "/data/characters/images/Accessories/Head/Beanie/Beanie_00005.png"
+        ]
+      }
+    ],
+    "body": [
+      {
+        "name": "none",
+        "images": [""]
+      },
+      {
+        "name": "hoodie",
+        "images": [
+          "/data/characters/images/Accessories/Body/Hoodie/Hoodie_00000.png",
+          "/data/characters/images/Accessories/Body/Hoodie/Hoodie_00001.png",
+          "/data/characters/images/Accessories/Body/Hoodie/Hoodie_00002.png",
+          "/data/characters/images/Accessories/Body/Hoodie/Hoodie_00003.png",
+          "/data/characters/images/Accessories/Body/Hoodie/Hoodie_00004.png",
+          "/data/characters/images/Accessories/Body/Hoodie/Hoodie_00005.png"
+        ]
+      }
+    ]
+  },
+  "baseColour": "#b094f8",
+  "colours": [
+    {
+      "hue": "-45",
+      "sat": "1",
+      "val": "1"
     },
-    "idle": {
-      "fps": 3,
-      "sound": "path/to/sound.wav",
-      "imageSequence": [
-        "/data/characters/images/yellow.png"
-      ]
+    {
+      "hue": "0",
+      "sat": "1",
+      "val": "1"
+    },
+    {
+      "hue": "40",
+      "sat": "1",
+      "val": "1"
+    },
+    {
+      "hue": "91",
+      "sat": "1",
+      "val": "1"
+    },
+    {
+      "hue": "145",
+      "sat": "1.3",
+      "val": "1.5"
+    },
+    {
+      "hue": "155",
+      "sat": "1.1",
+      "val": "1.7"
+    },
+    {
+      "hue": "178",
+      "sat": "1.1",
+      "val": "1.4"
+    },
+    {
+      "hue": "-130",
+      "sat": "1.1",
+      "val": "1.4"
     }
-  }
+  ]
 }

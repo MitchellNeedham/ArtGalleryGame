@@ -5,3 +5,5 @@ export { default as ArtVideo } from './ArtVideo';
 export { default as ArtMusic } from './ArtMusic';
 
 export { default as VideoSelection } from './VideoSelection';
+
+export { default as CharacterCustomisationDrawer } from './CharacterCustomisationDrawer';

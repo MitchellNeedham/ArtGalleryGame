@@ -74,10 +74,9 @@ export default function World() {
     loadingScreen.className = "visible-ls";
     setLoaded(false);
     setTimeout(() => {
-      setSpawnPos([entryDoor.pos[0] + entryDoor.dimensions[0]/2, entryDoor.pos[1] + entryDoor.dimensions[1]]);
+      setSpawnPos(entryDoor.spawnPos ?? [entryDoor.pos[0] + entryDoor.dimensions[0]/2, entryDoor.pos[1] + entryDoor.dimensions[1]]);
       setScene(entryDoor.scene);
-      
-    }, 1000);
+    }, 500);
     setTimeout(() => {
       setLoaded(true);
       loadingScreen.className = "hidden-ls";

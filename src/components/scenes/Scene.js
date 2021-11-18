@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 
-import { ArtImage, ArtMusic, ArtVideo, VideoSelection } from '../interactives';
+import { ArtImage, ArtMusic, ArtVideo, CharacterCustomisationDrawer, VideoSelection } from '../interactives';
 import { Character } from '../character';
 import './scene.css';
 
@@ -10,6 +10,7 @@ const INTERACTIVES = {
   video: (props) => (<ArtVideo {...props} />),
   music: (props) => (<ArtMusic {...props} />),
   videoselection: (props) => (<VideoSelection {...props} />),
+  charactercustomisation: (props) => (<CharacterCustomisationDrawer {...props} />)
 }
 
 export default function Scene(
@@ -60,9 +61,11 @@ export default function Scene(
   }, []);
 
   const moveToPos = (e) => {
-    if (e.target.classList.contains('art') || !sceneRef.current.contains(e.target)) return;
+    if (e.target.classList.contains('art') || !sceneRef?.current?.contains(e.target)) return;
     if (!e.clientX || !e.clientY) return;
     const boundingBox = sceneRef.current.getBoundingClientRect();
+
+    
     setTargetDoor((td) => e.target.classList.contains('scene-door') ? td : false);
 
     setNewPos(
@@ -88,12 +91,18 @@ export default function Scene(
       setDoorHovers((dh) => dh.map((d, ind) => ind === i ? true : d));
       setTimeout(() => changeScene(pair.nextRoom), 200);
     });
+
     if (!!pair.currentRoom.fixed) {
       changeScene(pair.nextRoom);
     }
 
     if (!!pair.currentRoom.invisible || event.type === 'keydown') {
-      setNewPos(pair.currentRoom.pos.map((c) => c * window.innerHeight));
+      setNewPos((pair.currentRoom.exitPos ?? pair.currentRoom.pos).map((c) => c * window.innerHeight));
+    }
+
+    if (pair.currentRoom.exitPos) {
+      console.log('true')
+      setTimeout(() => setNewPos(pair.currentRoom.exitPos.map((c) => c * window.innerHeight)), 100);
     }
     
   }
@@ -111,12 +120,14 @@ export default function Scene(
     >
       <Scrollbars
         ref={scrollbarRef}
+        renderTrackVertical={({ style, ...props }) => <div style={{...style, display: 'none'}} {...props}></div>}
       >
         <div
           className="scene-container"
           style={
             {
               backgroundImage: `url(${scene.background.image})`,
+              backgroundPositionY: 'center',
               width: `${scene.background.dimensions[0]/scene.background.dimensions[1]*100}vh`,
               height: '100vh',
               overflow: 'hidden'
@@ -142,6 +153,26 @@ export default function Scene(
                 }
               }
             />
+          ))}
+          {scene.background.clouds?.map((cloud) => (
+            <div
+              style={
+                {
+                  backgroundImage: `url(${cloud.image})`,
+                  backgroundSize: 'contain',
+                  backgroundPosition: 'center',
+                  position: 'absolute',
+                  left: '-10vh',
+                  top: cloud.top * 100 + 'vh',
+                  width: cloud.dim[0] * 100 + 'vh',
+                  height: cloud.dim[1] * 100 + 'vh',
+                  animation: `clouds ${cloud.duration}s linear ${cloud.delay}s infinite`,
+                  WebkitAnimation: `clouds ${cloud.duration}s linear ${cloud.delay}s infinite`,
+                }
+              }
+            >
+            
+            </div>
           ))}
           {scene.room.interactives?.map((obj, key) => (INTERACTIVES[obj.type]({...obj, key})))}
           <div

@@ -1,0 +1,8 @@
+@keyframes clouds {
+  0% {
+    left: -10vw;
+  }
+  100% {
+    left: 100vw;
+  }
+}

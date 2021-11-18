@@ -2,28 +2,56 @@ import { useState, useRef, useEffect } from 'react';
 import pathfinding from '../../scripts/pathfinding';
 import './character.scss';
 import { useSceneGraph } from '../../api/GraphContext';
+import { useSceneLoaded } from '../../api/LoadedContext';
+import { useCharacter, useCharacterUpdate } from '../../api/CharacterContext';
 
 const charMoveSpeed = (size) => 5/(size/3 + 1)/6;
 const SCREEN_EDGE_OFFSET = 200;
 const SCROLL_SPEED = 20;
 
-export default function Character({ character, pos, unitSize, newPos, polygons, changeScene, scrollbarRef, sceneID }) {
+const ANIM_FRAME_LENGTH = 2;
+
+export default function Character({ pos, unitSize, newPos, polygons, changeScene, scrollbarRef, sceneID }) {
   const characterRef = useRef(null);
+  const { characterData: character, colour, headAcc, bodyAcc } = useCharacter();
   const [refresh, setRefresh] = useState(0);
   const [currPos, setCurrPos] = useState([pos[0] * 100, pos[1] * 100]);
   const [speed, setSpeed] = useState([0, 0]);
-  const [height] = useState(character.dimensions.height);
-  const [width] = useState(character.dimensions.width);
+  const [height, setHeight] = useState(character?.dimensions.height ?? 0);
+  const [width, setWidth] = useState(character?.dimensions.width ?? 0);
   const [targetPos, setTargetPos] = useState(newPos);
   const [scrollDir, setScrollDir] = useState(0);
+  const [counter, setCounter] = useState(0);
+  const [animFrame, setAnimFrame] = useState(0);
 
   const { graphs } = useSceneGraph();
 
+  const { isLoaded } = useSceneLoaded();
+
+  const { updateCharPos } = useCharacterUpdate();
+
+  useEffect(() => {
+    setHeight(character?.dimensions.height);
+    setWidth(character?.dimensions.width);
+  }, [character]);
 
   useEffect(() => {
     setCurrPos([pos[0] * 100, pos[1] * 100]);
   }, [pos]);
 
+  useEffect(() => {
+    if (targetPos) {
+      setCounter(c => c + 1);
+      if (counter > ANIM_FRAME_LENGTH) {
+        setAnimFrame(f => mod(f + 1, character.frames));
+        setCounter(0);
+      }
+    } 
+    if (!targetPos && (counter || animFrame)) {
+      setCounter(0);
+      setAnimFrame(0);
+    }
+  }, [refresh, targetPos]);
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -39,9 +67,11 @@ export default function Character({ character, pos, unitSize, newPos, polygons, 
 
   useEffect(() => {
     if(window.matchMedia("(any-hover: none)").matches) return;
-    window.addEventListener('mousemove', (e) => detectMouseOnEdge(e));
+    if (isLoaded) {
+      window.addEventListener('mousemove', (e) => detectMouseOnEdge(e));
+    }
     return window.removeEventListener('mousemove', (e) => detectMouseOnEdge(e));
-  }, []);
+  }, [isLoaded, sceneID]);
 
   const detectMouseOnEdge = (e) => {    
     if (e.clientX - window.innerWidth > -SCREEN_EDGE_OFFSET) {
@@ -79,8 +109,8 @@ export default function Character({ character, pos, unitSize, newPos, polygons, 
       const orthoDist = Math.abs(currPos[1]-targetPos[0][1]) + Math.abs(currPos[0]-targetPos[0][0]);
       setSpeed(([prevSpeedX, prevSpeedY]) => (
         [
-          (prevSpeedX * 10 + Math.abs(currPos[0]-targetPos[0][0])/orthoDist * Math.sign(targetPos[0][0]-currPos[0]))/11,
-          (prevSpeedY * 10 + Math.abs(currPos[1]-targetPos[0][1])/orthoDist * Math.sign(targetPos[0][1]-currPos[1]))/11
+          (prevSpeedX * 6 + Math.abs(currPos[0]-targetPos[0][0])/orthoDist * Math.sign(targetPos[0][0]-currPos[0]))/7,
+          (prevSpeedY * 6 + Math.abs(currPos[1]-targetPos[0][1])/orthoDist * Math.sign(targetPos[0][1]-currPos[1]))/7
         ]
       ));
 
@@ -103,10 +133,18 @@ export default function Character({ character, pos, unitSize, newPos, polygons, 
     }
   }
 
+  useEffect(() => {
+    updateCharPos(currPos);
+  }, [currPos]);
+
   useEffect(()=>{
     handleMove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh]);
+
+  function mod(n, m) {
+    return ((n % m) + m) % m;
+  }
 
   return (
     <div
@@ -116,14 +154,31 @@ export default function Character({ character, pos, unitSize, newPos, polygons, 
         {
           height: ratio * height + 'vh',
           width: ratio * width + 'vh',
-          top: currPos[1] - ratio * height + 'vh',
+          top: currPos[1] - ratio * height * 0.8 + 'vh',
           left: currPos[0] - ratio * width / 2 + 'vh',
-          backgroundImage: `url(${character.actions.idle.imageSequence[0]})`,
-          WebkitTransform: `scaleX(${-Math.sign(speed[0]) || 1})`,
+          WebkitTransform: `scaleX(${-Math.sign(speed[0]) || 1 })`,
           transform: `scaleX(${-Math.sign(speed[0]) || 1})`,
           zIndex: 100 + parseInt(currPos[1], 10)
         }
       }
-    />
+    >
+      <div
+        style={
+          {
+            backgroundImage: character?.actions.walk.map((img) => `url(${img})`) + `, url(${character?.actions.idle})`,
+            backgroundPositionX: targetPos ? character?.actions.walk.map((_, i) => i === animFrame ? 'center' : '1000px') + ', 1000px' : Array(character?.actions.walk.length).fill('1000px') + ', center',
+            filter: `hue-rotate(${colour.hue}deg) saturate(${colour.sat}) brightness(${colour.val})`
+          }
+        }
+      />
+      <div
+        style={
+          {
+            backgroundImage: [...headAcc, ...bodyAcc].map((src) => `url(${src})`),
+            backgroundPositionX: [...headAcc, ...bodyAcc].map((_, i) => mod(i, 6) === animFrame ? 'center' : '1000px'),
+          }
+        }
+      />
+    </div>
   )
 }

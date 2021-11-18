@@ -6,6 +6,7 @@ import { InteractionBoxes } from "./components/common/InteractionBox";
 import LoadedProvider from './api/LoadedContext';
 import VideosProvider from './api/VideosContext';
 import MusicProvider from './api/MusicContext';
+import CharacterProvider from './api/CharacterContext';
 
 function App() {
   return (
@@ -14,8 +15,10 @@ function App() {
         <VideosProvider>
           <MusicProvider>
             <LoadedProvider>
-              <InteractionBoxes />
-              <World />
+              <CharacterProvider>
+                <InteractionBoxes />
+                <World />
+              </CharacterProvider>
             </LoadedProvider>
           </MusicProvider>
         </VideosProvider>
