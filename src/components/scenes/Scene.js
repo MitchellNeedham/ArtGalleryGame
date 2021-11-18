@@ -58,7 +58,10 @@ export default function Scene(
     setCanLoad(true);
   };
 
-  useEffect(() => { if (canLoad && imageCount === 0) { setLoaded(true) } }, [canLoad, imageCount]);
+  useEffect(() => {
+    if (canLoad && imageCount === 0) { setLoaded(true) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [canLoad, imageCount]);
   useEffect(() => console.log(imageCount), [imageCount]);
 
   useEffect(() => {
