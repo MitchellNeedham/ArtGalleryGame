@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 
+import { useSceneLoaded, useSceneLoadedUpdate } from '../../api/LoadedContext';
 import { ArtImage, ArtMusic, ArtVideo, CharacterCustomisationDrawer, VideoSelection } from '../interactives';
 import { Character } from '../character';
 import './scene.css';
@@ -11,6 +12,15 @@ const INTERACTIVES = {
   music: (props) => (<ArtMusic {...props} />),
   videoselection: (props) => (<VideoSelection {...props} />),
   charactercustomisation: (props) => (<CharacterCustomisationDrawer {...props} />)
+}
+
+function load(src) {
+  return new Promise(function(resolve, reject) {
+    const image = new Image();
+    image.addEventListener('load', resolve);
+    image.addEventListener('error', reject);
+    image.src = src;
+  });
 }
 
 export default function Scene(
@@ -24,10 +34,25 @@ export default function Scene(
   // HOOKS //
   const scrollbarRef = useRef(null);
   const sceneRef = useRef(null);
+  const backgroundRef = useRef(null);
   const [newPos, setNewPos] = useState(null);
   const [targetDoor, setTargetDoor] = useState(false);
   const [audio, setAudio] = useState(null);
   const [doorHovers, setDoorHovers] = useState(Array(doors.length).fill(false));
+
+  const { setLoaded } = useSceneLoadedUpdate();
+  const { isLoaded } = useSceneLoaded();
+
+
+  useEffect(() => {
+    if (!backgroundRef || isLoaded) return;
+    const background = scene.background.image;
+    load(background).then(() => {
+      backgroundRef.current.style.backgroundImage = `url(${background})`;
+      setLoaded(true);
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scene]);
 
   useEffect(() => {
     setDoorHovers(Array(doors.length).fill(false));
@@ -101,10 +126,8 @@ export default function Scene(
     }
 
     if (pair.currentRoom.exitPos) {
-      console.log('true')
       setTimeout(() => setNewPos(pair.currentRoom.exitPos.map((c) => c * window.innerHeight)), 100);
     }
-    
   }
 
   return (
@@ -124,9 +147,10 @@ export default function Scene(
       >
         <div
           className="scene-container"
+          ref={backgroundRef}
           style={
             {
-              backgroundImage: `url(${scene.background.image})`,
+              //backgroundImage: `url(${scene.background.image})`,
               backgroundPositionY: 'center',
               width: `${scene.background.dimensions[0]/scene.background.dimensions[1]*100}vh`,
               height: '100vh',
@@ -154,8 +178,9 @@ export default function Scene(
               }
             />
           ))}
-          {scene.background.clouds?.map((cloud) => (
+          {scene.background.clouds?.map((cloud, i) => (
             <div
+              key={i}
               style={
                 {
                   backgroundImage: `url(${cloud.image})`,

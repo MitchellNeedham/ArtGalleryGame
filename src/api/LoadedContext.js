@@ -1,6 +1,7 @@
 import React, {
   createContext,
   useContext,
+  useEffect,
   useState,
 } from 'react';
 
@@ -9,9 +10,15 @@ const loadedUpdateContext = createContext([]);
 
 export default function LoadedProvider({ children }) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [loadingScreen, setLoadingScreen] = useState(null);
+
+  useEffect(() => {
+    setLoadingScreen(document.getElementById('loading-screen'));
+  }, []);
 
   function setLoaded(state) {
     setIsLoaded(state);
+    loadingScreen.className = state ? "hidden-ls" : "visible-ls";
   }
 
   return (
