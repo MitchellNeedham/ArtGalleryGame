@@ -21,7 +21,7 @@ export default function VideoSelectionInterface({ pos, closeUI, doorID }) {
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
-          padding: '30px 0',
+          padding: '50px 0',
         }
       }
     >
@@ -36,7 +36,7 @@ export default function VideoSelectionInterface({ pos, closeUI, doorID }) {
           onClick={(e) => handleClick(e, i)}
         >
           <p>
-           {[videoData.title, videoData.artist, videoData.year, videoData.category].filter(Boolean).join(' / ')}
+           {[videoData.title, videoData.artist].filter(Boolean).join(' - ')}
           </p>
         </div>
       ))}

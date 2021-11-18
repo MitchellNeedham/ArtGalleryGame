@@ -9,7 +9,9 @@ export default function ArtVideo(props) {
   const {
     pos,
     dimensions,
-    path
+    path,
+    button,
+    bigticket
   } = props;
   const [darkRoom, setDarkRoom] = useState(false);
   const darkenRef = useRef(null);
@@ -109,7 +111,7 @@ export default function ArtVideo(props) {
           ></div>
         </div>
       </div>
-      <VideoSelection pos={[1.1, 0.9]} />
+      <VideoSelection pos={[1.1, 0.9]} button={button} bigticket={bigticket} />
     </>
   )
 }

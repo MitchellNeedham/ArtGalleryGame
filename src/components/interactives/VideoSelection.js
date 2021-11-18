@@ -9,7 +9,8 @@ export default function VideoSelection(props) {
     pos,
     door,
     smallticket,
-    bigticket
+    bigticket,
+    button
   } = props;
   const { addInteractionBox } = useInteractionBoxUpdate();
   const { charPos } = useCharacter();
@@ -22,9 +23,9 @@ export default function VideoSelection(props) {
   useEffect(() => {
     if (lastChanged > enterTime) {
       setTicketDeployed(true);
-      setTicketPos(pos);
+      setTicketPos(button.pos);
     }
-  }, [lastChanged, enterTime, pos]);
+  }, [lastChanged, enterTime, pos, button]);
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -59,20 +60,21 @@ export default function VideoSelection(props) {
         style={
           {
             position: "absolute",
-            top: pos[1] * 100 + 'vh',
-            left: pos[0] * 100 + 'vh',
+            backgroundImage: `url(${button.image})`,
+            backgroundSize: 'contain',
+            backgroundPosition: 'center',
+            top: button.pos[1] * 100 + 'vh',
+            left: button.pos[0] * 100 + 'vh',
+            width: button.dim[0] * 100 + 'vh',
+            height: button.dim[1] * 100 + 'vh'
           }
         }
         onClick={
           () => addInteractionBox((closeUI) => (
-            <VideoSelectionInterface closeUI={closeUI} doorID={door} pos={pos} />), '700px', null, bigticket
+            <VideoSelectionInterface closeUI={closeUI} doorID={door} pos={pos} />), '1000px', null, bigticket
           )
         }
-      >
-        <h2>
-          Select Film
-        </h2>
-      </div>
+      />
       {
         ticketDeployed && (
           <div

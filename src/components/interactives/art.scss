@@ -48,13 +48,13 @@
 }
 
 .music-selection-ui {
-  margin-top: 150px;
+  margin-top: 7vh;
 
   > div {
 
     > p {
-      margin-top: 5px;
-      margin-bottom: 5px;
+      margin-top: 0.6vh;
+      margin-bottom: 0.6vh;
     }
   }
 
@@ -128,23 +128,25 @@
 // FOYER
 
 .video-selection {
-  background-color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
   z-index: 300;
-
-  > h2 {
-    margin: 0;
-    font-weight: 200;
-    pointer-events: none;
+  background-repeat: no-repeat;
+  &:hover {
+    filter: saturate(3);
   }
 }
 
 .video-selection-ui {
+
+  > div {
+    > p {
+      margin: 12px;
+      font-size: 22px;
+    }
+  }
+
   > div:hover {
     cursor: pointer;
-    color: #ccc;
+    color: rgb(182, 7, 7);
   }
 }
 

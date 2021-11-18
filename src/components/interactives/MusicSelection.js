@@ -19,8 +19,8 @@ export default function MusicSelection({ closeUI }) {
           justifyContent: 'center',
           alignItems: 'center',
           flexWrap: 'wrap',
-          padding: '30px 0',
-          gap: '50px 70px'
+          padding: '5vh 0',
+          gap: '5vh 3.5vh'
         }
       }
     >
@@ -30,8 +30,9 @@ export default function MusicSelection({ closeUI }) {
           style={
             {
               fontWeight: i === activeMusic ? 700 : 400,
-              width: '40%',
-              textAlign: i % 2 === 0 ? 'right' : 'left'
+              width: '30vh',
+              textAlign: 'center',
+              fontSize: '1.6vh'
             }
           }
           onClick={() => handleChangeMusic(i)}
@@ -44,6 +45,7 @@ export default function MusicSelection({ closeUI }) {
           </p>
         </div>
       ))}
+      <div style={{width: '30vh'}}></div>
     </div>
   );
 }

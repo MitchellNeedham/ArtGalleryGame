@@ -46,5 +46,13 @@
     "artist": "Yelderbert",
     "year": "2020",
     "category": "Alternative"
+  },
+  {
+    "id": "7",
+    "path": "/data/music/7.wav",
+    "title": "Brick Walls",
+    "artist": "Finn Baulch",
+    "year": "2021",
+    "category": "Instrumental"
   }
 ]

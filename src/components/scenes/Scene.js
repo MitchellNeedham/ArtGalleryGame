@@ -56,7 +56,7 @@ export default function Scene(
 
   useEffect(() => {
     setDoorHovers(Array(doors.length).fill(false));
-  }, [doors]);
+  }, [doors, scene]);
 
   useEffect(() => {
     if (!audio) {
@@ -127,6 +127,12 @@ export default function Scene(
     if (pair.currentRoom.exitPos) {
       setTimeout(() => setNewPos(pair.currentRoom.exitPos.map((c) => c * window.innerHeight)), 100);
     }
+  }
+
+  const handleDoorHover = (hover, door) => {
+    if (door.hover && hover) return `url(${door.hover})`;
+    if (door.image) return `url(${door.image})`;
+    return 'none';
   }
 
   return (
@@ -232,7 +238,7 @@ export default function Scene(
           </div>
           {doors.map((pair, i) => (
             <div
-              key={pair.currentRoom.id}
+              key={pair.currentRoom.id + i}
               className="scene-door"
               id={pair.currentRoom.id}
               title={pair.currentRoom.id}
@@ -251,8 +257,9 @@ export default function Scene(
                   width: pair.currentRoom.dimensions[0] * 100 + 'vh',
                   zIndex: pair.currentRoom.zindex || 100,
                   visibility: !!pair.currentRoom.invisible ? 'hidden' : 'visible',
-                  outline: !!pair.currentRoom.hover ? 'none' : '2px solid rgb(135, 222, 139)',
-                  backgroundImage: doorHovers[i] ? `url(${pair.currentRoom.hover})` : `none`
+                  //outline: !!pair.currentRoom.hover ? 'none' : '2px solid rgb(135, 222, 139)',
+                  backgroundImage: handleDoorHover(doorHovers[i], pair.currentRoom),
+                  filter: `saturate(${doorHovers[i] && pair.currentRoom.image ? '3' : '1'})`
                 }
               }
             >

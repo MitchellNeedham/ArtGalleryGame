@@ -30,9 +30,10 @@
       "doors": [
         {
           "id": "bedroom-street",
-          "pos": [1.1, 0.91],
-          "dimensions": [0.06, 0.06],
-          "zindex": 201
+          "pos": [1.256, 0.365],
+          "dimensions": [0.1, 0.635],
+          "zindex": 100,
+          "hover": "/data/worlds/images/Bedroom_DoorOpen.png"
         }
       ],
       "interactives": [
@@ -107,7 +108,7 @@
           "image": "/data/worlds/images/Town_Cloud2.png",
           "delay": -15,
           "duration": 40,
-          "top": 0.012,
+          "top": 0.005,
           "dim": [0.1, 0.1]
         }
       ]
@@ -137,11 +138,12 @@
       "doors": [
         {
           "id": "bedroom-street",
-          "pos": [0.1, 0.8],
-          "dimensions": [0.05, 0.05],
+          "pos": [0.0055, 0.754],
+          "dimensions": [0.17, 0.194],
           "zindex": 201,
           "exitPos": [0.2, 0.98],
-          "spawnPos": [0.2, 0.98]
+          "spawnPos": [0.2, 0.98],
+          "hover": "/data/worlds/images/Town_HomeSign.png"
         },
         {
           "id": "street-foyer",
@@ -175,7 +177,13 @@
     "sceneName": "gallery",
     "background": {
       "image": "/data/worlds/images/Gallery_BG.jpg",
-      "dimensions": [5610, 1080]
+      "dimensions": [5610, 1080],
+      "overlays": [
+        {
+          "image": "/data/worlds/images/Gallery_Overlay.png",
+          "zindex": 79
+        }
+      ]
     },
     "music": "/data/music/Gallery.mp3",
     "room": {
@@ -184,82 +192,130 @@
         "max": 2.5
       },
       "polygon": [
-        [2.5, 0.8],
+        [5, 0.8],
+        [0.6, 0.8],
+        [0.1, 0.6],
+        [0.3, 0.8],
         [0.05, 0.8],
         [0.05, 0.95],
-        [2.5, 0.95]
+        [5, 0.95]
       ],
       "doors": [
         {
           "id": "street-gallery",
-          "pos": [0.1, 0.85],
-          "dimensions": [0.1, 0.1],
-          "zindex": 201
+          "pos": [0.597, 0.134],
+          "dimensions": [0.148, 0.1],
+          "zindex": 201,
+          "exitPos": [0.11, 0.61],
+          "spawnPos": [0.1, 0.85],
+          "image": "/data/worlds/images/ExitSign_Gallery.png"
         }
       ],
       "interactives": [
         {
           "type": "image",
-          "pos": [0.7, 0.25],
+          "pos": [1.75, 0.25],
           "height": 0.3,
           "path": "/data/images/AlmostBlue.jpg",
           "title": "Almost Blue",
           "artist": "Ivan Jeldres",
-          "desc": "Gouache - 2021"
+          "desc": "Gouache - 2021",
+          "frame": {
+            "image": "/data/worlds/images/frames/almostblue.png",
+            "height": "150%",
+            "offsetX": -0.06,
+            "offsetY": -0.05
+          }
         },
         {
           "type": "image",
-          "pos": [1.067, 0.25],
+          "pos": [3.1, 0.25],
           "height": 0.3,
           "path": "/data/images/opheliaedit1.jpg",
           "title": "Ophelia",
           "artist": "Keely Varmalis",
-          "desc": "Installation - 2021"
+          "desc": "Installation - 2021",
+          "frame": {
+            "image" : "/data/worlds/images/frames/ophelia.png",
+            "height": "190%",
+            "offsetX": -0.06,
+            "offsetY": -0.14
+          }
         },
         {
           "type": "image",
-          "pos": [1.633, 0.25],
+          "pos": [2.75, 0.25],
           "height": 0.3,
           "path": "/data/images/poison.jpg",
           "title": "Poison",
           "artist": "Sam Morris",
-          "desc": "Digital - 2021"
+          "desc": "Digital - 2021",
+          "frame": {
+            "image" : "/data/worlds/images/frames/poison.png",
+            "height": "155%",
+            "offsetX": -0.08,
+            "offsetY": -0.055
+          }
         },
         {
           "type": "image",
-          "pos": [2, 0.25],
+          "pos": [4.6, 0.25],
           "height": 0.3,
           "path": "/data/images/weistera.jpg",
           "title": "Shh... Listen",
           "artist": "Samantha Tran",
-          "desc": "Digital - 2021"
+          "desc": "Digital - 2021",
+          "frame": {
+            "image" : "/data/worlds/images/frames/listen.png",
+            "height": "175%",
+            "offsetX": -0.08,
+            "offsetY": -0.105
+          }
         },
         {
           "type": "image",
-          "pos": [3.4, 0.25],
+          "pos": [3.9, 0.25],
           "height": 0.3,
           "path": "/data/images/xdreamcity.png",
           "title": "Realm of Nokia",
           "artist": "Luke Rotella",
-          "desc": "Digital - 2021"
+          "desc": "Digital - 2021",
+          "frame": {
+            "image" : "/data/worlds/images/frames/Realmofnokia.png",
+            "height": "200%",
+            "offsetX": -0.09,
+            "offsetY": -0.14
+          }
         },
         {
           "type": "image",
-          "pos": [4.2, 0.25],
+          "pos": [2.17, 0.25],
           "height": 0.3,
           "path": "/data/images/unnamed.png",
           "title": "This Too",
           "artist": "Jasmine Slater",
-          "desc": "Digital - 2021"
+          "desc": "Digital - 2021",
+          "frame": {
+            "image" : "/data/worlds/images/frames/thistoo.png",
+            "height": "140%",
+            "offsetX": -0.06,
+            "offsetY": -0.05
+          }
         },
         {
           "type": "image",
-          "pos": [4.7, 0.25],
+          "pos": [1.08, 0.25],
           "height": 0.3,
           "path": "/data/images/heartmuscle.jpg",
           "title": "The Heart is a Muscle",
           "artist": "Dion Fibishenko",
-          "desc": "Oil - 2020"
+          "desc": "Oil - 2020",
+          "frame": {
+            "image" : "/data/worlds/images/frames/heartmuscle.png",
+            "height": "170%",
+            "offsetX": -0.095,
+            "offsetY": -0.08
+          }
         }
       ]
     }
@@ -287,9 +343,11 @@
       "doors": [
         {
           "id": "street-studio",
-          "pos": [0.1, 0.85],
-          "dimensions": [0.1, 0.1],
-          "zindex": 201
+          "pos": [0.029, 0.0049],
+          "dimensions": [0.22, 0.15],
+          "image":"/data/worlds/images/ExitSign_Music.png",
+          "exitPos": [0.2, 1],
+          "spawnPos": [0.2, 1]
         }
       ],
       "interactives": [
@@ -337,11 +395,12 @@
       "doors": [
         {
           "id": "street-foyer",
-          "pos": [0.1, 0.1],
-          "dimensions": [0.1, 0.1],
+          "pos": [-0.005, 0.0],
+          "dimensions": [0.26, 0.15],
           "zindex": 201,
           "spawnPos": [0.23, 0.72], 
-          "exitPos": [-0.15, 0.9]
+          "exitPos": [-0.15, 0.9],
+          "image": "/data/worlds/images/ExitSign_Lobby.png"
         },
         {
           "id": "foyer-theatre",
@@ -357,7 +416,12 @@
           "pos": [1, 0.07],
           "door": "foyer-theatre",
           "smallticket": "/data/worlds/images/Lobby_Ticket_Small.png",
-          "bigticket": "/data/worlds/images/Lobby_Ticket_Big.png"
+          "bigticket": "/data/worlds/images/Lobby_Ticket_Big.png",
+          "button": {
+            "image": "/data/worlds/images/Lobby_SelectFilm.png",
+            "pos": [0.911, 0.0338],
+            "dim": [0.346, 0.09]
+          }
         }
       ]
     }
@@ -458,9 +522,12 @@
         },
         {
           "id": "street-theatre",
-          "pos": [0.25, 0.92],
-          "dimensions": [0.05, 0.05],
-          "zindex": 201
+          "pos": [0.07, 0.65],
+          "dimensions": [0.1, 0.1],
+          "zindex": 200,
+          "image": "/data/worlds/images/ExitSign_Cinema.png",
+          "exitPos": [0.25, 1],
+          "spawnPos": [0.25, 0.92]
         }
       ],
       "interactives": [
@@ -471,7 +538,13 @@
           "path": "4O79UgURmw4",
           "title": "Test Artwork",
           "artist": "Test Artist",
-          "desc": "Example description that has text that people read"
+          "desc": "Example description that has text that people read",
+          "bigticket": "/data/worlds/images/Lobby_Ticket_Big.png",
+          "button": {
+            "image": "/data/worlds/images/Cinema_SelectFilm.png",
+            "pos": [1.15, 0.88],
+            "dim": [0.15, 0.1]
+          }
         }
       ]
     }

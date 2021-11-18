@@ -6,7 +6,6 @@
 .scene-door {
   height: 10vh;
   width: 10vh;
-  outline: 2px solid rgb(135, 222, 139);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

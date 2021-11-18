@@ -11,7 +11,7 @@ const videosUpdateContext = createContext([]);
 
 export default function VideosProvider({ children }) {
   const [videos, setVideos] = useState([]);
-  const [activeVideo, setActiveVideo] = useState(0);
+  const [activeVideo, setActiveVideo] = useState(-1);
   const [lastChanged, setLastChanged] = useState(null);
 
   useEffect(() => {

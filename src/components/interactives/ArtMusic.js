@@ -47,7 +47,7 @@ export default function ArtMusic(props) {
   const openSongs = () => {
     addInteractionBox(
       (closeUI) => (<MusicSelection closeUI={closeUI} />)
-    , '1000px', '745px', customIB);
+    , '90vh', '65vh', customIB);
   }
 
   const handleChangeSong = (change) => {

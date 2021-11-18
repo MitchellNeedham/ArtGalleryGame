@@ -6,6 +6,7 @@ export default function ArtImage(props) {
     pos,
     height,
     path,
+    frame
   } = props;
   const { addInteractionBox } = useInteractionBoxUpdate();
   return (
@@ -23,6 +24,18 @@ export default function ArtImage(props) {
         () => addInteractionBox(() => <ArtImageView {...props} />, '1400px')
       }
     >
+      <img 
+        src={frame.image}
+        alt=""
+        style={
+          {
+            position: 'absolute',
+            height: frame.height,
+            left: frame.offsetX * 100 + 'vh',
+            top: frame.offsetY * 100 + 'vh'
+          }
+        }
+      />
       <img
         src={path}
         alt="Please respect the artist by not misusing this artwork"
