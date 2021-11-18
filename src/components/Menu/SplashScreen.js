@@ -9,7 +9,7 @@ export default function SplashScreen({ close }) {
         alt=""
         style={
           {
-            zIndex: 40000,
+            zIndex: 40008,
             position: 'absolute',
             top: 0,
             left: '50%',
@@ -24,7 +24,7 @@ export default function SplashScreen({ close }) {
         alt=""
         style={
           {
-            zIndex: 40000,
+            zIndex: 40009,
             position: 'absolute',
             top: '75%',
             left: '50%',
