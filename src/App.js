@@ -22,7 +22,7 @@ function App() {
             <LoadedProvider>
               <CharacterProvider>
                 <VisitedProvider>
-                  {menuOpen && false ? <MainMenu closeMenu={() => setMenuOpen(false)}/> : <World />}
+                  {menuOpen ? <MainMenu closeMenu={() => setMenuOpen(false)}/> : <World />}
                   <InteractionBoxes />
                 </VisitedProvider>
               </CharacterProvider>
