@@ -15,26 +15,18 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(true);
   return (
     <InteractionBoxProvider>
-      <InteractionBoxes />
-      {
-        menuOpen ? (
-          <MainMenu closeMenu={() => setMenuOpen(false)}/>
-        )
-        :
-        (
-          <GraphProvider>
-            <VideosProvider>
-              <MusicProvider>
-                <LoadedProvider>
-                  <CharacterProvider>
-                    <World />
-                  </CharacterProvider>
-                </LoadedProvider>
-              </MusicProvider>
-            </VideosProvider>
-          </GraphProvider>
-        )
-      }
+      <GraphProvider>
+        <VideosProvider>
+          <MusicProvider>
+            <LoadedProvider>
+              <CharacterProvider>
+                {menuOpen ? <MainMenu closeMenu={() => setMenuOpen(false)}/> : <World />}
+                <InteractionBoxes />
+              </CharacterProvider>
+            </LoadedProvider>
+          </MusicProvider>
+        </VideosProvider>
+      </GraphProvider>
     </InteractionBoxProvider>
   );
 }
