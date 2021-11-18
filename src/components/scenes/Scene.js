@@ -37,7 +37,7 @@ export default function Scene(
   const backgroundRef = useRef(null);
   const [newPos, setNewPos] = useState(null);
   const [targetDoor, setTargetDoor] = useState(false);
-  const [audio, setAudio] = useState(null);
+  const [audio, setAudio] = useState(new Audio(scene.music));
   const [doorHovers, setDoorHovers] = useState(Array(doors.length).fill(false));
 
   const { setLoaded } = useSceneLoadedUpdate();
@@ -59,20 +59,19 @@ export default function Scene(
   }, [doors]);
 
   useEffect(() => {
-    setAudio(scene.music !== null ? new Audio(scene.music) : null);
-    return () => {
-      setAudio((oldAudio) => {
-        if (oldAudio !== null) {
-          oldAudio.pause();
-        }
-        return null;
-      });
-    }
+    if (!audio) {
+      setAudio(new Audio(scene.music));
+      audio.play();
+      return;
+    };
+    audio.src = scene.music ?? '';
+    // Yes, I am chaotic evil - the music works fine, the errors are dumb
+    audio.play().catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene]);
 
   useEffect(() => {
     if (!audio) return;
-    audio.play().catch((err) => console.log(err));
 
     audio.addEventListener('ended', () => {
       audio.currentTime = 0;
