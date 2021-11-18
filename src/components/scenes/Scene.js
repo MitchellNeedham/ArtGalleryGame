@@ -43,14 +43,27 @@ export default function Scene(
   const { setLoaded } = useSceneLoadedUpdate();
   const { isLoaded } = useSceneLoaded();
 
+  const [imageCount, setImageCount] = useState(0);
+  const [canLoad, setCanLoad] = useState(false);
+
+  function recursiveLoadImages(obj) {
+    Object.entries(obj).forEach(([key, val]) => {
+      if (Array.isArray(val)) { val.forEach((o) => recursiveLoadImages(o))}
+      if (val === Object(val)) { recursiveLoadImages(val) }
+      if (["image", "hover", "path"].includes(key)) {
+        setImageCount(count => count + 1);
+        load(val).then(() => setImageCount(count => count - 1));
+      }
+    });
+    setCanLoad(true);
+  };
+
+  useEffect(() => { if (canLoad && imageCount === 0) { setLoaded(true) } }, [canLoad, imageCount]);
+  useEffect(() => console.log(imageCount), [imageCount]);
 
   useEffect(() => {
-    if (!backgroundRef || isLoaded) return;
-    const background = scene.background.image;
-    load(background).then(() => {
-      backgroundRef.current.style.backgroundImage = `url(${background})`;
-      setLoaded(true);
-    })
+    if (!backgroundRef || isLoaded || !scene) return;
+    recursiveLoadImages(scene);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene]);
 
@@ -155,7 +168,7 @@ export default function Scene(
           ref={backgroundRef}
           style={
             {
-              //backgroundImage: `url(${scene.background.image})`,
+              backgroundImage: `url(${scene.background.image})`,
               backgroundPositionY: 'center',
               width: `${scene.background.dimensions[0]/scene.background.dimensions[1]*100}vh`,
               height: '100vh',

@@ -536,10 +536,6 @@
           "type": "video",
           "pos": [0.201, 0.178],
           "dimensions": [0.935, 0.526],
-          "path": "4O79UgURmw4",
-          "title": "Test Artwork",
-          "artist": "Test Artist",
-          "desc": "Example description that has text that people read",
           "bigticket": "/data/worlds/images/Lobby_Ticket_Big.png",
           "button": {
             "image": "/data/worlds/images/Cinema_SelectFilm.png",
