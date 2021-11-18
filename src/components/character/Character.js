@@ -148,6 +148,14 @@ export default function Character({ pos, unitSize, newPos, polygons, changeScene
     return ((n % m) + m) % m;
   }
 
+  function getFacingDirection() {
+    if (!characterRef?.current) return 1;
+    const midPoint = window.innerWidth / 2;
+    const charPosX = characterRef.current.getBoundingClientRect().x;
+
+    return charPosX < midPoint ? -1 : 1;
+  }
+
   return (
     <div
       className="character"
@@ -158,8 +166,8 @@ export default function Character({ pos, unitSize, newPos, polygons, changeScene
           width: ratio * width + 'vh',
           top: currPos[1] - ratio * height * 0.8 + 'vh',
           left: currPos[0] - ratio * width / 2 + 'vh',
-          WebkitTransform: `scaleX(${-Math.sign(speed[0]) || 1 })`,
-          transform: `scaleX(${-Math.sign(speed[0]) || 1})`,
+          WebkitTransform: `scaleX(${-Math.sign(speed[0]) || getFacingDirection()})`,
+          transform: `scaleX(${-Math.sign(speed[0]) || getFacingDirection()})`,
           zIndex: 100 + parseInt(currPos[1], 10)
         }
       }

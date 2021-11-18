@@ -21,7 +21,7 @@ export default function ToolTip(props) {
           top: 0,
           left: 0,
           width: '100%',
-          zIndex: 168,
+          zIndex: 200,
           backdropFilter: 'brightness(0.7)'
         }
       }

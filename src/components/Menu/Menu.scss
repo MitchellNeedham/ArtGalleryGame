@@ -1,0 +1,38 @@
+.arrow-button {
+  &:hover {
+    cursor: pointer;
+    filter: hue-rotate(-30deg);
+  }
+}
+
+.menu-ui {
+  position: absolute;
+  z-index: 40001 !important;
+
+  &:hover {
+    filter: brightness(100);
+    cursor: pointer;
+  }
+}
+
+.blinking {
+  background-image: url(../../images/menu/Menu_Blink1.png);
+  background-position: center -1000px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  animation: blink 5s step-start infinite;
+}
+
+@keyframes blink {
+  98% {
+    background-position: center -1000px;
+  }
+  100% {
+    background-position: center;
+  }
+}

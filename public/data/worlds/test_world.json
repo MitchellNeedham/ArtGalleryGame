@@ -388,7 +388,7 @@
     "sceneName": "foyer",
     "background": {
       "image": "/data/worlds/images/Lobby_BG.jpg",
-      "dimensions": [4744, 3540],
+      "dimensions": [2900, 2160],
       "overlays": [
         {
           "zindex": 80,
@@ -471,7 +471,7 @@
     "sceneName": "theatre",
     "background": {
       "image": "/data/worlds/images/Cinema_BG.jpg",
-      "dimensions": [4723, 3507],
+      "dimensions": [2900, 2160],
       "overlays": [
         {
           "zindex": 100,
