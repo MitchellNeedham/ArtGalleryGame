@@ -29,7 +29,7 @@ export default function SplashScreen({ close }) {
             top: '75%',
             left: '50%',
             transform: 'translateX(-50%)',
-            height: '100px'
+            height: '10vh'
           }
         }
         onClick={() => close()}

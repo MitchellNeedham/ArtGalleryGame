@@ -65,7 +65,7 @@ export default function MainMenu({ closeMenu }) {
                 top: '26.7%',
                 left: '50%',
                 transform: 'translateX(-365%) scaleX(-1)',
-                width: '50px'
+                width: '5.15vh'
               }
             }
             onClick={() => setPageOpen(-1)}
