@@ -16,6 +16,8 @@
         height: 100%;
         width: 100%;
         background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
       }
 
     }
@@ -53,8 +55,8 @@
       .acc-item {
         background-color: rgba(122, 122, 122, 0.1);
         border-radius: 20px;
-        width: 10vh;
-        height: 10vh;
+        width: 100px;
+        height: 100px;
         background-position: center;
         background-size: 180% auto;
         background-repeat: no-repeat;

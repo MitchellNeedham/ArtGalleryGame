@@ -81,6 +81,34 @@
           "duration": 50,
           "top": 0,
           "dim": [0.1, 0.1]
+        },
+        {
+          "image": "/data/worlds/images/Town_Cloud1.png",
+          "delay": -55,
+          "duration": 45,
+          "top": 0.015,
+          "dim": [0.1, 0.1]
+        },
+        {
+          "image": "/data/worlds/images/Town_Cloud2.png",
+          "delay": 25,
+          "duration": 58,
+          "top": 0.01,
+          "dim": [0.1, 0.1]
+        },
+        {
+          "image": "/data/worlds/images/Town_Cloud3.png",
+          "delay": 0,
+          "duration": 50,
+          "top": 0.025,
+          "dim": [0.1, 0.1]
+        },
+        {
+          "image": "/data/worlds/images/Town_Cloud2.png",
+          "delay": -15,
+          "duration": 40,
+          "top": 0.012,
+          "dim": [0.1, 0.1]
         }
       ]
     },
