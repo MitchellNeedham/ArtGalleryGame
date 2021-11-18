@@ -10,3 +10,5 @@ export { default as CharacterCustomisationDrawer } from './CharacterCustomisatio
 
 export { default as ToolTip } from './ToolTip';
 export { default as SpeechBubble } from './SpeechBubble';
+
+export { default as VoteLaptop } from './VoteLaptop';

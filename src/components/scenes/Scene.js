@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 
+import { useVisitedUpdate } from '../../api/VisitedContext';
 import { useSceneLoaded, useSceneLoadedUpdate } from '../../api/LoadedContext';
-import { ArtImage, ArtMusic, ArtVideo, CharacterCustomisationDrawer, VideoSelection, ToolTip, SpeechBubble } from '../interactives';
+import { ArtImage, ArtMusic, ArtVideo, CharacterCustomisationDrawer, VideoSelection, ToolTip, SpeechBubble, VoteLaptop } from '../interactives';
 import { Character } from '../character';
 import './scene.css';
 
@@ -13,7 +14,8 @@ const INTERACTIVES = {
   videoselection: (props) => (<VideoSelection {...props} />),
   charactercustomisation: (props) => (<CharacterCustomisationDrawer {...props} />),
   tooltip: (props) => (<ToolTip {...props} />),
-  speechbubble: (props) => (<SpeechBubble {...props} />)
+  speechbubble: (props) => (<SpeechBubble {...props} />),
+  votelaptop: (props) => (<VoteLaptop {...props} />)
 }
 
 function load(src) {
@@ -44,6 +46,7 @@ export default function Scene(
 
   const { setLoaded } = useSceneLoadedUpdate();
   const { isLoaded } = useSceneLoaded();
+  const { updateVisited } = useVisitedUpdate();
 
   const [imageCount, setImageCount] = useState(0);
   const [canLoad, setCanLoad] = useState(false);
@@ -78,6 +81,8 @@ export default function Scene(
     if (!backgroundRef || isLoaded || !scene) return;
     recursiveLoadImages(scene);
     if (scene.sceneName === 'bedroom') recursiveLoadImages(character);
+
+    if ('required' in scene) { updateVisited(scene.required); }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene]);
 

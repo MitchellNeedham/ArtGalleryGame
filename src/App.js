@@ -9,6 +9,7 @@ import LoadedProvider from './api/LoadedContext';
 import VideosProvider from './api/VideosContext';
 import MusicProvider from './api/MusicContext';
 import CharacterProvider from './api/CharacterContext';
+import VisitedProvider from './api/VisitedContext';
 
 
 function App() {
@@ -20,8 +21,10 @@ function App() {
           <MusicProvider>
             <LoadedProvider>
               <CharacterProvider>
-                {menuOpen ? <MainMenu closeMenu={() => setMenuOpen(false)}/> : <World />}
-                <InteractionBoxes />
+                <VisitedProvider>
+                  {menuOpen && false ? <MainMenu closeMenu={() => setMenuOpen(false)}/> : <World />}
+                  <InteractionBoxes />
+                </VisitedProvider>
               </CharacterProvider>
             </LoadedProvider>
           </MusicProvider>

@@ -10,13 +10,11 @@ export default function InteractionBox({
 }) {
   const [closed, setClosed] = useState(false);
   const [dynamicHeight, setDynamicHeight] = useState(height);
-  const [dynamicWidth, setDynamicWidth] = useState(width);
-  const { height: newHeight, width: newWidth, ref } = useResizeDetector();
+  const { height: newHeight, ref } = useResizeDetector();
 
   useEffect(() => {
     setDynamicHeight(height ?? newHeight + 'px');
-    setDynamicWidth(ref.current.childNodes[0].getBoundingClientRect().width + 'px');
-  }, [ref, newHeight, height, newWidth, width]);
+  }, [ref, newHeight, height]);
 
   if (closed) {
     return (<></>);
@@ -40,9 +38,9 @@ export default function InteractionBox({
             backgroundColor: background ? 'fff0' : '#fff',
             boxShadow: background ? 'none' : '0 10px 5px rgba(0,0,0,0.1)',
             border: background ? 'none' : '2px solid #ccc',
-            width: `min(95vw, ${dynamicWidth || width})`,
+            width: `min(95vw, ${width})`,
             height: `min(95vh, ${dynamicHeight || height})`,
-            left: `calc(50% - min(95vw, ${dynamicWidth || width}) / 2)`,
+            left: `calc(50% - min(95vw, ${width}) / 2)`,
             top: `calc(50% - min(95vh, ${dynamicHeight || height}) / 2)`,
           }
         }

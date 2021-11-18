@@ -1,10 +1,11 @@
 .character-customisation {
   display: flex;
   justify-content: space-between;
+  text-align: center;
 
   .left {
     height: 70vh;
-    width: 50%;
+    width: 45%;
 
 
     .character-viewer {
@@ -43,7 +44,7 @@
   }
 
   .right {
-    width: 50%;
+    width: 55%;
     padding: 20px;
 
     .acc-selection {

@@ -7,10 +7,6 @@
       "dimensions": [2900, 2160],
       "overlays": [
         {
-          "zindex": 71,
-          "image": "/data/worlds/images/Bedroom_LaptopHover.png"
-        },
-        {
           "zindex": 70,
           "image": "/data/worlds/images/bedroom-overlay.png"
         }
@@ -54,6 +50,14 @@
         {
           "type": "tooltip",
           "image": "/data/worlds/images/Bedroom_ToolTip.png"
+        },
+        {
+          "type": "votelaptop",
+          "hover": "/data/worlds/images/Bedroom_LaptopHover.png",
+          "zindex": 71,
+          "pos": [0.93, 0.585],
+          "dim": [0.1, 0.1],
+          "customIB": "data/worlds/images/Bedroom_Voting.png"
         }
       ]
     }
@@ -185,6 +189,7 @@
   {
     "id": "gallery",
     "sceneName": "gallery",
+    "required": 2,
     "background": {
       "image": "/data/worlds/images/Gallery_BG.jpg",
       "dimensions": [5610, 1080],
@@ -339,6 +344,7 @@
   {
     "id": "studio",
     "sceneName": "studio",
+    "required": 1,
     "background": {
       "image": "/data/worlds/images/Music_BG.jpg",
       "dimensions": [2900, 2160]
@@ -469,6 +475,7 @@
   {
     "id": "theatre",
     "sceneName": "theatre",
+    "required": 0,
     "background": {
       "image": "/data/worlds/images/Cinema_BG.jpg",
       "dimensions": [2900, 2160],

@@ -70,8 +70,7 @@ export default function Charactercustomisation(props) {
         </div>
         <div className="right">
           <Scrollbars>
-            <h3>Accessories</h3>
-            <h4>Head</h4>
+            <h3>Head</h3>
             <div className="acc-selection">
             {
               characterData.accessories.head.map((acc) => (
@@ -90,7 +89,7 @@ export default function Charactercustomisation(props) {
               ))
             }
             </div>
-            <h4>Body</h4>
+            <h3>Body</h3>
             <div className="acc-selection">
               {
                 characterData.accessories.body.map((acc) => (
