@@ -15,6 +15,15 @@
   box-shadow: 0 0 300px rgb(0, 0, 0);
 }
 
+#progress-bar {
+  position: absolute;
+  height: 1vh;
+  width: 0;
+  bottom: 0;
+  left: 0;
+  background-color: blue;
+}
+
 .hidden-ls {
   opacity: 0;
   transition: opacity 0.5s linear;

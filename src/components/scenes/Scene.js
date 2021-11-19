@@ -44,7 +44,7 @@ export default function Scene(
   const [audio, setAudio] = useState(new Audio(scene.music));
   const [doorHovers, setDoorHovers] = useState(Array(doors.length).fill(false));
 
-  const { setLoaded } = useSceneLoadedUpdate();
+  const { setLoaded, updateProgressCurr } = useSceneLoadedUpdate();
   const { isLoaded } = useSceneLoaded();
   const { updateVisited } = useVisitedUpdate();
 
@@ -57,13 +57,17 @@ export default function Scene(
       if (val === Object(val)) { recursiveLoadImages(val) }
       if (["image", "hover", "path", "bigticket", "customIB"].includes(key)) {
         setImageCount(count => count + 1);
-        load(val).then(() => setImageCount(count => count - 1));
+        load(val)
+        .then(() => setImageCount(count => count - 1))
+        .catch(() => setImageCount(count => count - 1));
       }
       if (key === "images" && Array.isArray(val)) {
         val.forEach((img) => {
           if (img) {
             setImageCount(count => count + 1);
-            load(img).then(() => setImageCount(count => count - 1)).catch(err => console.log(err));
+            load(img)
+            .then(() => setImageCount(count => count - 1))
+            .catch(() => setImageCount(count => count - 1));
           }
         })
       }
@@ -72,7 +76,7 @@ export default function Scene(
   };
 
   useEffect(() => {
-    console.log(imageCount);
+    updateProgressCurr(imageCount);
     if (canLoad && imageCount === 0) { setLoaded(true) }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canLoad, imageCount]);
@@ -81,7 +85,6 @@ export default function Scene(
     if (!backgroundRef || isLoaded || !scene) return;
     recursiveLoadImages(scene);
     if (scene.sceneName === 'bedroom') recursiveLoadImages(character);
-
     if ('required' in scene) { updateVisited(scene.required); }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene]);
