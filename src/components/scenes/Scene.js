@@ -61,15 +61,12 @@ export default function Scene(
         .then(() => setImageCount(count => count - 1))
         .catch(() => setImageCount(count => count - 1));
       }
-      if (key === "images" && Array.isArray(val)) {
-        val.forEach((img) => {
-          if (img) {
-            setImageCount(count => count + 1);
-            load(img)
-            .then(() => setImageCount(count => count - 1))
-            .catch(() => setImageCount(count => count - 1));
-          }
-        })
+      if (key === "images" && Array.isArray(val) && val.length > 0) {
+        setImageCount(count => count + 1);
+        load(val[0])
+        .then(() => setImageCount(count => count - 1))
+        .catch(() => setImageCount(count => count - 1));
+        
       }
     });
     setCanLoad(true);
