@@ -368,8 +368,8 @@
           "pos": [0.029, 0.0049],
           "dimensions": [0.22, 0.15],
           "image":"/data/worlds/images/ExitSign_Music.png",
-          "exitPos": [0.23, 0.93],
-          "spawnPos": [0.23, 0.93]
+          "exitPos": [0.25, 0.93],
+          "spawnPos": [0.25, 0.93]
         }
       ],
       "interactives": [
