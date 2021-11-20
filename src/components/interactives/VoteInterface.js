@@ -4,6 +4,7 @@ import { useVisited } from "../../api/VisitedContext";
 import { v4 as uuidv4 } from 'uuid';
 
 import './VoteInterface.scss';
+import axios from "axios";
 
 const ART = [
   {
@@ -54,8 +55,17 @@ export default function VoteInterface(props) {
   const [voted, setVoted] = useState(localStorage.getItem('voterID'));
 
   const handleSubmit = () => {
-    localStorage.setItem('voterID', uuidv4());
+    if (!localStorage.getItem('voterID')) {
+      localStorage.setItem('voterID', uuidv4());
+    }
     localStorage.setItem('vote', JSON.stringify(selected));
+    axios.post('https://phils-music-list.herokuapp.com/api/vote/add', {
+      video: selected[0],
+      music: selected[1],
+      image: selected[2],
+      time: new Date().toISOString(),
+      id: localStorage.getItem('voterID')
+    })
     closeUI();
   }
 
@@ -73,12 +83,12 @@ export default function VoteInterface(props) {
         }
         onClick={() => setVoted(false)}
       >
-        Vote again?
+        Change vote?
       </div>
     )
   }
 
-  if (visitedRooms.some((room) => !room)) {
+  if (visitedRooms.some((room) => !room) && !localStorage.getItem('voterID')) {
     return (
       <div
         style={
