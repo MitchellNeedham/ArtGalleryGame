@@ -48,40 +48,43 @@ export default function Scene(
   const { isLoaded } = useSceneLoaded();
   const { updateVisited } = useVisitedUpdate();
 
-  const [imageCount, setImageCount] = useState(0);
-  const [canLoad, setCanLoad] = useState(false);
+  const [images, setImages] = useState([]);
+
+  function loadImage(imageArray) {
+    if (imageArray.length < 1) {
+      setLoaded(true);
+    };
+    updateProgressCurr(imageArray.length);
+    load(imageArray[0])
+    .then(() => loadImage(imageArray.slice(1)))
+    .catch(() => {});
+  }
 
   function recursiveLoadImages(obj) {
     Object.entries(obj).forEach(([key, val]) => {
       if (Array.isArray(val)) { val.forEach((o) => recursiveLoadImages(o))}
       if (val === Object(val)) { recursiveLoadImages(val) }
       if (["image", "hover", "path", "bigticket", "customIB"].includes(key)) {
-        setImageCount(count => count + 1);
-        load(val)
-        .then(() => setImageCount(count => count - 1))
-        .catch(() => setImageCount(count => count - 1));
+        setImages((arr) => [...new Set([...arr, val])]);
       }
       if (key === "images" && Array.isArray(val) && val.length > 0) {
-        setImageCount(count => count + 1);
-        load(val[0])
-        .then(() => setImageCount(count => count - 1))
-        .catch(() => setImageCount(count => count - 1));
-        
+        setImages((arr) => [...new Set([...arr, val[0]])]);
       }
     });
-    setCanLoad(true);
   };
 
   useEffect(() => {
-    updateProgressCurr(imageCount);
-    if (canLoad && imageCount === 0) { setLoaded(true) }
+    if (images.length < 1) return;
+    loadImage(images);
+    console.log(images.length);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [canLoad, imageCount]);
+  }, [images]);
 
   useEffect(() => {
+    setImages([]);
     if (!backgroundRef || isLoaded || !scene) return;
     recursiveLoadImages(scene);
-    if (scene.sceneName === 'bedroom') recursiveLoadImages(character);
+    //if (scene.sceneName === 'bedroom') recursiveLoadImages(character);
     if ('required' in scene) { updateVisited(scene.required); }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene]);
