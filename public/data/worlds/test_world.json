@@ -71,7 +71,7 @@
       "clouds": [
         {
           "image": "/data/worlds/images/Town_Cloud1.png",
-          "delay": 1,
+          "delay": 25,
           "duration": 65,
           "top": 0.03,
           "dim": [0.1, 0.1]
@@ -85,14 +85,7 @@
         },
         {
           "image": "/data/worlds/images/Town_Cloud3.png",
-          "delay": -30,
-          "duration": 60,
-          "top": 0.01,
-          "dim": [0.1, 0.1]
-        },
-        {
-          "image": "/data/worlds/images/Town_Cloud3.png",
-          "delay": 10,
+          "delay": -40,
           "duration": 50,
           "top": 0,
           "dim": [0.1, 0.1]
@@ -114,14 +107,14 @@
         {
           "image": "/data/worlds/images/Town_Cloud3.png",
           "delay": 0,
-          "duration": 50,
+          "duration": 57,
           "top": 0.025,
           "dim": [0.1, 0.1]
         },
         {
           "image": "/data/worlds/images/Town_Cloud2.png",
-          "delay": -15,
-          "duration": 40,
+          "delay": -30,
+          "duration": 43,
           "top": 0.005,
           "dim": [0.1, 0.1]
         }
@@ -335,8 +328,8 @@
         {
           "type": "speechbubble",
           "image": "/data/worlds/images/Gallery_SpeechBubble.png",
-          "posX": 0.95,
-          "range": 0.25
+          "pos": [0.8, 0.3],
+          "dim": [0.25, 0.55]
         }
       ]
     }
@@ -383,8 +376,8 @@
         {
           "type": "speechbubble",
           "image": "/data/worlds/images/Music_SpeechBubble.png",
-          "posX": 1,
-          "range": 0.25
+          "pos": [0.9, 0.15],
+          "dim": [0.35, 0.8]
         }
       ]
     }
@@ -466,8 +459,8 @@
         {
           "type": "speechbubble",
           "image": "/data/worlds/images/Lobby_SpeechBubble.png",
-          "posX": 1.1,
-          "range": 0.25
+          "pos": [0.9, 0.2],
+          "dim": [0.4, 0.75]
         }
       ]
     }
