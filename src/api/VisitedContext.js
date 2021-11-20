@@ -15,7 +15,6 @@ export default function VisitedProvider({ children }) {
   function updateVisited(n) {
     if (visitedRooms[n]) return;
     setVisitedRooms((rooms) => rooms.map((bool, i) => i === n ? true : bool ));
-    console.log(visitedRooms);
   }
 
   return (

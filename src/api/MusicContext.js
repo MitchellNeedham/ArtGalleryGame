@@ -20,12 +20,16 @@ export default function MusicProvider({ children }) {
     });
   }, []);
 
+  function chooseRandom() {
+    setActiveMusic(Math.floor(Math.random() * music.length));
+  }
+
   function changeMusic(index) {
     setActiveMusic(index);
   }
 
   return (
-    <musicUpdateContext.Provider value={{ changeMusic }}>
+    <musicUpdateContext.Provider value={{ changeMusic, chooseRandom }}>
       <musicContext.Provider value={{ activeMusic, music }}>
         {children}
       </musicContext.Provider>
@@ -39,6 +43,6 @@ export function useMusic() {
 }
 
 export function useMusicUpdate() {
-  const { changeMusic } = useContext(musicUpdateContext);
-  return { changeMusic };
+  const { changeMusic,chooseRandom } = useContext(musicUpdateContext);
+  return { changeMusic, chooseRandom };
 }

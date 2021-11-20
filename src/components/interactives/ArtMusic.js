@@ -25,8 +25,12 @@ export default function ArtMusic(props) {
 
   const { isLoaded } = useSceneLoaded();
   const { music, activeMusic } = useMusic();
-  const { changeMusic } = useMusicUpdate();
+  const { changeMusic, chooseRandom } = useMusicUpdate();
   const { addInteractionBox } = useInteractionBoxUpdate();
+
+  useEffect(() => {
+    chooseRandom();
+  }, [chooseRandom]);
 
   useEffect(() => {
     setPlaying(true);
