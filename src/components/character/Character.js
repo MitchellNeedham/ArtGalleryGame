@@ -74,7 +74,11 @@ export default function Character({ pos, unitSize, newPos, polygons, changeScene
     return window.removeEventListener('mousemove', (e) => detectMouseOnEdge(e));
   }, [isLoaded, sceneID]);
 
-  const detectMouseOnEdge = (e) => {    
+  const detectMouseOnEdge = (e) => {
+    if (window.innerWidth < 600 || window.matchMedia("(any-hover: none)").matches || window.matchMedia("(hover: none)").matches) {
+      setScrollDir(0);
+      return;
+    }
     if (e.clientX - window.innerWidth > -SCREEN_EDGE_OFFSET) {
       setScrollDir(SCROLL_SPEED);
       return;
