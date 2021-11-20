@@ -111,10 +111,10 @@ export default function MainMenu({ closeMenu }) {
               alt=""
               style={
                 {
-                  width: '15vh',
+                  width: '14vh',
                   top: '42%',
                   left: '50%',
-                  transform: 'translateX(150%)'
+                  transform: 'translateX(157%)'
                 }
               }
               onClick={() => setPageOpen(1)}
