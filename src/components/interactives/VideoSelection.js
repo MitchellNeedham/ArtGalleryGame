@@ -71,7 +71,7 @@ export default function VideoSelection(props) {
         }
         onClick={
           () => addInteractionBox((closeUI) => (
-            <VideoSelectionInterface closeUI={closeUI} doorID={door} pos={pos} />), '1000px', null, bigticket
+            <VideoSelectionInterface closeUI={closeUI} doorID={door} pos={pos} />), '125vh', null, bigticket
           )
         }
       />
