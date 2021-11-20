@@ -21,13 +21,21 @@ export default function LoadedProvider({ children }) {
   }, []);
 
   useEffect(() => {
+    if (!isLoaded) {
+      setTimeout(() => setLoaded(!isLoaded), 15000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoaded]);
+
+  useEffect(() => {
     if (!progressBar) return;
     progressBar.style.width = 100 - progressCurr/progressMax * 100 + 'vw';
   }, [progressCurr, progressBar, progressMax]);
 
-  function setLoaded(state) {
-    setIsLoaded(state);
-    loadingScreen.className = state ? "hidden-ls" : "visible-ls";
+  function setLoaded(loaded) {
+    if (!loadingScreen || !progressBar) return;
+    setIsLoaded(loaded);
+    loadingScreen.className = loaded ? "hidden-ls" : "visible-ls";
     progressBar.style.width = 0;
     setProgressCurr(0);
     setProgressMax(0);

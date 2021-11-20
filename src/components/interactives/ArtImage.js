@@ -16,7 +16,7 @@ export default function ArtImage(props) {
   useEffect(() => {
     const image = new Image();
     image.onload = () => {
-      setImageWidth( `calc(${(image.width / image.naturalHeight) * 70}vh + 60px)`);
+      setImageWidth( `${(image.width / image.naturalHeight) * 65 + 10}vh`);
     }
     image.src = path;
   }, [path]);
