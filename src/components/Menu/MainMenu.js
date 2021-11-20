@@ -1,4 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+
+import { useSceneLoadedUpdate } from "../../api/LoadedContext";
 
 import './Menu.scss';
 import SplashScreen from "./SplashScreen";
@@ -30,9 +32,25 @@ const PAGES = [
   }
 ]
 
+function load(src) {
+  return new Promise(function(resolve, reject) {
+    const image = new Image();
+    image.addEventListener('load', resolve);
+    image.addEventListener('error', reject);
+    image.src = src;
+  });
+}
+
 export default function MainMenu({ closeMenu }) {
   const [splashOpen, setSplashOpen] = useState(true);
   const [pageOpen, setPageOpen] = useState(-1);
+
+  const { setLoaded } = useSceneLoadedUpdate();
+
+  useEffect(() => {
+    load(menu).then(() => setLoaded(true)).catch(() => setLoaded(true));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
   return (
     <>
@@ -49,7 +67,6 @@ export default function MainMenu({ closeMenu }) {
             backgroundPosition: [PAGES.map((_, i) => i === pageOpen ? 'center' : '0 3000px')] + ', center',
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
-            zIndex: 40000,
           }
         }
       >
@@ -128,7 +145,7 @@ export default function MainMenu({ closeMenu }) {
                   transform: 'translateX(32%)'
                 }
               }
-              onClick={() => closeMenu()}
+              onClick={() => { setLoaded(false); closeMenu(); }}
             />
           </>
         )}

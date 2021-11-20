@@ -188,6 +188,7 @@ export default function Scene(
           style={
             {
               backgroundImage: `url(${scene.background.image})`,
+              backgroundRepeat: 'no-repeat',
               backgroundPositionY: 'center',
               width: `${scene.background.dimensions[0]/scene.background.dimensions[1]*100}vh`,
               height: '100vh',
