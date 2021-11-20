@@ -25,7 +25,7 @@ export default function Charactercustomisation(props) {
 
 
   return (
-    <div style={{padding: '30px'}}>
+    <div style={{padding: '3vh'}}>
       <div className="character-customisation">
         <div className="left">
           <div
