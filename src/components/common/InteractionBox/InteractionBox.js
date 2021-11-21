@@ -52,6 +52,11 @@ export default function InteractionBox({
           tabIndex="0"
           onClick={() => closeUI() || setClosed(true)}
           onKeyDown={(e) => e.key === 'Enter' && (closeUI() || setClosed(true))}
+          style={
+            {
+              filter: background ? 'brightness(20)' : 'none',
+            }
+          }
         >
           <img src={iconClose} alt="" />
         </div>

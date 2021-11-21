@@ -136,7 +136,6 @@ export default function Scene(
     if (!e.clientX || !e.clientY) return;
     const boundingBox = sceneRef.current.getBoundingClientRect();
 
-    
     setTargetDoor((td) => e.target.classList.contains('scene-door') ? td : false);
 
     setNewPos(
@@ -146,6 +145,11 @@ export default function Scene(
       ]
     );
   }
+
+  useEffect(() => {
+    if (!scrollbarRef.current) return;
+    scrollbarRef.current.scrollToLeft();
+  }, [isLoaded]);
 
   // RETURN IF NO SCENE DATA
   if (!scene) return <></>;
@@ -196,6 +200,8 @@ export default function Scene(
       <Scrollbars
         ref={scrollbarRef}
         renderTrackVertical={({ style, ...props }) => <div style={{...style, display: 'none'}} {...props}></div>}
+        renderThumbHorizontal={props => <div {...props} className="thumb-horizontal"/>}
+        renderTrackHorizontal={props => <div {...props} className="track-horizontal"/>}
       >
         <div
           className="scene-container"
