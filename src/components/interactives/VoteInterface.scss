@@ -38,3 +38,18 @@
       cursor: pointer;
     }
 }
+
+.vote-end {
+  padding: 30vh 10vh 0 10vh;
+  box-sizing: border-box;
+  text-align: center;
+
+  > h2 {
+    font-size: 5vh;
+    margin: 0;
+  }
+
+  > p {
+    font-size: 2.6vh;
+  }
+}

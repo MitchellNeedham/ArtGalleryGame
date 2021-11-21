@@ -7,6 +7,8 @@ import { ArtImage, ArtMusic, ArtVideo, CharacterCustomisationDrawer, VideoSelect
 import { Character } from '../character';
 import './scene.css';
 
+import iconScroll from '../../images/icon-scroll.png';
+
 const INTERACTIVES = {
   image: (props) => (<ArtImage {...props} />),
   video: (props) => (<ArtVideo {...props} />),
@@ -46,6 +48,7 @@ export default function Scene(
   const [cloudDelays, setCloudDelays] = useState(
     [...Array(scene.background.clouds?.length || 0)].map(_ => Math.floor(Math.random() * 60 - 20))
   );
+  const [scrollDirs, setScrollDirs] = useState([1, -1]);
 
   const { setLoaded, updateProgressCurr } = useSceneLoadedUpdate();
   const { isLoaded } = useSceneLoaded();
@@ -109,6 +112,8 @@ export default function Scene(
     audio.src = scene.music ?? '';
     // Yes, I am chaotic evil - the music works fine, the errors are dumb
     audio.play().catch(() => {});
+
+    handleScroll();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene]);
 
@@ -148,7 +153,7 @@ export default function Scene(
 
   useEffect(() => {
     if (!scrollbarRef.current) return;
-    scrollbarRef.current.scrollToLeft();
+    console.log(scrollbarRef);
   }, [isLoaded]);
 
   // RETURN IF NO SCENE DATA
@@ -186,151 +191,199 @@ export default function Scene(
     return 'none';
   }
 
+  const handleScroll = () => {
+    if (!scrollbarRef.current) return;
+    const sb = scrollbarRef.current;
+    const atLeft = sb.getScrollLeft() === 0;
+    const atRight = sb.getScrollLeft() === sb.getScrollWidth() - sb.getClientWidth();
+
+    if (atLeft && atRight) {
+      setScrollDirs([]);
+      return;
+    }
+
+    if (atLeft) {
+      setScrollDirs([1]);
+      return;
+    }
+    if (atRight) {
+      setScrollDirs([-1]);
+      return;
+    }
+    setScrollDirs([1, -1]);
+  }
+
   return (
-    <div
-      ref={sceneRef}
-      style={
-        {
-          height: '100vh',
-          width: `min(100vw, min(${2900/2160 * 100}vh, ${scene.background.dimensions[0]/scene.background.dimensions[1]*100}vh)`,
-          margin: '0 auto 0',
-        }
-      }
-    >
-      <Scrollbars
-        ref={scrollbarRef}
-        renderTrackVertical={({ style, ...props }) => <div style={{...style, display: 'none'}} {...props}></div>}
-        renderThumbHorizontal={props => <div {...props} className="thumb-horizontal"/>}
-        renderTrackHorizontal={props => <div {...props} className="track-horizontal"/>}
-      >
-        <div
-          className="scene-container"
-          ref={backgroundRef}
-          style={
-            {
-              backgroundImage: `url(${scene.background.image})`,
-              backgroundRepeat: 'no-repeat',
-              backgroundPositionY: 'center',
-              width: `${scene.background.dimensions[0]/scene.background.dimensions[1]*100}vh`,
-              height: '100vh',
-              overflow: 'hidden'
-            }
+    <>
+      <div
+        ref={sceneRef}
+        style={
+          {
+            position: 'relative',
+            height: '100vh',
+            width: `min(100vw, min(${2900/2160 * 100}vh, ${scene.background.dimensions[0]/scene.background.dimensions[1]*100}vh)`,
+            margin: '0 auto 0',
           }
-        >
-          {scene.background.overlays?.map((overlay, i) => (
-            <img
-              className="scene-overlay"
-              key={i}
-              src={overlay.image}
-              alt=""
-              style={
-                {
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  zIndex: parseInt(overlay.zindex ?? 0, 10) + 100,
-                  pointerEvents: 'none',
-                  userSelect: 'none'
-                }
-              }
-            />
-          ))}
-          {scene.background.clouds?.map((cloud, i) => (
-            <div
-              key={i}
-              style={
-                {
-                  backgroundImage: `url(${cloud.image})`,
-                  backgroundSize: 'contain',
-                  backgroundPosition: 'center',
-                  position: 'absolute',
-                  left: '-10vh',
-                  top: cloud.top * 100 + 'vh',
-                  width: cloud.dim[0] * 100 + 'vh',
-                  height: cloud.dim[1] * 100 + 'vh',
-                  animation: `clouds ${cloud.duration}s linear ${cloudDelays[i]}s infinite`,
-                  WebkitAnimation: `clouds ${cloud.duration}s linear ${cloudDelays[i]}s infinite`,
-                }
-              }
-            >
-            
-            </div>
-          ))}
-          {scene.room.interactives?.map((obj, key) => (INTERACTIVES[obj.type]({...obj, key})))}
+        }
+      >
+        {scrollDirs.map((val) => (
           <div
-            className="scene-floor"
+            key={val}
             style={
               {
                 position: 'absolute',
-                //backgroundColor: '#cccc',
-                width: `${floorWidth*100}vh`,
-                height: '100vh',
-                clipPath: 'polygon(' + roomPolygon + ')',
-                pointerEvents: 'none',
-                zIndex: 200,
+                width: '6vh',
+                height: '6vh',
+                top: '50%',
+                left: 50 + val * 50 + '%',
+                transform: `translate(${-50 + val * 50}%, -50%) scale(${-val})`,
+                backgroundImage: `url(${iconScroll})`,
+                backgroundPosition: 'center',
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.6,
               }
             }
           >
-            {scene.room.innerPolygons?.map((polygon, i) => (
-              <div
+
+          </div>
+        ))}
+        <Scrollbars
+          ref={scrollbarRef}
+          renderTrackVertical={({ style, ...props }) => <div style={{...style, display: 'none'}} {...props}></div>}
+          renderThumbHorizontal={props => <div {...props} className="thumb-horizontal"/>}
+          renderTrackHorizontal={props => <div {...props} className="track-horizontal"/>}
+          onScroll={() => handleScroll()}
+        >
+          <div
+            className="scene-container"
+            ref={backgroundRef}
+            style={
+              {
+                backgroundImage: `url(${scene.background.image})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPositionY: 'center',
+                width: `${scene.background.dimensions[0]/scene.background.dimensions[1]*100}vh`,
+                height: '100vh',
+                overflow: 'hidden'
+              }
+            }
+          >
+            {scene.background.overlays?.map((overlay, i) => (
+              <img
+                className="scene-overlay"
                 key={i}
+                src={overlay.image}
+                alt=""
                 style={
                   {
                     position: 'absolute',
-                    top: '0',
-                    left: '0',
+                    top: 0,
+                    left: 0,
                     width: '100%',
                     height: '100%',
-                    //backgroundColor: 'blue',
-                    clipPath: `polygon(${polygon.map(([val1, val2]) => val1*100+'vh ' +val2*100+'vh').join(', ')})`
+                    zIndex: parseInt(overlay.zindex ?? 0, 10) + 100,
+                    pointerEvents: 'none',
+                    userSelect: 'none'
                   }
                 }
               />
             ))}
-          </div>
-          {doors.map((pair, i) => (
+            {scene.background.clouds?.map((cloud, i) => (
+              <div
+                key={i}
+                style={
+                  {
+                    backgroundImage: `url(${cloud.image})`,
+                    backgroundSize: 'contain',
+                    backgroundPosition: 'center',
+                    position: 'absolute',
+                    left: '-10vh',
+                    top: cloud.top * 100 + 'vh',
+                    width: cloud.dim[0] * 100 + 'vh',
+                    height: cloud.dim[1] * 100 + 'vh',
+                    animation: `clouds ${cloud.duration}s linear ${cloudDelays[i]}s infinite`,
+                    WebkitAnimation: `clouds ${cloud.duration}s linear ${cloudDelays[i]}s infinite`,
+                  }
+                }
+              >
+              
+              </div>
+            ))}
+            {scene.room.interactives?.map((obj, key) => (INTERACTIVES[obj.type]({...obj, key})))}
             <div
-              key={pair.currentRoom.id + i}
-              className="scene-door"
-              id={pair.currentRoom.id}
-              title={pair.currentRoom.id}
-              role="button"
-              tabIndex="0"
-              onClick={(e) => handleDoorClick(e, pair, i)}
-              onKeyDown={(e) => e.key === 'Enter' && handleDoorClick(e, pair, i)}
-              onMouseEnter={() => setDoorHovers((dh) => dh.map((d, ind) => ind === i ? true : d))}
-              onMouseLeave={() => setDoorHovers((dh) => dh.map((d, ind) => ind === i ? false : d))}
+              className="scene-floor"
               style={
                 {
                   position: 'absolute',
-                  top: pair.currentRoom.pos[1] * 100 + 'vh',
-                  left: pair.currentRoom.pos[0] * 100 + 'vh',
-                  height: pair.currentRoom.dimensions[1] * 100 + 'vh',
-                  width: pair.currentRoom.dimensions[0] * 100 + 'vh',
-                  zIndex: pair.currentRoom.zindex || 100,
-                  visibility: !!pair.currentRoom.invisible ? 'hidden' : 'visible',
-                  //outline: !!pair.currentRoom.hover ? 'none' : '2px solid rgb(135, 222, 139)',
-                  backgroundImage: handleDoorHover(doorHovers[i], pair.currentRoom),
-                  filter: `saturate(${doorHovers[i] && pair.currentRoom.image ? '3' : '1'})`
+                  //backgroundColor: '#cccc',
+                  width: `${floorWidth*100}vh`,
+                  height: '100vh',
+                  clipPath: 'polygon(' + roomPolygon + ')',
+                  pointerEvents: 'none',
+                  zIndex: 200,
                 }
               }
             >
+              {scene.room.innerPolygons?.map((polygon, i) => (
+                <div
+                  key={i}
+                  style={
+                    {
+                      position: 'absolute',
+                      top: '0',
+                      left: '0',
+                      width: '100%',
+                      height: '100%',
+                      //backgroundColor: 'blue',
+                      clipPath: `polygon(${polygon.map(([val1, val2]) => val1*100+'vh ' +val2*100+'vh').join(', ')})`
+                    }
+                  }
+                />
+              ))}
             </div>
-          ))}
-          <Character
-            character={character}
-            pos={spawnPos}
-            newPos={newPos}
-            polygons={{outer: scene.room.polygon, inner: scene.room.innerPolygons ?? []}}
-            unitSize={{...scene.room.unitSize, floorMin, floorMax }}
-            changeScene={targetDoor}
-            scrollbarRef={scrollbarRef}
-            sceneID={scene.id}
-          />
-        </div>
-      </Scrollbars>
-    </div>
+            {doors.map((pair, i) => (
+              <div
+                key={pair.currentRoom.id + i}
+                className="scene-door"
+                id={pair.currentRoom.id}
+                title={pair.currentRoom.id}
+                role="button"
+                tabIndex="0"
+                onClick={(e) => handleDoorClick(e, pair, i)}
+                onKeyDown={(e) => e.key === 'Enter' && handleDoorClick(e, pair, i)}
+                onMouseEnter={() => setDoorHovers((dh) => dh.map((d, ind) => ind === i ? true : d))}
+                onMouseLeave={() => setDoorHovers((dh) => dh.map((d, ind) => ind === i ? false : d))}
+                style={
+                  {
+                    position: 'absolute',
+                    top: pair.currentRoom.pos[1] * 100 + 'vh',
+                    left: pair.currentRoom.pos[0] * 100 + 'vh',
+                    height: pair.currentRoom.dimensions[1] * 100 + 'vh',
+                    width: pair.currentRoom.dimensions[0] * 100 + 'vh',
+                    zIndex: pair.currentRoom.zindex || 100,
+                    visibility: !!pair.currentRoom.invisible ? 'hidden' : 'visible',
+                    //outline: !!pair.currentRoom.hover ? 'none' : '2px solid rgb(135, 222, 139)',
+                    backgroundImage: handleDoorHover(doorHovers[i], pair.currentRoom),
+                    filter: `saturate(${doorHovers[i] && pair.currentRoom.image ? '3' : '1'})`
+                  }
+                }
+              >
+              </div>
+            ))}
+            <Character
+              character={character}
+              pos={spawnPos}
+              newPos={newPos}
+              polygons={{outer: scene.room.polygon, inner: scene.room.innerPolygons ?? []}}
+              unitSize={{...scene.room.unitSize, floorMin, floorMax }}
+              changeScene={targetDoor}
+              scrollbarRef={scrollbarRef}
+              sceneID={scene.id}
+            />
+          </div>
+        </Scrollbars>
+      </div>
+    </>
   )
 }

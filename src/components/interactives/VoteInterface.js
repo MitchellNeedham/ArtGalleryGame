@@ -8,7 +8,7 @@ import axios from "axios";
 
 const ART = [
   {
-    title: "Films",
+    title: "Film Category",
     text: [
       "Symbiotic Reckoning - Sam Carson",
       "Before Your Eyes - Ivan Jeldres",
@@ -20,7 +20,7 @@ const ART = [
     ],
   },
   {
-    title: "Music",
+    title: "Music Category",
     text: [
       "Brick Walls - Finn Baulch",
       "All Things Come In Time - My Giddy Aunt",
@@ -32,7 +32,7 @@ const ART = [
     ],
   },
   {
-    title: "Gallery",
+    title: "Visual Art Category",
     text: [
       "Almost Blue - Ivan Jedlres",
       "Realm of Nokia - Luke Rotella",
@@ -45,10 +45,7 @@ const ART = [
   }
 ];
 
-export default function VoteInterface(props) {
-  const {
-    closeUI
-  } = props;
+export default function VoteInterface() {
   const { visitedRooms } = useVisited();
   const [step, setStep] = useState(0);
   const [selected, setSelected] = useState([-1, -1, -1]);
@@ -66,24 +63,37 @@ export default function VoteInterface(props) {
       time: new Date().toISOString(),
       id: localStorage.getItem('voterID')
     })
-    closeUI();
+    setVoted(true);
   }
 
   if (voted) {
     return (
       <div
-        className="vote-again"
+        className="vote-end"
         style={
           {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)'
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '2vh'
           }
         }
-        onClick={() => setVoted(false)}
       >
-        Change vote?
+        <h2>
+          Thank you for voting!
+        </h2>
+        <p>
+          You can revisit Digital Dawdle at any time to check out all the amazing works.
+        </p>
+        <div
+          className="vote-again"
+          onClick={() => setVoted(false)}
+        >
+          Change vote?
+        </div>
       </div>
     )
   }
