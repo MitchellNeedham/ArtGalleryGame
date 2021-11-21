@@ -67,7 +67,7 @@ export default function Scene(
     }
     load(imageArray[0])
     .then(() => loadImage(imageArray.slice(1)))
-    .catch(() => {});
+    .catch(() => loadImage(imageArray.slice(1)));
   }
 
   function recursiveLoadImages(obj) {
