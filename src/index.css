@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@500&family=Noto+Sans&family=Roboto&display=swap');
 
 body, html {
   margin: 0;
@@ -18,10 +18,13 @@ body, html {
 
 * {
   user-select: none;
-  font-family: 'Cabin', sans-serif;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.mobile-message {
+  font-family: 'Cabin', sans-serif;
 }

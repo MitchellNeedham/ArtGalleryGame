@@ -70,7 +70,7 @@ export default function VoteInterface() {
   if (voted) {
     return (
       <div
-        className="vote-end"
+        className="vote vote-end"
         style={
           {
             width: '100%',
@@ -102,6 +102,7 @@ export default function VoteInterface() {
   if (visitedRooms.some((room) => !room) && !localStorage.getItem('voterID')) {
     return (
       <div
+        className="vote"
         style={
           {
             position: 'absolute',
@@ -122,7 +123,7 @@ export default function VoteInterface() {
 
   return (
     <div
-      className="vote-interface"
+      className="vote vote-interface"
       style={
         {
           width: '100%',

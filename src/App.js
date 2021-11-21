@@ -22,6 +22,7 @@ function App() {
     document.getElementById('loading-screen').className = 'hidden-ls';
     return (
       <div
+        className="mobile-message"
         style={
           {
             position: 'absolute',
