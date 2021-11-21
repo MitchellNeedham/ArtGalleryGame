@@ -28,3 +28,24 @@ code {
 .mobile-message {
   font-family: 'Cabin', sans-serif;
 }
+
+.custom-shape-divider-bottom-1637522500 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1637522500 svg {
+    position: relative;
+    display: block;
+    width: calc(140% + 1.3px);
+    height: max(10vh, 10vw);
+}
+
+.custom-shape-divider-bottom-1637522500 .shape-fill {
+    fill: #FFFFFF;
+}
