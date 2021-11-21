@@ -30,7 +30,8 @@ export default function ArtMusic(props) {
 
   useEffect(() => {
     chooseRandom();
-  }, [chooseRandom]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setPlaying(true);

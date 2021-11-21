@@ -12,7 +12,7 @@ export default function CharacterCustomisationDrawer(props) {
   const { addInteractionBox } = useInteractionBoxUpdate();
   
   const openCustomisation = () => {
-    addInteractionBox((closeUI) => <Charactercustomisation {...props} closeUI={closeUI} />, '800px')
+    addInteractionBox((closeUI) => <Charactercustomisation {...props} closeUI={closeUI} />, '100vh')
   }
 
   return (

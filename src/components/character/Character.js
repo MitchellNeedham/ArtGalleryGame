@@ -6,7 +6,7 @@ import { useSceneLoaded } from '../../api/LoadedContext';
 import { useCharacter, useCharacterUpdate } from '../../api/CharacterContext';
 
 const charMoveSpeed = (size) => 5/(size/3 + 1)/6;
-const SCREEN_EDGE_OFFSET = 100;
+const SCREEN_EDGE_OFFSET = (window.innerWidth - window.innerHeight * 2900 / 2160) / 2;
 const SCROLL_SPEED = 20;
 
 const ANIM_FRAME_LENGTH = 2;
@@ -72,6 +72,7 @@ export default function Character({ pos, unitSize, newPos, polygons, changeScene
       window.addEventListener('mousemove', (e) => detectMouseOnEdge(e));
     }
     return window.removeEventListener('mousemove', (e) => detectMouseOnEdge(e));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded, sceneID]);
 
   const detectMouseOnEdge = (e) => {

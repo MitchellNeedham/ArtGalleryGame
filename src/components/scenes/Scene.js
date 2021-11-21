@@ -43,6 +43,9 @@ export default function Scene(
   const [targetDoor, setTargetDoor] = useState(false);
   const [audio, setAudio] = useState(new Audio(scene.music));
   const [doorHovers, setDoorHovers] = useState(Array(doors.length).fill(false));
+  const [cloudDelays, setCloudDelays] = useState(
+    [...Array(scene.background.clouds?.length || 0)].map(_ => Math.floor(Math.random() * 60 - 20))
+  );
 
   const { setLoaded, updateProgressCurr } = useSceneLoadedUpdate();
   const { isLoaded } = useSceneLoaded();
@@ -94,6 +97,10 @@ export default function Scene(
   }, [doors, scene]);
 
   useEffect(() => {
+    setCloudDelays([...Array(scene.background.clouds?.length || 0)].map(_ => Math.floor(Math.random() * 60 - 20)));
+  }, [scene]);
+
+  useEffect(() => {
     if (!audio) {
       setAudio(new Audio(scene.music));
       audio.play();
@@ -118,6 +125,11 @@ export default function Scene(
     window.addEventListener('click', (e) => moveToPos(e));
     return window.removeEventListener('click', (e) => moveToPos(e));
   }, []);
+
+  useEffect(() => {
+    console.log(scrollbarRef.current.getScrollLeft());
+    console.log(scrollbarRef.current.getScrollWidth());
+  }, [scrollbarRef]);
 
   const moveToPos = (e) => {
     if (e.target.classList.contains('art') || !sceneRef?.current?.contains(e.target)) return;
@@ -232,8 +244,8 @@ export default function Scene(
                   top: cloud.top * 100 + 'vh',
                   width: cloud.dim[0] * 100 + 'vh',
                   height: cloud.dim[1] * 100 + 'vh',
-                  animation: `clouds ${cloud.duration}s linear ${cloud.delay}s infinite`,
-                  WebkitAnimation: `clouds ${cloud.duration}s linear ${cloud.delay}s infinite`,
+                  animation: `clouds ${cloud.duration}s linear ${cloudDelays[i]}s infinite`,
+                  WebkitAnimation: `clouds ${cloud.duration}s linear ${cloudDelays[i]}s infinite`,
                 }
               }
             >
