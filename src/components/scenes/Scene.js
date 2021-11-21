@@ -62,7 +62,7 @@ export default function Scene(
     };
     updateProgressCurr(imageArray.length);
     if (!imageArray[0]) {
-      loadImage(imageArray.slice(1));
+      //loadImage(imageArray.slice(1));
       return;
     }
     load(imageArray[0])
