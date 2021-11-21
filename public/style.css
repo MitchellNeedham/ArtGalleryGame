@@ -7,12 +7,11 @@
   z-index: 20000;
   display: flex;
   justify-content: center;
-  background-color: rgb(9, 9, 80);
+  background: linear-gradient(90deg, rgb(9, 9, 80) 0%, #000 50%, rgb(9, 9, 80) 100%) rgb(5, 5, 65);
 }
 
 #loading-screen img {
   object-fit: contain;
-  box-shadow: 0 0 300px rgb(0, 0, 0);
 }
 
 #progress-bar {

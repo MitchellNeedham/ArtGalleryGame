@@ -63,6 +63,7 @@ export default function VoteInterface() {
       time: new Date().toISOString(),
       id: localStorage.getItem('voterID')
     })
+    setStep(0);
     setVoted(true);
   }
 

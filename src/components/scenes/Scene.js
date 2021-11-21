@@ -61,6 +61,10 @@ export default function Scene(
       setLoaded(true);
     };
     updateProgressCurr(imageArray.length);
+    if (!imageArray[0]) {
+      loadImage(imageArray.slice(1));
+      return;
+    }
     load(imageArray[0])
     .then(() => loadImage(imageArray.slice(1)))
     .catch(() => {});
