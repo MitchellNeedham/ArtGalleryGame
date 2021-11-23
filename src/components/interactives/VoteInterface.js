@@ -36,7 +36,7 @@ const ART = [
     text: [
       "Almost Blue - Ivan Jedlres",
       "Realm of Nokia - Luke Rotella",
-      "Shh..Listen - Samantha Tran",
+      "Shh..Listen - Samantha Tian",
       "The Heart is a Muscle - Dion Fibishenko",
       "Ophelia - Keely Varmalis",
       "Poison - Sam Morris",
